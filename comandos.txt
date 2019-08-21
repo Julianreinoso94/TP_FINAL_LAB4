@@ -1,0 +1,47 @@
+ng new AppInOut
+ng generate class clases/alumno
+ng generate component componentes/alumno
+ng generate component componentes/listadoAlumnos
+ng generate component componentes/detalleAlumnos
+
+ejercicio
+ng generate class clases/profesor
+ng generate component componentes/profesor
+ng generate component componentes/detalleProfesor
+ng generate component componentes/listadoProfesor
+
+ng generate component componentes/tablaProfesor
+ng generate component componentes/filaProfesor
+
+
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+    
+
+Angular CLI: 7.1.2
+Node: 9.1.0
+OS: linux x64
+Angular: 7.1.2
+... animations, cli, common, compiler, compiler-cli, core, forms
+... language-service, platform-browser, platform-browser-dynamic
+... router
+
+Package                           Version
+-----------------------------------------------------------
+@angular-devkit/architect         0.11.2
+@angular-devkit/build-angular     0.11.2
+@angular-devkit/build-optimizer   0.11.2
+@angular-devkit/build-webpack     0.11.2
+@angular-devkit/core              7.1.2
+@angular-devkit/schematics        7.1.2
+@ngtools/webpack                  7.1.2
+@schematics/angular               7.1.2
+@schematics/update                0.11.2
+rxjs                              6.3.3
+typescript                        3.1.6
+webpack                           4.23.1
+    

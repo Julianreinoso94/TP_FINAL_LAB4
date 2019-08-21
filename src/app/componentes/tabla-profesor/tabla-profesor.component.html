@@ -1,0 +1,25 @@
+<table border=1>
+	<thead>
+		<th>legajo</th>
+		<th>materia</th>
+		<th>apellido</th>
+		<th>detalle</th>
+
+	</thead>
+  <tbody>
+  	
+
+<tr *ngFor="let profesor of listadoProfesores" app-fila-profesor [unProfesor]="profesor" (profesorSeleccionado)="mostrarDetalles($event)" >
+    <!--td class="badge">{{profesor.legajo}}</td>
+    <td > {{profesor.materia}} </td>
+    <td > {{profesor.apellido}} </td>
+    <td > <button type="button" class="btn btn-info btn-circle"   (click)="mostrarDetalles(profesor)"><i class="fa fa-check"></i>
+    </button></td-->
+
+
+ </tr>
+
+
+
+  </tbody> 
+</table>

@@ -1,0 +1,18 @@
+<div *ngIf="!alumnoParaMostrar">
+    <p> seleccione un alumno </p>
+</div>
+
+
+<div *ngIf="alumnoParaMostrar">
+    <h2>{{alumnoParaMostrar.apellido}} </h2>
+   
+
+    <div class="card" style="width:200px">
+        <img class="card-img-top" src="/assets/imagenes/presentacion.jpg" alt="Card image" style="width:100%">
+        <div class="card-body">
+          <h4 class="card-title">{{alumnoParaMostrar.legajo}}</h4>
+          <p class="card-text">El alumno {{alumnoParaMostrar.nombre}} ,{{alumnoParaMostrar.apellido}}</p>
+          <a href="#" class="btn btn-danger">Borrar</a>
+        </div>
+      </div>
+  </div>

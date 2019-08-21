@@ -1,0 +1,27 @@
+<div *ngIf="!unAlumno">
+
+
+    <button class="btn btn-lg btn-warning btn-block"  (click)="nuevoAlumno()">Nuevo </button>
+
+
+</div>
+<div *ngIf="unAlumno">
+    <h2>{{unAlumno.legajo}} Legajo</h2>
+    <div>
+      <label>Apellido:
+        <input [(ngModel)]="unAlumno.apellido" placeholder="apellido">
+      </label>
+    </div>
+    <div>
+        <label>Nombre:
+          <input [(ngModel)]="unAlumno.nombre" placeholder="nombre">
+        </label>
+      </div>
+      <img class="card-img-top" src="/assets/imagenes/pordefecto.png" alt="Card image" style="width:70px">
+      <button type="button" class="btn btn-default btn-circle" ><i class="fa fa-cloud-upload"></i>Cambiar</button>
+      <button class="btn btn-lg btn-success btn-block"  (click)="crearAlumno()">Crear</button>
+
+    
+
+
+  </div>

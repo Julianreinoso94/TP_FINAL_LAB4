@@ -1,0 +1,82 @@
+<!--<div class="fondo">
+  <h1>Juega Contra la Maquina</h1>
+  <div id="juego" >
+  <div  (click)="generar('Piedra')" id="piedra"></div>
+      <div  (click)="generar('Papel')" id="papel"></div>
+      <div  (click)="generar('Tijera')" id="tijera"></div>
+</div>
+<div id="snackbar">{{Mensajes}}</div>
+<br>
+</div>
+-->
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
+<body>
+
+  <div class="hero-text">
+ <!--   <h4>{{nuevoJuego.nombre}}</h4>-->
+  </div>
+  
+  <div class="fondo">
+
+    <div class="container">
+
+      <div class="bordeNumeros">
+        
+        <div class="img">
+          <br>
+          <br>
+          <h4>Seleccione opcion</h4>
+          <button id="botonPiedra"  alt="Avatar"style="width:450px" disabled class="btn btn-default btn-xs" (click)="generarPartida(1)"><img src="../../../assets/imagenes/piedra.jpg" ></button>
+          <button id="botonPapel"  alt="Avatar"style="width:300px" disabled class="btn btn-default btn-xs"(click)="generarPartida(2)"><img src="../../../assets/imagenes/papel.jpg" ></button>
+          <button id="botonTijera"  alt="Avatar"style="width:350px" disabled class="btn btn-default btn-xs"(click)="generarPartida(3)"><img src="../../../assets/imagenes/tijera.jpg" ></button>
+          <br>
+          
+          <div *ngIf="mostrarGif == true" class="gif">
+              <img src="../../../assets/PPT/img/alex.gif"  >
+              <img src="../../../assets/PPT/img/malo.gif"  >
+          </div>
+
+          <div class="resultados">
+              <img id="resultado1"  >
+              <img id="resultado2" >
+          </div>
+
+          <section id="msjPuntos"></section>
+            <h3 *ngIf="labelPuntos == true" >
+              <kbd class= "label-info">Vos <i class="far fa-hand-point-right"></i> {{puntos}}</kbd>
+              VS
+              <kbd class= "label-danger"> {{puntosRival}} <i class="far fa-hand-point-left"></i> Rival</kbd>
+            </h3>
+
+            <h3 *ngIf="labelGanaste == true" >
+                <kbd class= "label-success"> Ganaste! <i class="far fa-thumbs-up"></i></kbd>
+            </h3>
+            <h3 *ngIf="labelPerdiste == true" >
+                <kbd class= "label-danger"> Perdiste!! <i class="far fa-thumbs-down"></i></kbd>
+            </h3>
+        
+        </div>
+
+        <div class = "botones">
+          <button type="buttons" (click)="ocultarSonido()"  class="buttons"> Sonido</button>
+          <br>
+          <br>
+          <!-- <button *ngIf="botonComenzarVerificar == true"  (click)="primerJuego()"  class="buttons">Comenzar</button> -->
+
+          <button (click)="primerJuego()"  class="buttons">Comenzar</button>
+          <br>
+          <br>
+          <button type="buttons" (click)="ocultarSonido()"  class="buttons"> Salir</button>
+          
+        </div>
+
+      </div>
+    
+    </div>
+
+  </div>
+  
+</body>

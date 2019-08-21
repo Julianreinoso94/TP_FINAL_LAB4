@@ -1,0 +1,56 @@
+<p>
+ Actores con su pelicula
+</p>
+
+  <table style="margin-left: 250px">
+      <thead style="background-color: black; font-size: 33px;color: blue">
+
+      <th>Nombre
+      </th>
+      <th>Nacionalidad</th>
+      <th>MostrarPeliculas</th>
+  
+  
+      </thead>
+      <tbody style="background-color: black; font-size: 33px;color: blue">
+      <tr  *ngFor="let item of listaestrella">
+
+      <td>{{item.nombre}}</td>
+      <td>{{item.nacionalidad}}</td>
+      <td><button style="background-color: black; font-size: 33px;color: blue" (click)="peliculasporactor(item.id)" >Peliculas</button></td>
+      <!-- <td>  <img *ngIf="loading" class="pl-3" src={{item}} /> -->
+      <!-- </td> -->
+      <td>        
+      </td>
+  
+  
+      </tr>
+      </tbody>
+      </table>
+
+
+      <table style="margin-left: 250px">
+          <thead style="background-color: black; font-size: 33px;color: blue">
+    
+          <th>Nombre Pelicula
+          </th>
+          <th>Cantidad de Publico</th>
+          <th>Foto</th>
+      
+      
+          </thead>
+          <tbody style="background-color: black; font-size: 33px;color: blue">
+          <tr  *ngFor="let item of peliculasactorseleccionado">
+    
+          <td>{{item.nombre}}</td>
+          <td>{{item.cantPub}}</td>
+          <td> <img [src]=item.foto /></td>
+          <!-- <td>  <img *ngIf="loading" class="pl-3" src={{item}} /> -->
+          <!-- </td> -->
+          <td>        
+          </td>
+      
+      
+          </tr>
+          </tbody>
+          </table>

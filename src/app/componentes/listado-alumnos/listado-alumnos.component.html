@@ -1,0 +1,27 @@
+<!--ul class="alumnos">
+  <li *ngFor="let alumno of listadoAlumnos">
+    <span class="badge">{{alumno.legajo}}</span> {{alumno.apellido}}  -{{alumno.nombre}}  <button type="button" class="btn btn-info btn-circle"   (click)="mostrarDetalles(alumno)"><i class="fa fa-check"></i>
+    </button>
+  </li>
+</ul-->
+
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Legajo</th>
+        <th>Apellido</th>
+        <th>Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alumno of listadoAlumnos">
+        <td>{{alumno.legajo}}</td>
+        <td>{{alumno.apellido}}</td>
+        <td>{{alumno.nombre}}</td>
+        <td><button type="button" class="btn btn-info btn-circle"   (click)="mostrarDetalles(alumno)"><i class="fa fa-check"></i>
+        </button></td>
+      </tr>
+     
+    </tbody>
+  </table>

@@ -1,0 +1,39 @@
+<div *ngIf="!nuevoProfesor">
+
+
+  <button class="btn btn-lg btn-warning btn-block"  (click)="hacerNuevoProfesor()">Nuevo </button>
+
+
+</div>
+<div *ngIf="nuevoProfesor">
+  <h2>{{nuevoProfesor.legajo}} Legajo</h2>
+  <div>
+    <label>Apellido:
+      <input [(ngModel)]="nuevoProfesor.apellido" placeholder="apellido">
+    </label>
+  </div>
+  <div>
+      <label>Materia:
+        <select [(ngModel)]="nuevoProfesor.materia" >
+          <option value="Programacion">Programacion</option>
+          <option value="Laboratorio">Laboratorio</option>
+          <option value="Matematicas">Matematicas</option>
+          <option value="PPS">PPS</option>
+        </select>
+        
+      </label>
+    </div>
+    <!--div>
+      <label>Materia:
+       
+        <input readonly="" [(ngModel)]="nuevoProfesor.materia" placeholder="materia">
+      </label>
+    </div-->
+    <img class="card-img-top" src="/assets/imagenes/pordefecto.png" alt="Card image" style="width:70px">
+    <button type="button" class="btn btn-default btn-circle" ><i class="fa fa-cloud-upload"></i>Cambiar</button>
+    <button class="btn btn-lg btn-success btn-block"  (click)="crearProfesor()">Crear</button>
+
+  
+
+
+</div>

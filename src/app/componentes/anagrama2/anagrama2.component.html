@@ -1,0 +1,31 @@
+    
+<!--The content below is only a placeholder and can be replaced.-->
+<!--app-menu></app-menu-->
+<body class="fondo">
+    <div style="text-align:center">
+      <h1 style="
+      color: rgb(199, 22, 66);
+    ">
+        {{nuevoJuego.nombre}}
+      </h1>
+     </div>
+    <h2></h2>
+    <div name="juego" class="juego">
+    
+       <h1 style="color:rgb(92, 13, 167)">ingrese numero:  </h1>  <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="Ingrese la palabra que se forma" name="numeroIngresado" type="text" class="form-control" style="padding: 5%; font-size: 50px;"/>
+        <h2>El numero ingresado es: {{aux}}  </h2>
+     
+        <h2 [hidden]="ocultarVerificar"><button  *ngIf="nuevoJuego.numeroSecreto!=0" (click)="verificar()" class="btn btn-success btn-lg">Verificar</button></h2>
+     
+        <h2><button *ngIf="nuevoJuego.numeroSecreto==0 " (click)="generarnumero()"  class="btn btn-info btn-lg">Nuevo número secreto</button></h2>
+     
+        <h2><p *ngIf="nuevoJuego.numeroSecreto!=0" [hidden]="ocultarVerificar"><i class="fa fa-spinner fa-spin"></i>Esperando que ingrese un número</p></h2>
+    
+        <h3 [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
+        <h3 [hidden]="!ocultarVerificar">usted aún no gano </h3>
+    
+    
+    </div>
+    <div id="snackbar">{{Mensajes}}</div>
+    
+    </body>

@@ -1,0 +1,61 @@
+<body>
+  <!-- <div *ngIf="!unAlumno">
+  
+  
+    <button class="btn btn-lg btn-warning btn-block"  (click)="nuevoAlumno()">Nuevo </button>
+  
+  
+  </div> -->
+  <div >
+    <h2> Alta Pelicula</h2>
+    <div>
+      <label>id:
+        <input [(ngModel)]="id" placeholder="id">
+      </label>
+    </div>
+    <div>
+        <label>Nombre:
+          <input [(ngModel)]="nombre"  placeholder="nombre">
+        </label>
+      </div>
+      <div>
+        <label>Tipo:
+          <select style="background-color: aqua; font-size: 46px;margin-left:260px" [(ngModel)]="tipoPelicula" >
+            <option  value="terror">TERROR</option>
+            <option value="amor">AMOR</option>
+            <option value="comedia">COMEDIA</option>
+            <option value="otros">OTROS</option>
+          </select>
+          
+        </label>
+      </div>
+      <div>
+        <label>Fecha de extreno:
+          <input [(ngModel)]="fechaext" placeholder="fecha">
+        </label>
+      </div>
+      <div>
+        <label>Cantidad de Publico:
+          <input [(ngModel)]="cantPub" placeholder="cantidad publico">
+        </label>
+      </div>
+    
+      <div>
+          <label>Actor:
+            <select style="background-color: aqua; font-size: 46px;margin-left:260px" [(ngModel)]="actorcodigoid" >
+              <option  value="{{item.id}}" *ngFor="let item of listaestrella" >{{item.nombre}}</option>
+              
+            </select>
+            
+          </label>
+        </div>
+  
+      <!-- <img class="card-img-top" src="/assets/imagenes/pordefecto.png" alt="Card image" style="width:70px"> -->
+      <!-- <button type="button" class="btn btn-default btn-circle" ><i class="fa fa-cloud-upload"></i>Cambiar</button> -->
+      <button class="btn btn-lg btn-success btn-block" style="background-color: aqua; font-size: 46px;margin-left:260px"  (click)="crearPelicula()">Crear</button>
+  
+    
+  
+  
+  </div>
+  </body>
