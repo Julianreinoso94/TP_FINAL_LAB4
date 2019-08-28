@@ -1,43 +1,63 @@
-<!-- media queries css -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<div class="page-container">
+	<div class="side-bar">
+		<ul class="nav flex-column">
+	  	<li class="nav-item">
+	    	<a class="nav-link active" routerLink="home">
+					<ion-icon name="list"></ion-icon>
+				</a>
+	  	</li>
+	  	<li class="nav-item">
+	    	<a class="nav-link" routerLink="new-user">
+					<ion-icon name="add"></ion-icon>
+				</a>
+		  </li>
+		  <li class="nav-item">
+	    	<a class="nav-link" routerLink="new-user">
+					<ion-icon name="compass"></ion-icon>
+				</a>
+		  </li>
 
-<div id="pagewrap" style="width:100%">
+		  <li class="nav-item">
+	    	<a class="nav-link" routerLink="new-user">
+					<ion-icon name="download"></ion-icon>
+				</a>
+		  </li>
+		  <li class="nav-item">
+	    	<a class="nav-link" routerLink="new-user">
+					<ion-icon name="calendar"></ion-icon>
+				</a>
+		  </li>
+		  <li class="nav-item">
+	    	<a class="nav-link" routerLink="new-user">
+					<ion-icon name="pie"></ion-icon>
+<!-- <					<span>Filter </span> -->
 
-	<header id="header">
+				</a>
+		  </li>
+		  <li class="nav-item">
+	    	<a class="nav-link" routerLink="new-user">
+					<ion-icon name="stats"></ion-icon>
+				</a>
+		  </li>
+		  <li class="nav-item">
+				<a class="nav-link" routerLink="altas">
+						<ion-icon name="person-add"></ion-icon>
+					</a>
+			  </li>
+		  <li class="nav-item">
+			<a class="nav-link" (click)="logout()" style="color:red">
+									<ion-icon name="log-out"></ion-icon>
+				</a>
+		  </li>
+		
 
 	
-			<h1 id="site-logo"><a href="#">Principal</a></h1>
-			<h2 id="site-description">{{title}}</h2>
-    
-		<nav>
+		  
+		</ul>
 
-			<ul id="main-nav" class="clearfix">
-					<li><a  routerLink="/principal" class="btn">HOME </a> </li>
-					<li><a  routerLink="/tateti" class="btn">TATETI </a> </li>
-					<li><a  routerLink="/agilidad" class="btn">JUEGO DE AGIIDAD </a> </li>
-
-				<li><a  routerLink="/anagrama" class="btn">ANAGRAMA<br> </a> </li>
-				<li><a  routerLink="/preguntas" class="btn">PREGUNTA2 </a> </li>
-				<li><a  routerLink="/ppt" class="btn">PIEDRA PAPEL O TIJERA </a> </li>
-				<li><a  routerLink="/adivinanum" class="btn">ADIVINA EL NUMERO </a> </li>
-				<li><a  routerLink="/listadoresult" class="btn">LISTA DE RESULTADOS </a> </li>
-				<li><a  routerLink="/soy" class="btn">SOBRE MI..</a> </li>
-				<li><a   href="https://github.com/julianreinoso94" class="btn">MIGITHUB.</a> </li>
-
-
-
-
-			
-				
-				<li> <a (click)="logout()" class="btn btn-success">Salir</a> </li>
-				
-			</ul>
-			<!-- /#main-nav --> 
-		</nav>
-
-
-	</header>
-
-<!-- <app-NavbarComponent></app-NavbarComponent> -->
-<!--Donde se encuentre este tag, se instancian los componentes dependientes del ruteo-->
-<router-outlet></router-outlet>
+		
+	</div>
+	<div class="content-container">
+ 		<router-outlet></router-outlet>
+	</div>
+</div>

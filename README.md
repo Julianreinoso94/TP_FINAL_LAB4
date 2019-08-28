@@ -1,46 +1,29 @@
-#entrega de TP final del curso
+# Angular Firebase CRUD
 
-1- se debe hacer fork de este repositorio.
+This project is part of an Angular tutorial where we explore how to perform all CRUD operations in an Angular 7 application using cloud FireStore as a database.
 
-2-crear la carpeta TPFinal-apellido en ese repositorio.
+Get the step by step free tutorial in https://angular-templates.io/tutorials/about/angular-crud-with-firebase
 
-3- subir el repositorio a su github.
+**Please support this project by simply putting a Github star ⭐. 🙏 Thanks**
 
-## consultas octaviovillegas@ymail.com
+## Installation
+
+Run `npm install` to install all the required dependencies
+
+Then run `ng serve` to start a dev server.
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+![](https://s3-us-west-2.amazonaws.com/angular-templates/tutorials/angular-crud-with-firebase/angular-crud-firebase.png)
+
+## Online Demo
+
+You can try the online demo of this Angular 7 CRUD [here](https://splendid-ground-95214.firebaseapp.com/home).
+
+## Premium Starter Apps
+If you want to build a complex and robust web app with Angular you should check [Angular Site Template](https://angular-templates.com/product/angular-site-template) which is a super complete application to build your next angular project. It includes Bootstrap 4, Angular Universal (Server Side Rendering), SEO, Lazy Loading and a detailed documentation on how to get started building Angular apps. Tons of use cases implemented the Angular way such as authentication flows, product listing, filtering, forms, routing guards and more.
 
 
-# AppInOut
+![](https://s3-us-west-2.amazonaws.com/angular-templates/angular-site-template/angular-site-template-cover.png)
 
-
-https://goo.gl/forms/bdUuNML035u7MTDy1 encuesta 
-
-
-
-
-
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.2.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Free Angular examples
+Find more Angular tutorials and starter apps in https://angular-templates.com

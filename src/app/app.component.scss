@@ -1,0 +1,30 @@
+.page-container {
+  display: grid;
+  grid-template-columns: 60px auto;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+
+  padding: 0px;
+	background: #0d1424 url(/assets/imagenes/fondo.jpg)    no-repeat fixed  top  !important;
+
+  .side-bar {
+    background: #252223;
+
+    .nav-link {
+      // color: #FFF;
+      font-size: 28px;
+    }
+  }
+
+  .content-container {
+    margin-top: 30px;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 90px;
+  } 
+}
