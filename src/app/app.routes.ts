@@ -6,6 +6,9 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditUserResolver } from './edit-user/edit-user.resolver';
 import { AltasComponent } from './Componentes/altas/altas.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ListadoEspecialistasComponent } from './Componentes/listado-especialistas/listado-especialistas.component';
+import { ModificarProfesionalComponent } from './Componentes/modificar-profesional/modificar-profesional.component';
+
 
 export const rootRouterConfig: Routes = [
   { path: '', component: LoginComponent },
@@ -13,5 +16,8 @@ export const rootRouterConfig: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent  ,canActivate:[AuthGuard]},
   { path: 'new-user', component: NewUserComponent  ,canActivate:[AuthGuard]},
-  { path: 'details/:id', component: EditUserComponent, resolve:{data : EditUserResolver}  ,canActivate:[AuthGuard]}
+  { path: 'details/:id', component: EditUserComponent, resolve:{data : EditUserResolver}  ,canActivate:[AuthGuard]},
+  { path: 'listadoespecialistas', component: ListadoEspecialistasComponent  ,canActivate:[AuthGuard]},
+  { path: 'ModificarProfesional', component: ModificarProfesionalComponent  ,canActivate:[AuthGuard]},
+
 ];

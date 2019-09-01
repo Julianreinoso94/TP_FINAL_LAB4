@@ -24,7 +24,13 @@ export class AltasComponent implements OnInit {
   exampleForm: FormGroup;
   avatarLink: string = "https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg";
   especialidades = [];
-
+  imageUrl2;
+  allTechnologies = [
+     'Recepcionistava',
+    'Odontologo',
+     'Odontopediatría',
+     'Implantólogo'		 
+] 
   validation_messages = {
    'name': [
      { type: 'required', message: 'Name is required.' }
@@ -35,10 +41,10 @@ export class AltasComponent implements OnInit {
    'age': [
      { type: 'required', message: 'Age is required.' },
    ]
-  //  ,
-  //  'especialidad': [
-  //   { type: 'required', message: 'La Especialidad es requirida.' },
-  // ]
+   ,
+   'especialidad': [
+    { type: 'required', message: 'La Especialidad es requirida.' },
+  ]
  };
 
   constructor(private storage: AngularFireStorage, 
@@ -47,7 +53,6 @@ export class AltasComponent implements OnInit {
     private router: Router,
     public firebaseService: abmProfesionales,private service: ImageService
   ) {
-    this.especialidades = this.getEspecialidades();
 
    }
 
@@ -55,14 +60,7 @@ export class AltasComponent implements OnInit {
     this.createForm();
   }
 
-  getEspecialidades() {
-    return [
-      { id: '1', name: 'Odontologo ' },
-      { id: '2', name: 'Odontopediatría' },
-      { id: '3', name: 'Implantólogo ' }
-      // { id: '4', name: 'order 4' }
-    ];
-  }
+
   createForm() {
     this.exampleForm = this.fb.group({
       name: ['', Validators.required ],
@@ -91,7 +89,7 @@ export class AltasComponent implements OnInit {
       name: new FormControl('', Validators.required),
       surname: new FormControl('', Validators.required),
       age: new FormControl('', Validators.required),
-      // especialidad : new FormControl('', Validators.required),
+  especialidad : new FormControl('', Validators.required),
 
     });
 
@@ -120,7 +118,7 @@ export class AltasComponent implements OnInit {
       })
     ).subscribe();
   
-this.router.navigate(['/home']);
+this.router.navigate(['/listadoespecialistas']);
 }
 
 
@@ -138,34 +136,4 @@ this.router.navigate(['/home']);
     }
   }
 
-  // onSubmit2(formValue) {
-  //   this.isSubmitted = true;
-  //   if (this.formTemplate.valid) {
-  //     var filePath = `${formValue.category}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
-  //     const fileRef = this.storage.ref(filePath);
-  //     this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
-  //       finalize(() => {
-  //         fileRef.getDownloadURL().subscribe((url) => {
-  //           formValue['imageUrl'] = url;
-  //           this.service.insertImageDetails(formValue);
-  //           this.resetForm();
-  //         })
-  //       })
-  //     ).subscribe();
-  //   }
-  // }
-
-  // get formControls() {
-  //   return this.formTemplate['controls'];
-  // }
-
-  // resetForm() {
-  //   //this.formTemplate.reset();
-  //   this.formTemplate.setValue({
-  //     caption: '',
-  //     imageUrl: '',
-  //     category: 'Animal'
-  //   });
-  
-  // }
 }

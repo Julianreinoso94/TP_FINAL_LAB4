@@ -47,7 +47,7 @@ export class abmProfesionales {
       surname: value.surname,
       age: parseInt(value.age),
       // especialidad: value.especialidad,
-      especialidad: "value.especialidad",
+      especialidad: value.especialidad,
 
 
       avatar: avatar

@@ -29,6 +29,8 @@ import { LoginComponent } from './Componentes/login/login.component';
 import { AltasComponent } from './Componentes/altas/altas.component';
 import { AltaEspecialistaComponent } from './Componentes/alta-especialista/alta-especialista.component';
 import { TurnosAltaComponent } from './Componentes/turnos-alta/turnos-alta.component';
+import { ListadoEspecialistasComponent } from './Componentes/listado-especialistas/listado-especialistas.component';
+import { ModificarProfesionalComponent } from './Componentes/modificar-profesional/modificar-profesional.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { TurnosAltaComponent } from './Componentes/turnos-alta/turnos-alta.compo
     LoginComponent,
     AltasComponent,
     AltaEspecialistaComponent,
-    TurnosAltaComponent
+    TurnosAltaComponent,
+    ListadoEspecialistasComponent,
+    ModificarProfesionalComponent
   ],
   entryComponents: [AvatarDialogComponent],
   imports: [

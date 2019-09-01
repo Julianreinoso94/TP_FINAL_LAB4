@@ -28,6 +28,9 @@ export class FirebaseService {
   getUsers(){
     return this.db.collection('users').snapshotChanges();
   }
+  getespecialistas(){
+    return this.db.collection('profesionales').snapshotChanges();
+  }
 
   searchUsers(searchValue){
     return this.db.collection('users',ref => ref.where('nameToSearch', '>=', searchValue)
