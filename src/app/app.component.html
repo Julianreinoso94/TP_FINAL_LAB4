@@ -1,55 +1,70 @@
 <div class="page-container">
 	<div class="side-bar">
 		<ul class="nav flex-column">
-	  	<li class="nav-item">
-	    	<a class="nav-link active" routerLink="home">
+	<li class="nav-item"  >
+			<a class="nav-link active"  >
+		  <h1 style="color: brown">Perfil: {{perfil}}</h1>
+				</a>
+			</li>
+			<li class="nav-item"  >
+					<a class="nav-link active"  >
+				  <h1 style="color: brown">email:{{email}}</h1>
+						</a>
+					</li>
+	  	<li class="nav-item"  *ngIf="userProfile?.perfil=='Supervisor'">
+	    	<a class="nav-link active" routerLink="home" >
 					<ion-icon name="list"></ion-icon>
 				</a>
 		  </li>
-		  <li class="nav-item">
+		  <li class="nav-item" *ngIf="userProfile?.perfil=='Supervisor'">
 				<a class="nav-link active" style="color:red" routerLink="listadoespecialistas">
 						<ion-icon name="list-box"></ion-icon>
 					</a>
 			  </li>
-	  	<li class="nav-item">
-	    	<a class="nav-link" routerLink="new-user">
+	  	<li class="nav-item" *ngIf="userProfile?.perfil=='Supervisor'">
+	    	<a class="nav-link" routerLink="TurnosAlta">
 					<ion-icon name="add"></ion-icon>
 				</a>
 		  </li>
-		  <li class="nav-item">
+		  <li class="nav-item" *ngIf="userProfile?.perfil=='Supervisor'">
 	    	<a class="nav-link" routerLink="new-user">
 					<ion-icon name="compass"></ion-icon>
 				</a>
 		  </li>
 
-		  <li class="nav-item">
+		  <li class="nav-item" *ngIf="userProfile?.perfil=='Supervisor'">
 	    	<a class="nav-link" routerLink="new-user">
 					<ion-icon name="download"></ion-icon>
 				</a>
 		  </li>
-		  <li class="nav-item">
+		  <li class="nav-item" *ngIf="userProfile?.perfil=='Supervisor'">
 	    	<a class="nav-link" routerLink="new-user">
 					<ion-icon name="calendar"></ion-icon>
 				</a>
 		  </li>
-		  <li class="nav-item">
+		  <li class="nav-item" *ngIf="userProfile?.perfil=='Supervisor'">
 	    	<a class="nav-link" routerLink="new-user">
 					<ion-icon name="pie"></ion-icon>
 <!-- <					<span>Filter </span> -->
 
 				</a>
 		  </li>
-		  <li class="nav-item">
+		  <li class="nav-item" *ngIf="userProfile?.perfil=='Supervisor'">
 	    	<a class="nav-link" routerLink="new-user">
 					<ion-icon name="stats"></ion-icon>
 				</a>
 		  </li>
 		  <li class="nav-item">
-				<a class="nav-link" routerLink="altas">
+				<a class="nav-link" routerLink="altas" *ngIf="userProfile?.perfil=='Supervisor'">
 						<ion-icon name="person-add"></ion-icon>
 					</a>
 			  </li>
-		  <li class="nav-item">
+			  <li class="nav-item" *ngIf="perfil=='Supervisor'">
+				<a class="nav-link"  routerLink="AsignarTareas" style="color:aqua">
+										<ion-icon name="md-clock">Asignar</ion-icon>
+					</a>
+			  </li>
+		  <li class="nav-item" *ngIf="userProfile?.perfil=='Supervisor'">
 			<a class="nav-link" (click)="logout()" style="color:red">
 									<ion-icon name="log-out"></ion-icon>
 				</a>
@@ -62,7 +77,12 @@
 
 		
 	</div>
-	<div class="content-container">
- 		<router-outlet></router-outlet>
+	<div class="content-container" *ngIf="!unProfesor">
+		 <!-- <router-outlet></router-outlet> -->
+		 <app-login  (usuarioSeleccionado)="tomarusuario($event)" ></app-login>
 	</div>
+	<div class="content-container" *ngIf="unProfesor">
+		 <router-outlet></router-outlet>
+
+   </div>
 </div>

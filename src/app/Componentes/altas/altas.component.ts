@@ -6,7 +6,7 @@ import { abmProfesionales } from 'src/app/services/abmProfesionales.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from "rxjs/operators";
-
+import {AuthService} from "src/app/services/auth.service"
 import { ImageService } from 'src/app/services/image.service';
 
 
@@ -49,7 +49,7 @@ export class AltasComponent implements OnInit {
 
   constructor(private storage: AngularFireStorage, 
     private fb: FormBuilder,
-    public dialog: MatDialog,
+    public dialog: MatDialog,public auth:AuthService,
     private router: Router,
     public firebaseService: abmProfesionales,private service: ImageService
   ) {
@@ -66,7 +66,10 @@ export class AltasComponent implements OnInit {
       name: ['', Validators.required ],
       surname: ['', Validators.required ],
       age: ['', Validators.required ],
-      especialidad: ['', Validators.required ]
+      especialidad: ['', Validators.required ],
+      password: ['', Validators.required ],
+      email: ['', Validators.required ]
+
     });
   }
 
@@ -117,6 +120,7 @@ export class AltasComponent implements OnInit {
     })
       })
     ).subscribe();
+    this.auth.registerEmpleado(value);
   
 this.router.navigate(['/listadoespecialistas']);
 }

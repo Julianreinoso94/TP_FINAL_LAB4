@@ -39,6 +39,10 @@ export class abmProfesionales {
     return this.db.collection('profesionales',ref => ref.orderBy('age').startAt(value)).snapshotChanges();
   }
 
+ActulizarHorarioTrabajo(userKey, value){
+    value.nameToSearch = value.name.toLowerCase();
+    return this.db.collection('profesionales').doc(userKey).set(value);
+  }
 
   createUser(value, avatar){
     return this.db.collection('profesionales').add({
@@ -48,9 +52,9 @@ export class abmProfesionales {
       age: parseInt(value.age),
       // especialidad: value.especialidad,
       especialidad: value.especialidad,
-
-
-      avatar: avatar
+     diasDeTrabajo:null,
+     horario:null,
+       avatar: avatar
     });
   }
 }

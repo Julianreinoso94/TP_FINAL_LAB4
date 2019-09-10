@@ -49,6 +49,26 @@
                 <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
               </ng-container>
             </div>
+
+            <div class="form-group">
+              <mat-form-field style="          width: 100%;
+              "   class="input-style">
+                <input matInput placeholder="email" class="form-control" formControlName="email">
+              </mat-form-field>
+              <ng-container *ngFor="let validation of validation_messages.surname">
+                <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
+              </ng-container>
+            </div>
+            <div class="form-group">
+              <mat-form-field style="          width: 100%;
+              "   class="input-style">
+                <input matInput placeholder="Contraseña" class="form-control" formControlName="password">
+              </mat-form-field>
+              <ng-container *ngFor="let validation of validation_messages.surname">
+                <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
+              </ng-container>
+            </div>
+            
   
             <div class="form-group">
               <mat-form-field class="input-style" style=" width: 100% "  >

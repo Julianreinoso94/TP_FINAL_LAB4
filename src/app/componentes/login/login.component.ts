@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { Input ,Output,EventEmitter } from '@angular/core';
+import{User} from 'src/app/clases/user';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,17 +11,25 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   email:any
+  psw:any;
   password:any;
+  perfil:string;
   tipousuario;
-   constructor(         private router: Router,
-     private authService: AuthService
-     ) { }
+  nuevouser:User;
+
+  public userProfile: any;
+  public birthDate: Date;
+  @Output() usuarioSeleccionado: EventEmitter<any>= new EventEmitter<any>(); 
+
+
+   constructor(private router: Router,private authService: AuthService) { }
  
    ngOnInit() {
    }
  
    async loginUser(): Promise<void> {
- 
+    this.perfil= "Supervisor";
+
      if (
        this.email == null||
        this.password === null
@@ -30,7 +41,19 @@ export class LoginComponent implements OnInit {
        const password = this.password;
  
        this.authService.login(email, password).then(() => {
+
+        this.authService
+        .getUserProfile()
+        .get()
+        .then( userProfileSnapshot => {
+          this.userProfile = userProfileSnapshot.data();
+          // console.log(this.userProfile);
+          this.birthDate = userProfileSnapshot.data().birthDate;
+          this.perfil= userProfileSnapshot.data().perfil;
+        });
+  this.nuevouser=new User(this.userProfile.perfil,this.userProfile.email);
               // alert("entro");
+              this.usuarioSeleccionado.emit(this.nuevouser);
               this.router.navigate(['/home'] );
          },
          error => {
@@ -38,6 +61,13 @@ export class LoginComponent implements OnInit {
          }
        );
      }
+
+
+    //  mostrarDetalles()
+    //  {
+    //    console.log("tabla");
+    //    this.usuarioSeleccionado.emit(this.user);
+    //  }
    
   
    usuario(valor)

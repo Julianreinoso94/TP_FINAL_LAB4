@@ -1,3 +1,96 @@
-<p>
-  turnos-alta works!
-</p>
+<div class="create-page" style="    padding: 20px 60px;
+">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Pedir Turno</li>
+      </ol>
+    </nav>
+    <div class="page-content" style=" background-color: #FFF;">
+      <div class="row">
+      
+        <div class="col col-md-12">
+  
+          <form class="create-form" style="   padding: 20px;" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
+  
+            <div class="form-group">
+              <mat-form-field style="          width: 100%;
+              " class="input-style">
+                <input matInput placeholder="Nombre" class="form-control" formControlName="nombrePaciente">
+              </mat-form-field>
+              <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                <mat-error style="          font-size: 12px;
+                " *ngIf="exampleForm.get('nombrePaciente').hasError(validation.type) && (exampleForm.get('nombrePaciente').dirty || exampleForm.get('nombrePaciente').touched)">{{validation.message}}</mat-error>
+              </ng-container> -->
+            </div>
+  
+            <div class="form-group">
+              <mat-form-field style="          width: 100%;
+              "   class="input-style">
+                <input matInput placeholder="Apellido" class="form-control" formControlName="apellidoPaciente">
+              </mat-form-field>
+              <!-- <ng-container *ngFor="let validation of validation_messages.apellidoPaciente">
+                <mat-error *ngIf="exampleForm.get('apellidoPaciente').hasError(validation.type) && (exampleForm.get('apellidoPaciente').dirty || exampleForm.get('apellidoPaciente').touched)">{{validation.message}}</mat-error>
+              </ng-container> -->
+            </div>
+  
+            <div class="form-group">
+              <mat-form-field class="input-style" style=" width: 100% "  >
+                <input matInput type="number" min="1" max="31" placeholder="Dia" class="form-control" formControlName="DiaTurno">
+              </mat-form-field>
+              <!-- <ng-container *ngFor="let validation of validation_messages.DiaTurno">
+                <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('DiaTurno').dirty || exampleForm.get('DiaTurno').touched)">{{validation.message}}</mat-error>
+              </ng-container> -->
+            </div>
+            
+            <div class="form-group">
+                <mat-form-field class="input-style" style=" width: 100% "  >
+                  <input matInput type="number" min="1" max="31" placeholder="Horario" class="horaTurno" formControlName="horaTurno">
+                </mat-form-field>
+                <!-- <ng-container *ngFor="let validation of validation_messages.age">
+                  <mat-error *ngIf="exampleForm.get('horaTurno').hasError(validation.type) && (exampleForm.get('horaTurno').dirty || exampleForm.get('horaTurno').touched)">{{validation.message}}</mat-error>
+                </ng-container> -->
+              </div>
+              <div class="form-group">
+                  <mat-form-field class="input-style" style=" width: 100% "  >
+                    <input matInput type="number" min="1" max="31" placeholder="profesional" class="form-control" formControlName="profesional">
+                  </mat-form-field>
+                  <!-- <ng-container *ngFor="let validation of validation_messages.age">
+                    <mat-error *ngIf="exampleForm.get('profesional').hasError(validation.type) && (exampleForm.get('profesional').dirty || exampleForm.get('profesional').touched)">{{validation.message}}</mat-error>
+                  </ng-container> -->
+                </div>
+                <div class="form-group">
+                    <mat-form-field class="input-style" style=" width: 100% "  >
+                      <input matInput type="number" min="1" max="31" placeholder="consultorio" class="form-control" formControlName="consultorio">
+                    </mat-form-field>
+                    <ng-container *ngFor="let validation of validation_messages.age">
+                      <mat-error *ngIf="exampleForm.get('consultorio').hasError(validation.type) && (exampleForm.get('profesional').dirty || exampleForm.get('profesional').touched)">{{validation.message}}</mat-error>
+                    </ng-container>
+                  </div>
+
+            <div class="form-group">     
+              <span></span>    
+  <select   placeholder="especialidad" class="form-control" formControlName="especialidad"  style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  " >
+
+      <option *ngFor="let tech of allTechnologies" [ngValue]="tech">
+          {{ tech }}
+        </option>
+  
+  
+    </select>
+            </div>
+  
+  
+            <div class="row submit-button-container" style="                width: 100%;
+            justify-content: flex-end; ">
+              <div class="col-md-4">
+                <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="!exampleForm.valid">Crear</button>
+              </div>
+            </div>
+
+  
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

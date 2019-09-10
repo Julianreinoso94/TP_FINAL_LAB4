@@ -31,6 +31,11 @@ import { AltaEspecialistaComponent } from './Componentes/alta-especialista/alta-
 import { TurnosAltaComponent } from './Componentes/turnos-alta/turnos-alta.component';
 import { ListadoEspecialistasComponent } from './Componentes/listado-especialistas/listado-especialistas.component';
 import { ModificarProfesionalComponent } from './Componentes/modificar-profesional/modificar-profesional.component';
+import { InformacionLaboralComponent } from './Componentes/informacion-laboral/informacion-laboral.component';
+import { MapasComponent } from './Componentes/mapas/mapas.component';
+import { EncuestaUserComponent } from './Componentes/encuesta-user/encuesta-user.component';
+import { AsignarTareasComponent } from './Componentes/asignar-tareas/asignar-tareas.component';
+import { ListadoturnosEeComponent } from './Componentes/listadoturnos-ee/listadoturnos-ee.component';
 
 
 @NgModule({
@@ -45,7 +50,12 @@ import { ModificarProfesionalComponent } from './Componentes/modificar-profesion
     AltaEspecialistaComponent,
     TurnosAltaComponent,
     ListadoEspecialistasComponent,
-    ModificarProfesionalComponent
+    ModificarProfesionalComponent,
+    InformacionLaboralComponent,
+    MapasComponent,
+    EncuestaUserComponent,
+    AsignarTareasComponent,
+    ListadoturnosEeComponent
   ],
   entryComponents: [AvatarDialogComponent],
   imports: [
