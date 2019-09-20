@@ -79,10 +79,29 @@
               </ng-container>
             </div>
             <div class="form-group">     
-              <span></span>    
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Especialidad</li>
+                    </ol>
+                  </nav>  
   <select   placeholder="Especialidad" class="form-control" formControlName="especialidad"  style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  " >
 
       <option *ngFor="let tech of allTechnologies" [ngValue]="tech">
+          {{ tech }}
+        </option>
+  
+  
+    </select>
+            </div>
+            <div class="form-group">     
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Dias Laborales</li>
+                    </ol>
+                  </nav>  
+  <select   placeholder="dias" class="form-control" formControlName="dias"  style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  " >
+
+      <option *ngFor="let tech of dias" [ngValue]="tech">
           {{ tech }}
         </option>
   

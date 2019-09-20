@@ -10,7 +10,16 @@ import { ListadoEspecialistasComponent } from './Componentes/listado-especialist
 import { ModificarProfesionalComponent } from './Componentes/modificar-profesional/modificar-profesional.component';
 import { TurnosAltaComponent } from './Componentes/turnos-alta/turnos-alta.component';
 import { AsignarTareasComponent } from './Componentes/asignar-tareas/asignar-tareas.component';
-
+import { ListadoPacientesComponent } from './Componentes/listado-pacientes/listado-pacientes.component';
+import { HabilitarTurnosRecepcionComponent } from './Componentes/habilitar-turnos-recepcion/habilitar-turnos-recepcion.component';
+import { AbmsalitaComponent } from './Componentes/abmsalita/abmsalita.component';
+import { VerTurnosPacienteComponent } from './Componentes/ver-turnos-paciente/ver-turnos-paciente.component';
+import { EncuestaClienteComponent } from './Componentes/encuesta-cliente/encuesta-cliente.component';
+import { ListadoturnosEeComponent } from './Componentes/listadoturnos-ee/listadoturnos-ee.component';
+import { SalaDeesperaComponent } from './Componentes/sala-deespera/sala-deespera.component';
+import { EstadisticasComponent } from './Componentes/estadisticas/estadisticas.component';
+import { EncuestaUserComponent } from './Componentes/encuesta-user/encuesta-user.component';
+import { EditEspecialistaComponent } from './Componentes/edit-especialista/edit-especialista.component';
 
 export const rootRouterConfig: Routes = [
   { path: '', component: LoginComponent },
@@ -18,11 +27,19 @@ export const rootRouterConfig: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent  ,canActivate:[AuthGuard]},
   { path: 'new-user', component: NewUserComponent  ,canActivate:[AuthGuard]},
-  { path: 'details/:id', component: EditUserComponent, resolve:{data : EditUserResolver}  ,canActivate:[AuthGuard]},
+  { path: 'details/:id', component: EditEspecialistaComponent, resolve:{data : EditUserResolver}  ,canActivate:[AuthGuard]},
   { path: 'listadoespecialistas', component: ListadoEspecialistasComponent  ,canActivate:[AuthGuard]},
   { path: 'ModificarProfesional', component: ModificarProfesionalComponent  ,canActivate:[AuthGuard]},
   { path: 'TurnosAlta', component: TurnosAltaComponent  ,canActivate:[AuthGuard]},
   { path: 'AsignarTareas', component: AsignarTareasComponent  ,canActivate:[AuthGuard]},
+  { path: 'listadopacientes', component: ListadoPacientesComponent  ,canActivate:[AuthGuard]},
+  { path: 'Habilitarturnos', component: HabilitarTurnosRecepcionComponent  ,canActivate:[AuthGuard]},
+  { path: 'crearconsultario', component: AbmsalitaComponent  ,canActivate:[AuthGuard]},
+  { path: 'verturnospaciente', component: VerTurnosPacienteComponent  ,canActivate:[AuthGuard]},
+  { path: 'encuestacliente', component: EncuestaUserComponent  ,canActivate:[AuthGuard]},
+  { path: 'TurnosDemispacientes', component: ListadoturnosEeComponent  ,canActivate:[AuthGuard]},
+  { path: 'SalaDeEspera', component: SalaDeesperaComponent  ,canActivate:[AuthGuard]},
+  { path: 'Estadisticas', component: EstadisticasComponent  ,canActivate:[AuthGuard]},
 
 
 ];

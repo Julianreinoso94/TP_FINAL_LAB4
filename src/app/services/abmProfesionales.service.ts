@@ -52,8 +52,7 @@ ActulizarHorarioTrabajo(userKey, value){
       age: parseInt(value.age),
       // especialidad: value.especialidad,
       especialidad: value.especialidad,
-     diasDeTrabajo:null,
-     horario:null,
+      diasDeTrabajo:value.dias,
        avatar: avatar
     });
   }

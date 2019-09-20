@@ -8,7 +8,6 @@
       </div>
     </div>
     <div class="col-md-6 filter-by-age">
-      
       <div class="row">
         <div class="col-md-auto title">
           <span>Filter by age (older than):</span>
@@ -37,40 +36,12 @@
           <img class="image" [src]="item.payload.doc.data().avatar">
         </div>
         <div class="col col-md-8 text-col">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">Datos Personales</li>
-                </ol>
-              </nav>
-          <h5 class="mb-1"> Codigo de Legajo</h5>
-          <small>{{item.payload.doc.data().name}}</small>
-          <h5 class="mb-1">Horarios</h5>
-
-          <small>{{item.payload.doc.data().name}}</small>
-    
-          <small>Age: {{item.payload.doc.data().especialidad}}</small>
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">Datos Laborales</li>
-            </ol>
-          </nav>
-          <h5 class="mb-1"> Dias Laborables</h5>
-          <small>{{item.payload.doc.data().diasDeTrabajo}}</small>
-          <h5 class="mb-1">Horarios</h5>
-
-          <small>{{item.payload.doc.data().horario}}</small>
-    
-        </div>
-        <div class="col col-md-8 text-col">
           <h5 class="mb-1">{{item.payload.doc.data().name}} {{item.payload.doc.data().surname}}</h5>
-       
+          <small>Age: {{item.payload.doc.data().age}}</small>
         </div>
         <div class="col col-md-2 actions-col">
           <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
             <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
-          </button>
-          <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
-            <ion-icon name="md-clock">Asignar</ion-icon>
           </button>
         </div>
       </div>

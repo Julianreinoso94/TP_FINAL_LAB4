@@ -9,88 +9,100 @@
       <div class="row">
       
         <div class="col col-md-12">
+          
   
           <form class="create-form" style="   padding: 20px;" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
-  
-            <div class="form-group">
-              <mat-form-field style="          width: 100%;
-              " class="input-style">
-                <input matInput placeholder="Nombre" class="form-control" formControlName="nombrePaciente">
-              </mat-form-field>
-              <!-- <ng-container *ngFor="let validation of validation_messages.name">
-                <mat-error style="          font-size: 12px;
-                " *ngIf="exampleForm.get('nombrePaciente').hasError(validation.type) && (exampleForm.get('nombrePaciente').dirty || exampleForm.get('nombrePaciente').touched)">{{validation.message}}</mat-error>
-              </ng-container> -->
-            </div>
-  
-            <div class="form-group">
-              <mat-form-field style="          width: 100%;
-              "   class="input-style">
-                <input matInput placeholder="Apellido" class="form-control" formControlName="apellidoPaciente">
-              </mat-form-field>
-              <!-- <ng-container *ngFor="let validation of validation_messages.apellidoPaciente">
-                <mat-error *ngIf="exampleForm.get('apellidoPaciente').hasError(validation.type) && (exampleForm.get('apellidoPaciente').dirty || exampleForm.get('apellidoPaciente').touched)">{{validation.message}}</mat-error>
-              </ng-container> -->
-            </div>
-  
-            <div class="form-group">
-              <mat-form-field class="input-style" style=" width: 100% "  >
-                <input matInput type="number" min="1" max="31" placeholder="Dia" class="form-control" formControlName="DiaTurno">
-              </mat-form-field>
-              <!-- <ng-container *ngFor="let validation of validation_messages.DiaTurno">
-                <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('DiaTurno').dirty || exampleForm.get('DiaTurno').touched)">{{validation.message}}</mat-error>
-              </ng-container> -->
-            </div>
-            
-            <div class="form-group">
-                <mat-form-field class="input-style" style=" width: 100% "  >
-                  <input matInput type="number" min="1" max="31" placeholder="Horario" class="horaTurno" formControlName="horaTurno">
-                </mat-form-field>
-                <!-- <ng-container *ngFor="let validation of validation_messages.age">
-                  <mat-error *ngIf="exampleForm.get('horaTurno').hasError(validation.type) && (exampleForm.get('horaTurno').dirty || exampleForm.get('horaTurno').touched)">{{validation.message}}</mat-error>
-                </ng-container> -->
-              </div>
-              <div class="form-group">
-                  <mat-form-field class="input-style" style=" width: 100% "  >
-                    <input matInput type="number" min="1" max="31" placeholder="profesional" class="form-control" formControlName="profesional">
-                  </mat-form-field>
-                  <!-- <ng-container *ngFor="let validation of validation_messages.age">
-                    <mat-error *ngIf="exampleForm.get('profesional').hasError(validation.type) && (exampleForm.get('profesional').dirty || exampleForm.get('profesional').touched)">{{validation.message}}</mat-error>
-                  </ng-container> -->
-                </div>
+         
+              <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Fecha del turno</li>
+                  </ol>
+                </nav>
+
+
                 <div class="form-group">
-                    <mat-form-field class="input-style" style=" width: 100% "  >
-                      <input matInput type="number" min="1" max="31" placeholder="consultorio" class="form-control" formControlName="consultorio">
-                    </mat-form-field>
-                    <ng-container *ngFor="let validation of validation_messages.age">
-                      <mat-error *ngIf="exampleForm.get('consultorio').hasError(validation.type) && (exampleForm.get('profesional').dirty || exampleForm.get('profesional').touched)">{{validation.message}}</mat-error>
-                    </ng-container>
+
+                  <mat-form-field>
+                      <input matInput [matDatepicker] = "picker"  (dateChange)="addEvent('change', $event)"  formControlName="DiaTurno" placeholder = "Elegi la fecha para tu turno!">
+                      <mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                   </mat-form-field>
                   </div>
 
-            <div class="form-group">     
-              <span></span>    
-  <select   placeholder="especialidad" class="form-control" formControlName="especialidad"  style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  " >
+                   
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Horario</li>
+              </ol>
+            </nav>
+            <div class="form-group">
+              <span></span>
+              <select placeholder="especialidad" class="form-control" formControlName="especialidad"
+                style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  ">
+          
+                <option *ngFor="let tech of allTechnologies" [ngValue]="tech">
+                  {{ tech }}
+                </option>
+          
+          
+              </select>
+            </div>
+   
 
-      <option *ngFor="let tech of allTechnologies" [ngValue]="tech">
-          {{ tech }}
-        </option>
-  
-  
+
+  <div class="form-group">
+    <mat-form-field class="input-style" style=" width: 100% ">
+      <input matInput type="number" min="1" max="31" placeholder="profesional" class="form-control"
+        formControlName="profesional">
+    </mat-form-field>
+    <!-- <ng-container *ngFor="let validation of validation_messages.age">
+                    <mat-error *ngIf="exampleForm.get('profesional').hasError(validation.type) && (exampleForm.get('profesional').dirty || exampleForm.get('profesional').touched)">{{validation.message}}</mat-error>
+                  </ng-container> -->
+  </div>
+  <div class="form-group">
+    <mat-form-field class="input-style" style=" width: 100% ">
+      <input matInput type="number" min="1" max="31" placeholder="consultorio" class="form-control"
+        formControlName="consultorio">
+    </mat-form-field>
+    <!-- <ng-container *ngFor="let validation of validation_messages.age">
+      <mat-error
+        *ngIf="exampleForm.get('consultorio').hasError(validation.type) && (exampleForm.get('profesional').dirty || exampleForm.get('profesional').touched)">
+        {{validation.message}}</mat-error>
+    </ng-container> -->
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Cliente</li>
+    </ol>
+  </nav>
+
+  <div class="form-group">
+   
+    <select placeholder="cliente" class="form-control" formControlName="especialidad"
+      style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  ">
+
+      <option *ngFor="let tech of clientes" [ngValue]="tech">
+        {{ tech.email }}
+      </option>
+
+
     </select>
-            </div>
-  
-  
-            <div class="row submit-button-container" style="                width: 100%;
-            justify-content: flex-end; ">
-              <div class="col-md-4">
-                <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="!exampleForm.valid">Crear</button>
-              </div>
-            </div>
+  </div>
 
   
-          </form>
-        </div>
-      </div>
+
+
+  <div class="row submit-button-container" style="                width: 100%;
+            justify-content: flex-end; ">
+    <div class="col-md-4">
+      <button mat-raised-button class="submit-button" color="primary" type="submit"
+       >Crear</button>
     </div>
   </div>
-  
+
+  <!-- [disabled]="!exampleForm.valid" -->
+  </form>
+  </div>
+  </div>
+  </div>
+  </div>

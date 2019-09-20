@@ -31,6 +31,12 @@ export class AltasComponent implements OnInit {
      'Odontopediatría',
      'Implantólogo'		 
 ] 
+dias = [
+  'Lunes,Miercoles,Viernes',
+ 'Jueves,Sabados',
+  'Martes,Jueves',
+  'Lunes,Viernes'		 
+] 
   validation_messages = {
    'name': [
      { type: 'required', message: 'Name is required.' }
@@ -68,7 +74,9 @@ export class AltasComponent implements OnInit {
       age: ['', Validators.required ],
       especialidad: ['', Validators.required ],
       password: ['', Validators.required ],
-      email: ['', Validators.required ]
+      email: ['', Validators.required ],
+      dias: ['', Validators.required ]
+
 
     });
   }
@@ -93,6 +101,8 @@ export class AltasComponent implements OnInit {
       surname: new FormControl('', Validators.required),
       age: new FormControl('', Validators.required),
   especialidad : new FormControl('', Validators.required),
+  dias : new FormControl('', Validators.required),
+
 
     });
 

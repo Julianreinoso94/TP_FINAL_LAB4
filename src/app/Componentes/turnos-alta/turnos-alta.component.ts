@@ -8,6 +8,9 @@ import{TurnosService} from 'src/app/services/turnos.service'
 import { ImageService } from 'src/app/services/image.service';
 import { useAnimation } from '@angular/animations';
 import { from } from 'rxjs';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {AuthService} from 'src/app/services/auth.service'
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-turnos-alta',
@@ -15,6 +18,48 @@ import { from } from 'rxjs';
   styleUrls: ['./turnos-alta.component.css']
 })
 export class TurnosAltaComponent  implements OnInit {
+
+  events: string[] = [];
+
+  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    this.events.push(`${event.value}`);
+
+   var fecha= this.events.toString();
+   var valor=fecha.split(" ",1);
+
+   var color: string;
+  switch (valor.toString()) {
+    case "Mon":
+      alert("Lunes.");
+      break;
+    case "Tue":
+      confirm("Martes");
+      break;
+    case "Wed":
+      confirm("Miercoles");
+      break;
+    case "Thu":
+      confirm("Jueves");
+      break;
+    case "Fri":
+      confirm("Viernes");
+      break;
+      case "Sat":
+      confirm("Sabado");
+      break;
+    default:
+      confirm("Sorry, that color is not in the system yet!");
+  }
+
+    console.log(valor);
+
+    console.log(this.events);
+    this.events.length=0;
+  }
+
+
+  public clientes:any;
+
   imgSrc: string;
   selectedImage: any = null;
   isSubmitted: boolean;
@@ -22,33 +67,47 @@ export class TurnosAltaComponent  implements OnInit {
   avatarLink: string = "https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg";
   especialidades = [];
   imageUrl2;
+  picker:any;
   allTechnologies = [
      '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00',
      '14:30', '15:00', '16:00', '16:30', '17:00', '17:30', '18:00'
 ] 
-  validation_messages = {
-   'nombrePaciente': [
-     { type: 'required', message: 'Name is required.' }
-   ],
-   'apellidoPaciente': [
-     { type: 'required', message: 'Surname is required.' }
-   ],
-   'age': [
-     { type: 'required', message: 'Age is required.' },
-   ]
-   ,
+//   validation_messages = {
+//    'nombrePaciente': [
+//      { type: 'required', message: 'Name is required.' }
+//    ],
+//    'apellidoPaciente': [
+//      { type: 'required', message: 'Surname is required.' }
+//    ],
+//    'age': [
+//      { type: 'required', message: 'Age is required.' },
+//    ]
+//    ,
    
-   'especialidad': [
-    { type: 'required', message: 'La Especialidad es requirida.' },
-  ]
- };
+//    'especialidad': [
+//     { type: 'required', message: 'La Especialidad es requirida.' },
+//   ]
+//  };
 
-  constructor(private storage: AngularFireStorage, 
+  constructor(private storage: AngularFireStorage,  private authprofile: AuthService,
     private fb: FormBuilder,
     public dialog: MatDialog,
     private router: Router,
     public firebaseService: TurnosService,private service: ImageService
   ) {
+    this.authprofile.traerBebidas().subscribe(data => {
+      this.clientes = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          // isEdit: false,
+          email: e.payload.doc.data()['email'],
+          uid: e.payload.doc.data()['uid'],
+        };
+      })
+      console.log(this.clientes);
+    });
+
+    
 
    }
 

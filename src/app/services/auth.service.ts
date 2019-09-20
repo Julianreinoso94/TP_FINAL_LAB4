@@ -14,6 +14,9 @@ export class AuthService {
   public userProfile: firebase.firestore.DocumentReference;
   public currentUser: firebase.User;
 
+  public listaComidasRef: firebase.firestore.CollectionReference;
+
+
   constructor(private AFauth : AngularFireAuth, private router : Router, private db : AngularFirestore) { 
 
     firebase.auth().onAuthStateChanged(user => {
@@ -22,13 +25,30 @@ export class AuthService {
         this.userProfile = firebase.firestore().doc(`/userProfile/${user.uid}`);
       }
     });
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.listaComidasRef = firebase
+          .firestore()
+          .collection(`/userProfile`);
+      }
+    });
   }
 
-    
+  traerBebidas()
+  {
+    return this.db.collection('userProfile', ref => ref.where('perfil', '>=', 'paciente')
+    .where('perfil', '<=', 'paciente' + '\uf8ff'))
+    .snapshotChanges();
+  }
 
+  getComidasList(): firebase.firestore.CollectionReference {
+    return this.listaComidasRef;
+  }
   
   getUserProfile(): firebase.firestore.DocumentReference {
     return this.userProfile;
+
   }
   login(email:string, password:string){
 

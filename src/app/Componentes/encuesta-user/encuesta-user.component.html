@@ -1,3 +1,74 @@
-<p>
-  encuesta-user works!
-</p>
+<div class="create-page" style="    padding: 20px 60px;
+">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Completa la encuesta!</li>
+    </ol>
+  </nav>
+  <div class="page-content" style=" background-color: #FFF;">
+    <div class="row">
+
+      <div class="col col-md-12">
+
+        <form class="create-form" style="   padding: 20px;" [formGroup]="exampleForm" novalidate
+          (ngSubmit)="onSubmit(exampleForm.value)">
+
+          <div class="form-group">
+            <mat-form-field style="          width: 100%;
+              " class="input-style">
+              <input matInput placeholder="Descripcion" class="form-control" formControlName="descripcion">
+            </mat-form-field>
+
+          </div>
+          
+          <div class="form-group">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Puntaje Clinica</li>
+              </ol>
+            </nav>
+            <select placeholder="especialidad" class="form-control" formControlName="clinica"
+              style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  ">
+
+
+              <option *ngFor="let tech of allTechnologies" [ngValue]="tech">
+                {{ tech }}
+              </option>
+
+
+            </select>
+          </div>
+
+          <div class="form-group">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Puntaje Especilista</li>
+              </ol>
+            </nav>
+            <select placeholder="especialidad" class="form-control" formControlName="especialista"
+              style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  ">
+
+
+              <option *ngFor="let tech of allTechnologies" [ngValue]="tech">
+                {{ tech }}
+              </option>
+
+
+            </select>
+          </div>
+
+
+          <div class="row submit-button-container" style="                width: 100%;
+            justify-content: flex-end; ">
+            <div class="col-md-4">
+              <button mat-raised-button class="submit-button" color="primary" type="submit"
+                [disabled]="!exampleForm.valid">Crear</button>
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

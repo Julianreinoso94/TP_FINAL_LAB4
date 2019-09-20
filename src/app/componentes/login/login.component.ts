@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   psw:any;
   password:any;
   perfil:string;
+  
   tipousuario;
   nuevouser:User;
 
@@ -75,7 +76,7 @@ export class LoginComponent implements OnInit {
 
      if(valor == "Administrador")
      {
-       this.email="admin@admin.com";
+       this.email="JULIAN@GMAIL.COM";
        this.password="123456";
  
      }
@@ -93,7 +94,7 @@ export class LoginComponent implements OnInit {
     }
     if(valor=="PacienteA")
     {
-      this.email="pacientea@pacientea.com";
+      this.email="MIA@GMAIL.COM";
       this.password="123456";
 
     }

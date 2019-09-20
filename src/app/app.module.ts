@@ -36,6 +36,18 @@ import { MapasComponent } from './Componentes/mapas/mapas.component';
 import { EncuestaUserComponent } from './Componentes/encuesta-user/encuesta-user.component';
 import { AsignarTareasComponent } from './Componentes/asignar-tareas/asignar-tareas.component';
 import { ListadoturnosEeComponent } from './Componentes/listadoturnos-ee/listadoturnos-ee.component';
+import { ListadoPacientesComponent } from './Componentes/listado-pacientes/listado-pacientes.component';
+import { HabilitarTurnosRecepcionComponent } from './Componentes/habilitar-turnos-recepcion/habilitar-turnos-recepcion.component';
+import { AbmsalitaComponent } from './Componentes/abmsalita/abmsalita.component';
+import { VerTurnosPacienteComponent } from './Componentes/ver-turnos-paciente/ver-turnos-paciente.component';
+import { EncuestaClienteComponent } from './Componentes/encuesta-cliente/encuesta-cliente.component';
+import { SalaDeesperaComponent } from './Componentes/sala-deespera/sala-deespera.component';
+import { EstadisticasComponent } from './Componentes/estadisticas/estadisticas.component';
+
+
+
+import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import { EditEspecialistaComponent } from './Componentes/edit-especialista/edit-especialista.component';
 
 
 @NgModule({
@@ -55,12 +67,20 @@ import { ListadoturnosEeComponent } from './Componentes/listadoturnos-ee/listado
     MapasComponent,
     EncuestaUserComponent,
     AsignarTareasComponent,
-    ListadoturnosEeComponent
+    ListadoturnosEeComponent,
+    ListadoPacientesComponent,
+    HabilitarTurnosRecepcionComponent,
+    AbmsalitaComponent,
+    VerTurnosPacienteComponent,
+    EncuestaClienteComponent,
+    SalaDeesperaComponent,
+    EstadisticasComponent,
+    EditEspecialistaComponent
   ],
   entryComponents: [AvatarDialogComponent],
   imports: [
     BrowserModule,
-    FormsModule,
+    FormsModule,MatDatepickerModule, MatInputModule,MatNativeDateModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     ReactiveFormsModule,
