@@ -23,7 +23,7 @@
                 <div class="form-group">
 
                   <mat-form-field>
-                      <input matInput [matDatepicker] = "picker"  (dateChange)="addEvent('change', $event)"  formControlName="DiaTurno" placeholder = "Elegi la fecha para tu turno!">
+                      <input matInput [matDatepicker] = "picker" [(ngModel)]="DiaTurno"  (dateChange)="addEvent('change', $event)"  formControlName="DiaTurno" placeholder = "Elegi la fecha para tu turno!">
                       <mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
                       <mat-datepicker #picker></mat-datepicker>
                    </mat-form-field>
@@ -102,6 +102,9 @@
 
   <!-- [disabled]="!exampleForm.valid" -->
   </form>
+
+ 
+
   </div>
   </div>
   </div>

@@ -9,7 +9,7 @@ export class TurnosService {
   constructor(public db: AngularFirestore) {}
 
 
-  getTurnos(userKey){
+  getTurno(userKey){
     return this.db.collection('turnos').doc(userKey).snapshotChanges();
   }
 
@@ -22,7 +22,7 @@ export class TurnosService {
     return this.db.collection('turnos').doc(userKey).delete();
   }
 
-  getUsers(){
+  getTurnos(){
     return this.db.collection('turnos').snapshotChanges();
   }
   getespecialistas(){
@@ -40,12 +40,13 @@ export class TurnosService {
   }
 
 
-  createTurno(value){
+  createTurno(value, a:String){
+
     return this.db.collection('turnos').add({
       nombrePaciente: value.nombrePaciente,
       nameToSearch: value.nombrePaciente.toLowerCase(),
       apellidoPaciente: value.apellidoPaciente,
-      DiaTurno: value.DiaTurno,
+      DiaTurno: a,
       horaTurno: value.horaTurno,
       profesional:value.profesional,
       consultorio:value.consultorio

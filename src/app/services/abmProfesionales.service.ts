@@ -56,4 +56,10 @@ ActulizarHorarioTrabajo(userKey, value){
        avatar: avatar
     });
   }
+
+
+  ProfesionalesquetrabajanLunes()
+  {
+    
+  }
 }

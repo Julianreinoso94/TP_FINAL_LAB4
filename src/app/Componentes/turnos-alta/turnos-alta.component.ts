@@ -12,6 +12,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {AuthService} from 'src/app/services/auth.service'
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
+
+
 @Component({
   selector: 'app-turnos-alta',
   templateUrl: './turnos-alta.component.html',
@@ -19,47 +21,8 @@ import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 })
 export class TurnosAltaComponent  implements OnInit {
 
-  events: string[] = [];
-
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.events.push(`${event.value}`);
-
-   var fecha= this.events.toString();
-   var valor=fecha.split(" ",1);
-
-   var color: string;
-  switch (valor.toString()) {
-    case "Mon":
-      alert("Lunes.");
-      break;
-    case "Tue":
-      confirm("Martes");
-      break;
-    case "Wed":
-      confirm("Miercoles");
-      break;
-    case "Thu":
-      confirm("Jueves");
-      break;
-    case "Fri":
-      confirm("Viernes");
-      break;
-      case "Sat":
-      confirm("Sabado");
-      break;
-    default:
-      confirm("Sorry, that color is not in the system yet!");
-  }
-
-    console.log(valor);
-
-    console.log(this.events);
-    this.events.length=0;
-  }
-
-
   public clientes:any;
-
+   contador:any;
   imgSrc: string;
   selectedImage: any = null;
   isSubmitted: boolean;
@@ -67,11 +30,83 @@ export class TurnosAltaComponent  implements OnInit {
   avatarLink: string = "https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg";
   especialidades = [];
   imageUrl2;
+  DiaTurno;
   picker:any;
+  fechatotal;
   allTechnologies = [
      '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00',
      '14:30', '15:00', '16:00', '16:30', '17:00', '17:30', '18:00'
 ] 
+  events: string[] = [];
+  pedidos : any;
+  turnos : any;
+  ageValue: number = 0;
+  searchValue: string = "";
+  listadoespecialistas: Array<any>;
+  listadoespecialistaspordia: Array<any>;
+
+  age_filtered_items: Array<any>;
+  name_filtered_items: Array<any>;
+
+  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    this.events.push(`${event.value}`);
+
+   var fecha= this.events.toString();
+   this.fechatotal=fecha;
+   console.log("esta es l fecha"+fecha);
+   var valor=fecha.split(" ",1);
+
+   var color: string;
+  //  var valor1 = this.listadoespecialistaspordia.length;
+
+    //  console.log( valor1);
+   // this.listadoespecialistaspordia.length=0;
+
+
+   
+
+  switch (valor.toString()) {
+    case "Mon":
+        var buscrcomo= "Lunes,Miercoles,Viernes";
+        this.especialistaPorDia(buscrcomo);
+    break;
+    case "Tue":
+     var buscrcomo= "Martes,Jueves";
+     this.especialistaPorDia(buscrcomo);
+     break;
+    case "Wed":
+        var buscrcomo= "Lunes,Miercoles,Viernes";
+
+      this.especialistaPorDia(buscrcomo);
+    //  this.compararFecha();
+      break;
+    case "Thu":
+        var buscrcomo= "Martes,Jueves";
+
+      this.especialistaPorDia(buscrcomo);
+      break;
+    case "Fri":
+        var buscrcomo= "Lunes,Miercoles,Viernes";
+
+      this.especialistaPorDia(buscrcomo);
+      break;
+      case "Sat":
+          var buscrcomo= "Jueves,Sabados";
+
+        this.especialistaPorDia(buscrcomo);
+        break;
+    default:
+      confirm("Sorry, that color is not in the system yet!");
+  }
+
+    // console.log(valor);
+
+    // console.log(this.events);
+    
+    this.events.length=0;
+  }
+
+
 //   validation_messages = {
 //    'nombrePaciente': [
 //      { type: 'required', message: 'Name is required.' }
@@ -90,11 +125,12 @@ export class TurnosAltaComponent  implements OnInit {
 //  };
 
   constructor(private storage: AngularFireStorage,  private authprofile: AuthService,
-    private fb: FormBuilder,
+    private fb: FormBuilder,private servicioProfesionales: abmProfesionales,
     public dialog: MatDialog,
     private router: Router,
     public firebaseService: TurnosService,private service: ImageService
   ) {
+
     this.authprofile.traerBebidas().subscribe(data => {
       this.clientes = data.map(e => {
         return {
@@ -104,23 +140,30 @@ export class TurnosAltaComponent  implements OnInit {
           uid: e.payload.doc.data()['uid'],
         };
       })
-      console.log(this.clientes);
+      // console.log(this.clientes);
     });
 
-    
+    this.createForm();
+
+    // this.servicioProfesionales.getUser
+    this.traerprofesional();
+    this.traerturnos();
 
    }
 
   ngOnInit() {
-    this.createForm();
+    console.log("ngOnInit");
+
+  
   }
+
 
 
   createForm() {
     this.exampleForm = this.fb.group({
       nombrePaciente: ['', Validators.required ],
       apellidoPaciente: ['', Validators.required ],
-      DiaTurno: ['', Validators.required ],
+      DiaTurno: this.fechatotal,
       horaTurno: ['', Validators.required ],
       profesional: ['', Validators.required ],
       consultorio: ['', Validators.required ],
@@ -164,7 +207,7 @@ export class TurnosAltaComponent  implements OnInit {
   }
 
   onSubmit(value){
-    this.firebaseService.createTurno(value)
+    this.firebaseService.createTurno(value,this.fechatotal)
     .then(
       res => {
         this.resetFields();
@@ -172,4 +215,103 @@ export class TurnosAltaComponent  implements OnInit {
       }
     )
   }
+
+  
+
+  getData(){
+    this.firebaseService.getespecialistas()
+    .subscribe(result => {
+      this.listadoespecialistas = result;
+      this.age_filtered_items = result;
+      this.name_filtered_items = result;
+    })
+  }
+
+  async traerprofesional()
+  {
+    this.servicioProfesionales.getUsers().subscribe(data => {
+
+      this.pedidos = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          avatar: e.payload.doc.data()['avatar'],
+          especialidad: e.payload.doc.data()['especialidad'],
+          horario: e.payload.doc.data()['horario'],
+          diasDeTrabajo: e.payload.doc.data()['diasDeTrabajo'],
+          surname: e.payload.doc.data()['surname'],
+      
+        };
+      })
+
+      
+   
+    });
+    return this.pedidos;
+  }
+
+  async traerturnos()
+  {
+    this.firebaseService.getTurnos().subscribe(data => {
+
+      this.turnos = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          DiaTurno: e.payload.doc.data()['DiaTurno'],
+          apellidoPaciente: e.payload.doc.data()['apellidoPaciente'],
+          horaTurno: e.payload.doc.data()['horaTurno'],
+          nombrePaciente: e.payload.doc.data()['nombrePaciente'],
+          profesional: e.payload.doc.data()['profesional'],
+
+        };
+      })
+
+      
+   
+    });
+    return this.pedidos;
+  }
+
+   especialistaPorDia (dia: String){
+    this.listadoespecialistaspordia = [];
+
+     this.contador=0;
+     this.contador++;
+     if (this.contador>0)
+     {
+      this.listadoespecialistaspordia.length = 0;
+     }
+
+    this.pedidos.forEach(element => {//TRAE MESA DEL USUARIO
+     
+      if(element.diasDeTrabajo == dia)
+      {
+        this.listadoespecialistaspordia = element;
+      }
+      });
+      // console.log("this.listadoespecialistaspordia");
+
+      console.log(this.listadoespecialistaspordia);
+      // console.log( this.pedidos);
+   this.compararFecha();
+  }
+
+          compararFecha()
+          {
+            
+           console.log("la fechaelegida es:"+this.DiaTurno.getTime() );
+            this.turnos.forEach(element => {
+            
+
+              if(element.DiaTurno == this.fechatotal)
+              {
+                this.listadoespecialistaspordia = element;
+                alert("ya existe un turno en esa fecha");
+              }
+              });
+
+
+   
+          }
+
+
 }
