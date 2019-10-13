@@ -46,10 +46,41 @@ export class TurnosService {
       nombrePaciente: value.nombrePaciente,
       nameToSearch: value.nombrePaciente.toLowerCase(),
       apellidoPaciente: value.apellidoPaciente,
+      especialidad:value.especialidad,
       DiaTurno: a,
+      cliente: value.cliente,
       horaTurno: value.horaTurno,
-      profesional:value.profesional,
+      profesional:"value.profesional",
+      estado:"En_Espera_Aceptacion",
       consultorio:value.consultorio
     });
+  }
+
+   RegistrosentreFechas(){
+    let start = new Date('2019-09-20');
+    let end = new Date('2019-09-27');
+
+    return this.db.collection('turnos', ref => ref
+        .where('DiaTurno', '>', start)
+        .where('DiaTurno', '<', end)
+    ).snapshotChanges();
+   }
+
+
+   
+  TraerTurnosRecepcion()
+  {
+    // console.log("entro");
+  
+    return this.db.collection('turnos', ref => ref.where('estado', '>=', 'En_Espera_Aceptacion')
+    .where('estado', '<=', 'En_Espera_Aceptacion' + '\uf8ff'))
+    .snapshotChanges();
+  
+  }
+
+  cambiarEstado(id, valor)
+  {
+    //this.firestore.doc('Mesas/'+id).update({ monto: monto });
+    this.db.doc('turnos/' + id).update({estado: valor})
   }
 }

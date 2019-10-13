@@ -3,6 +3,10 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { Input ,Output,EventEmitter } from '@angular/core';
 import{User} from 'src/app/clases/user';
+import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { ReCaptchaV3Service } from 'ngx-captcha';
+import { Inject, Optional } from '@angular/core'; 
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -14,21 +18,45 @@ export class LoginComponent implements OnInit {
   psw:any;
   password:any;
   perfil:string;
-  
+  something;
   tipousuario;
   nuevouser:User;
 
   public userProfile: any;
   public birthDate: Date;
   @Output() usuarioSeleccionado: EventEmitter<any>= new EventEmitter<any>(); 
+recaptcha: any[];
 
 
-   constructor(private router: Router,private authService: AuthService) { }
+////////////////////////////////////NUEVA VERSION
+validatingForm: FormGroup;
+
+fromPage:string;
+fromDialog:string;
+
+   constructor(private formBuilder: FormBuilder, 
+      private reCaptchaV3Service: ReCaptchaV3Service
+,    private router: Router,private authService: AuthService,
+// ,public dialogRef: MatDialogRef<LoginComponent>,
+@Optional() @Inject(MAT_DIALOG_DATA) public data: any
+) { }
+
+resolved(captchaResponse: any[]){
+  this.recaptcha = captchaResponse;
+  console.log(this.recaptcha);
+
+}
  
    ngOnInit() {
+    this.validatingForm = new FormGroup({
+      loginFormModalEmail: new FormControl('', Validators.email),
+      loginFormModalPassword: new FormControl('', Validators.required)
+    });
+ 
    }
  
    async loginUser(): Promise<void> {
+    this.router.navigate(['/home'] );
     this.perfil= "Supervisor";
 
      if (
@@ -42,7 +70,9 @@ export class LoginComponent implements OnInit {
        const password = this.password;
  
        this.authService.login(email, password).then(() => {
+       
 
+       // alert("entro");
         this.authService
         .getUserProfile()
         .get()
@@ -53,8 +83,9 @@ export class LoginComponent implements OnInit {
           this.perfil= userProfileSnapshot.data().perfil;
         });
   this.nuevouser=new User(this.userProfile.perfil,this.userProfile.email);
-              // alert("entro");
+              alert("entro el user");
               this.usuarioSeleccionado.emit(this.nuevouser);
+              // this.closeDialog();
               this.router.navigate(['/home'] );
          },
          error => {
@@ -94,7 +125,7 @@ export class LoginComponent implements OnInit {
     }
     if(valor=="PacienteA")
     {
-      this.email="MIA@GMAIL.COM";
+      this.email="pppp@GMAIL.COM";
       this.password="123456";
 
     }
@@ -106,10 +137,24 @@ export class LoginComponent implements OnInit {
     }
     if(valor=="Recepcionista")
     {
-      this.email="recepcionista@recepcionista.com";
+      this.email="MIA@GMAIL.COM";
       this.password="123456";
 
     }
    }
+
+
+   get loginFormModalEmail() {
+    return this.validatingForm.get('loginFormModalEmail');
+  }
+
+  get loginFormModalPassword() {
+    return this.validatingForm.get('loginFormModalPassword');
+  }
+
+  // closeDialog(){ 
+  //   this.dialogRef.close({event:'close',data:this.fromDialog}); 
+  // }
+   
  }
  

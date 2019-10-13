@@ -1,128 +1,335 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" style="color: brown">Perfil: {{perfil}}</a>
-		<a class="navbar-brand" style="color: brown">email:{{email}}</a>
+<head>
+<script>
 
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		  <span class="navbar-toggler-icon"></span>
-		</button>
-	  
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		  <ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-			  <a class="nav-link" routerLink="home">Home <span class="sr-only">(current)</span></a>
-			</li>
-			<li class="nav-item">
-			  <a class="nav-link"  routerLink="listadopacientes">Listado Pacientes</a>
-			</li>
+</script>
 
-			<li class="nav-item">
-			  <a  class="nav-link"  routerLink="Habilitarturnos" >Habilitar Turnos</a>
-			</li>
-			<li class="nav-item">
-				<a  class="nav-link"  routerLink="crearconsultario" >Crear consultorio</a>
-			  </li>
-			  <li class="nav-item">
-				<a  class="nav-link"  routerLink="verturnospaciente" >Mis turnos</a>
-			  </li>
-			  <li class="nav-item">
-				<a  class="nav-link"  routerLink="encuestacliente" >Encuesta cliente</a>
-			  </li>
-			  <li class="nav-item">
-				<a  class="nav-link"  routerLink="TurnosDemispacientes" >Turnos mis pacientes</a>
-			  </li>
-			  <li class="nav-item">
-				<a  class="nav-link"  routerLink="SalaDeEspera" >Sala de Espera</a>
-			  </li>
-			  <li class="nav-item">
-				<a  class="nav-link"  routerLink="Estadisticas" >Estadisticas</a>
-			  </li>
-		  </ul>
-		  
-		  
-		  
-		  <!-- <form class="form-inline my-2 my-lg-0">
-			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		  </form> -->
-		</div>
-	  </nav>
-<div class="page-container">
+</head>
+<div class="pill-nav">
+
+	<div class="separador">
+	  <a  href="#home">Inicio</a>
+	 </div>
+	 <div class="separador">
+	  </div>
+	  <a href="#news">Servicios</a>
+	   <div class="separador">
 	
-	<div class="side-bar">
-		<ul class="nav flex-column">
+	  <a href="#contact">Información</a>
+	  </div>
+	   <div class="separador">
+	  <a href="#about">Contáctenos</a>
+	  </div>
+	</div>
 
-	  	<li class="nav-item"  *ngIf="perfil=='Supervisor'">
-	    	<a class="nav-link active" routerLink="home" >
-					<ion-icon name="list"></ion-icon>
-				</a>
-		  </li>
-		  <li class="nav-item"  *ngIf="perfil=='Supervisor'">
-				<a class="nav-link active" style="color:red" routerLink="listadoespecialistas">
-						<ion-icon name="list-box"></ion-icon>
-					</a>
-			  </li>
-	  	<li class="nav-item"  *ngIf="perfil=='Supervisor'">
-	    	<a class="nav-link" routerLink="TurnosAlta">
-					<ion-icon name="add"></ion-icon>
-				</a>
-		  </li>
-		  <li class="nav-item"  *ngIf="perfil=='Supervisor'">
-	    	<a class="nav-link" routerLink="new-user">
-					<ion-icon name="compass"></ion-icon>
-				</a>
-		  </li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
+	<a class="navbar-brand" href="#">MegaDental</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+  
+	<!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+			<div class="collapse navbar-collapse" style="display: block;">
+	  <ul class="navbar-nav mr-auto">
+		<li class="nav-item">
+		  <a class="nav-link" href="#">Sala de Espera</a>
+		</li>
+		<li class="nav-item dropdown">
+		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       INFORMACIÓN ÚTIL
+		</a>
+		  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+  
+			
+			<div class="container">
+			  <div class="row">
+				<div class="col-md-4">
+				  <span class="text-uppercase text-white">Category 1</span>
+				  <ul class="nav flex-column">
+				  <li class="nav-item">
+					<a class="nav-link active" href="#">Active</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Link item</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Link item</a>
+				  </li>
+				</ul>
+				</div>
+				<!-- /.col-md-4  -->
+				<div class="col-md-4">
+				  <ul class="nav flex-column">
+				  <li class="nav-item">
+					<a class="nav-link active" href="#">Active</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Link item</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Link item</a>
+				  </li>
+				</ul>
+				</div>
+				<!-- /.col-md-4  -->
+				<div class="col-md-4">
+				  <a href="">
+					<img src="https://dummyimage.com/200x100/ccc/000&text=image+link" alt="" class="img-fluid">
+				  </a>
+				  <p class="text-white">Short image call to action</p>
+  
+				</div>
+				<!-- /.col-md-4  -->
+			  </div>
+			</div>
+			<!--  /.container  -->
+  
+  
+		  </div>
+		</li>
+		<li class="nav-item dropdown">
+		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			TRÁMITES ONLINE
+		  </a>
+		  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+  
+  
+			<div class="container">
+			  <div class="row">
+				<div class="col-md-4">
+				  <span class="text-uppercase text-white">Gestión</span>
+				  <ul class="nav flex-column">
+				  <li class="nav-item">
+					<a class="nav-link active" href="#">Pedi tu Turno!</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Info Turnos</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Encuesta</a>
+				  </li>
+				</ul>
+				</div>
+				<!-- /.col-md-4  -->
+				<!-- <div class="col-md-4">
+				  <ul class="nav flex-column">
+				  <li class="nav-item">
+					<a class="nav-link active" href="#">Active</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Link item</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Link item</a>
+				  </li>
+				</ul>
+				</div> -->
+				<!-- /.col-md-4  -->
+				<div class="col-md-4">
+				  <a href="">
+					<img src="https://dummyimage.com/200x100/ccc/000&text=image+link" alt="" class="img-fluid">
+				  </a>
+				  <p class="text-white">Short image call to action</p>
+  
+				</div>
+				<!-- /.col-md-4  -->
+			  </div>
+			</div>
+			<!--  /.container  -->
+  
+  
+		  </div>
+		</li>
+		<li class="nav-item dropdown">
+		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Mis Datos
+		  </a>
+		  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+  
+  
+			<div class="container">
+			  <div class="row">
+				<div class="col-md-4">
+				 <span class="text-uppercase text-white">Category 3</span>
+				  <ul class="nav flex-column">
+				  <li class="nav-item">
+					<a class="nav-link active" href="#">Active</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Link item</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Link item</a>
+				  </li>
+				</ul>
+				</div>
+				<!-- /.col-md-4  -->
+				<div class="col-md-4">
+				  <ul class="nav flex-column">
+				  <li class="nav-item">
+					<a class="nav-link active" href="#">Active</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Link item</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Link item</a>
+				  </li>
+				</ul>
+				</div>
+				<!-- /.col-md-4  -->
+				<div class="col-md-4">
+  
+				  <a href="">
+					<img src="https://dummyimage.com/200x100/ccc/000&text=image+link" alt="" class="img-fluid">
+				  </a>
+				  <p class="text-white">Short image call to action</p>
+				  
+				</div>
+				<!-- /.col-md-4  -->
+			  </div>
+			</div>
+			<!--  /.container  -->
+  
+  
+		  </div>
+		</li>
 
-		  <li class="nav-item"  *ngIf="perfil=='Supervisor'">
-	    	<a class="nav-link" routerLink="new-user">
-					<ion-icon name="download"></ion-icon>
-				</a>
-		  </li>
-		  <li class="nav-item"  *ngIf="perfil=='Supervisor'">
-	    	<a class="nav-link" routerLink="new-user">
-					<ion-icon name="calendar"></ion-icon>
-				</a>
-		  </li>
-		  <li class="nav-item"  *ngIf="perfil=='Supervisor'">
-	    	<a class="nav-link" routerLink="new-user">
-					<ion-icon name="pie"></ion-icon>
-<!-- <					<span>Filter </span> -->
-
-				</a>
-		  </li>
-		  <li class="nav-item" *ngIf="perfil=='Supervisor'">
-	    	<a class="nav-link" routerLink="new-user">
-					<ion-icon name="stats"></ion-icon>
-				</a>
-		  </li>
-		  <li class="nav-item">
-				<a class="nav-link" routerLink="altas"  *ngIf="perfil=='Supervisor'">
-						<ion-icon name="person-add"></ion-icon>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  ADMINISTRADOR
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	
+	
+			  <div class="container">
+				<div class="row">
+				  <div class="col-md-4">
+					<span class="text-uppercase text-white">HISTORIAL</span>
+					<ul class="nav flex-column">
+					<li class="nav-item">
+							<a class="nav-link active" routerLink="ABMGESTION">ABM </a>
+							</li>
+					<li class="nav-item">
+					  <a class="nav-link active" routerLink="/Habilitarturnos">Habilitar Turnos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link"  routerLink="/listadopacientes">Listado Pacientes</a>
+					  </li>
+					<li class="nav-item">
+						<a class="nav-link" routerLink="/TurnosAlta">	<ion-icon name="add"></ion-icon>
+						</a>
+						</li>
+				  </ul>
+				  </div>
+				  <!-- /.col-md-4  -->
+				  <div class="col-md-4">
+					<ul class="nav flex-column">
+					<li class="nav-item">
+					  <a class="nav-link active" href="#">ESTADISTICAS</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="#">Link item</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="#">Link item</a>
+					</li>
+				  </ul>
+				  </div>
+				  <!-- /.col-md-4  -->
+				  <div class="col-md-4">
+					<a href="">
+					  <img src="https://dummyimage.com/200x100/ccc/000&text=image+link" alt="" class="img-fluid">
 					</a>
-			  </li>
-			  <li class="nav-item" *ngIf="perfil=='Supervisor'">
-				<a class="nav-link"  routerLink="AsignarTareas" style="color:aqua">
-										<ion-icon name="md-clock">Asignar</ion-icon>
-					</a>
-			  </li>
-		  <li class="nav-item"  *ngIf="perfil=='Supervisor'">
-			<a class="nav-link" (click)="logout()" style="color:red">
-									<ion-icon name="log-out"></ion-icon>
-				</a>
+					<p class="text-white">Short image call to action</p>
+	
+				  </div>
+				  <!-- /.col-md-4  -->
+				</div>
+			  </div>
+			  <!--  /.container  -->
+	
+	
+			</div>
 		  </li>
+		  <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  ESPECIALISTA
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		
+		
+				  <div class="container">
+					<div class="row">
+					  <div class="col-md-4">
+						<span class="text-uppercase text-white">Turnos</span>
+						<ul class="nav flex-column">
+						<li class="nav-item">
+								<a class="nav-link active" routerLink="ABMGESTION">Proximos Turnos </a>
+								</li>
+						<li class="nav-item">
+						  <a class="nav-link active" routerLink="Habilitarturnos">Marcar Asistencia</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link"  routerLink="listadopacientes">Agregar Reseña</a>
+						  </li>
+						<li class="nav-item">
+							<a class="nav-link" routerLink="/TurnosAlta">	<ion-icon name="add"></ion-icon>
+							</a>
+							</li>
+					  </ul>
+					  </div>
+					  <!-- /.col-md-4  -->
+					  <div class="col-md-4">
+						<ul class="nav flex-column">
+						<li class="nav-item">
+						  <a class="nav-link active" href="#">Active</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link" href="#">Link item</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link" href="#">Link item</a>
+						</li>
+					  </ul>
+					  </div>
+					  <!-- /.col-md-4  -->
+					  <div class="col-md-4">
+						<a href="">
+						  <img src="https://dummyimage.com/200x100/ccc/000&text=image+link" alt="" class="img-fluid">
+						</a>
+						<p class="text-white">Short image call to action</p>
+		
+					  </div>
+					  <!-- /.col-md-4  -->
+					</div>
+				  </div>
+				  <!--  /.container  -->
+		
+		
+				</div>
+			  </li>
+	  </ul>
+	  <form class="form-inline my-2 my-lg-0">
+		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+		<button class="btn btn-outline-light my-2 my-sm-0"  (click)="openDialog()" type="submit">Iniciar Sesíon</button>
+	  </form>
+	  <form class="form-inline my-2 my-lg-0">
+		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+		<button class="btn btn-outline-light my-2 my-sm-0"   (click)="logout()" style="background-color: red;color:whitesmoke" >JUAN PEREZ</button>
+	  </form>
+	  <form class="form-inline my-2 my-lg-0">
+		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+		<button class="btn  my-2 my-sm-0"style="color: whitesmoke"  (click)="openDialog()" type="submit">:{{email}}</button>
+	  </form>
+	</div>
 
 	
-		  
-		</ul>
+  
+  
+  </nav>
+  
+  
+  
+  <!-- <app-login  (usuarioSeleccionado)="tomarusuario($event)" ></app-login> -->
 
-		
-	</div>
-	<div class="content-container" *ngIf="!unProfesor">
-		 <!-- <router-outlet></router-outlet> -->
-		 <app-login  (usuarioSeleccionado)="tomarusuario($event)" ></app-login>
-	</div>
-	<div class="content-container" *ngIf="unProfesor">
-		 <router-outlet></router-outlet>
-
-   </div>
-</div>
+   <router-outlet></router-outlet>

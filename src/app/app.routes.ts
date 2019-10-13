@@ -20,9 +20,14 @@ import { SalaDeesperaComponent } from './Componentes/sala-deespera/sala-deespera
 import { EstadisticasComponent } from './Componentes/estadisticas/estadisticas.component';
 import { EncuestaUserComponent } from './Componentes/encuesta-user/encuesta-user.component';
 import { EditEspecialistaComponent } from './Componentes/edit-especialista/edit-especialista.component';
+import { CarrouselComponent } from './Componentes/carrousel/carrousel.component';
+import { AbmGestionComponent } from './Componentes/abm-gestion/abm-gestion.component';
+import { ContactanosComponent } from './Componentes/contactanos/contactanos.component';
 
 export const rootRouterConfig: Routes = [
-  { path: '', component: LoginComponent },
+ //{ path: '', component: LoginComponent },
+ { path: '', component: HomeComponent},
+
   { path: 'altas', component: AltasComponent  ,canActivate:[AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent  ,canActivate:[AuthGuard]},
@@ -40,6 +45,10 @@ export const rootRouterConfig: Routes = [
   { path: 'TurnosDemispacientes', component: ListadoturnosEeComponent  ,canActivate:[AuthGuard]},
   { path: 'SalaDeEspera', component: SalaDeesperaComponent  ,canActivate:[AuthGuard]},
   { path: 'Estadisticas', component: EstadisticasComponent  ,canActivate:[AuthGuard]},
+  { path: 'Carrousel', component: CarrouselComponent},
+  { path: 'ABMGESTION', component: AbmGestionComponent},
+  { path: 'ContactanosComponent', component: ContactanosComponent},
+
 
 
 ];

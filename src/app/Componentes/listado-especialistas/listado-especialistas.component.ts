@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef ,ViewChild } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import { Router, Params } from '@angular/router';
 import { abmProfesionales } from 'src/app/services/abmProfesionales.service';
+import { ExportToCsv } from 'export-to-csv';
+import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 
-
+import * as jspdf from 'jspdf';  
+import html2canvas from 'html2canvas';  
 @Component({
   selector: 'app-listado-especialistas',
   templateUrl: './listado-especialistas.component.html',
@@ -11,16 +14,63 @@ import { abmProfesionales } from 'src/app/services/abmProfesionales.service';
 })
 export class ListadoEspecialistasComponent  implements OnInit {
 
+  data: Array <any>;
+  options:any;
   ageValue: number = 0;
   searchValue: string = "";
   items: Array<any>;
   age_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
 
+  exportAsConfig: ExportAsConfig = {
+    type: 'pdf', // the type you want to download
+    elementId: 'myTableElementId', // the id of html/table element
+  }
+
   constructor(
-    public firebaseService: FirebaseService,
+    public firebaseService: FirebaseService,private exportAsService: ExportAsService,
     private router: Router
-  ) { }
+  ) {
+
+    this.data = [
+      {
+        name: 'Test 1',
+        age: 13,
+        average: 8.2,
+        approved: true,
+        description: "using 'Content here, content here' "
+      },
+      {
+        name: 'Test 2',
+        age: 11,
+        average: 8.2,
+        approved: true,
+        description: "using 'Content here, content here' "
+      },
+      {
+        name: 'Test 4',
+        age: 10,
+        average: 8.2,
+        approved: true,
+        description: "using 'Content here, content here' "
+      },
+    ];
+     
+       this.options = { 
+        fieldSeparator: ',',
+        quoteStrings: '"',
+        decimalSeparator: '.',
+        showLabels: true, 
+        showTitle: true,
+        title: 'My Awesome CSV',
+        useTextFile: false,
+        useBom: true,
+        useKeysAsHeaders: true,
+        // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+      };
+
+
+   }
 
   ngOnInit() {
     this.getData();
@@ -72,5 +122,35 @@ export class ListadoEspecialistasComponent  implements OnInit {
     });
     return result;
   }
+
+  imprimir()
+  {
+    const csvExporter = new ExportToCsv(this.options);
+   
+    csvExporter.generateCsv(this.data);
+  }
+
+
+   exportPDF() {
+    var data = document.getElementById('contentToConvert');  
+    html2canvas(data).then(canvas => {  
+      // Few necessary setting options  
+      var imgWidth = 208;   
+      var pageHeight = 295;    
+      var imgHeight = canvas.height * imgWidth / canvas.width;  
+      var heightLeft = imgHeight;  
+  
+      const contentDataURL = canvas.toDataURL('image/png')  
+      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
+      var position = 0;  
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+      pdf.save('MYPdf.pdf'); // Generated PDF   
+    });  
+  }
+  
+
+
+
+   
 
 }

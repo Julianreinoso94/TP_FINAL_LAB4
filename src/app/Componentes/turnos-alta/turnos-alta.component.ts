@@ -37,17 +37,26 @@ export class TurnosAltaComponent  implements OnInit {
      '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00',
      '14:30', '15:00', '16:00', '16:30', '17:00', '17:30', '18:00'
 ] 
+consultorios = [
+  '1A', '1B', '1C'
+] 
   events: string[] = [];
   pedidos : any;
+  horaTurno;
   turnos : any;
   ageValue: number = 0;
   searchValue: string = "";
   listadoespecialistas: Array<any>;
-  listadoespecialistaspordia: Array<any>;
-
+  listadoespecialistaspordia: Array<any>=[];
+  cliente;
   age_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
 
+  especialidadesTurno = [
+   'Odontologo',
+    'Odontopediatría',
+    'Implantólogo'		 
+] 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
     this.events.push(`${event.value}`);
 
@@ -163,8 +172,9 @@ export class TurnosAltaComponent  implements OnInit {
     this.exampleForm = this.fb.group({
       nombrePaciente: ['', Validators.required ],
       apellidoPaciente: ['', Validators.required ],
+      cliente:this.cliente,
       DiaTurno: this.fechatotal,
-      horaTurno: ['', Validators.required ],
+      horaTurno: this.horaTurno,
       profesional: ['', Validators.required ],
       consultorio: ['', Validators.required ],
       especialidad: ['', Validators.required ]
@@ -281,17 +291,15 @@ export class TurnosAltaComponent  implements OnInit {
       this.listadoespecialistaspordia.length = 0;
      }
 
-    this.pedidos.forEach(element => {//TRAE MESA DEL USUARIO
+    this.pedidos.forEach(element => {
      
       if(element.diasDeTrabajo == dia)
       {
         this.listadoespecialistaspordia = element;
       }
       });
-      // console.log("this.listadoespecialistaspordia");
 
       console.log(this.listadoespecialistaspordia);
-      // console.log( this.pedidos);
    this.compararFecha();
   }
 
@@ -312,6 +320,29 @@ export class TurnosAltaComponent  implements OnInit {
 
    
           }
+
+          profesionalLibrePorHora()
+          {
+            this.listadoespecialistaspordia=[];
+            alert(this.horaTurno);
+
+            this.listadoespecialistaspordia.forEach(element => {
+            
+
+              if(element.horaTurno == this.horaTurno)
+              {
+                this.listadoespecialistaspordia = element;
+                alert("ya existe un turno en esa fecha");
+              }
+              });
+
+          }
+
+          objectKeys (objeto: any) {
+            const keys = Object.keys(objeto);
+            console.log(keys); // echa un vistazo por consola para que veas lo que hace "Object.keys"
+            return keys;
+         }
 
 
 }

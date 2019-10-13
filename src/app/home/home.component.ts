@@ -5,7 +5,7 @@ import { Router, Params } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
@@ -15,10 +15,18 @@ export class HomeComponent implements OnInit {
   age_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
 
+  images = [1, 2, 3, 4].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
   constructor(
     public firebaseService: FirebaseService,
     private router: Router
-  ) { }
+  ) {
+
+      // customize default values of carousels used by this component tree
+      // config.interval = 10000;
+      // config.wrap = false;
+      // config.keyboard = false;
+      // config.pauseOnHover = false;
+   }
 
   ngOnInit() {
     this.getData();

@@ -48,11 +48,23 @@ import { EstadisticasComponent } from './Componentes/estadisticas/estadisticas.c
 
 import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import { EditEspecialistaComponent } from './Componentes/edit-especialista/edit-especialista.component';
+import { ExportAsModule } from 'ngx-export-as';
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { CarrouselComponent } from './Componentes/carrousel/carrousel.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';  
+
+// import 'hammerjs';
+
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { AbmGestionComponent } from './Componentes/abm-gestion/abm-gestion.component';
+import { ContactanosComponent } from './Componentes/contactanos/contactanos.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    // NgxHmCarouselModule,
     AvatarDialogComponent,
     EditUserComponent,
     NewUserComponent,
@@ -75,26 +87,29 @@ import { EditEspecialistaComponent } from './Componentes/edit-especialista/edit-
     EncuestaClienteComponent,
     SalaDeesperaComponent,
     EstadisticasComponent,
-    EditEspecialistaComponent
+    EditEspecialistaComponent,
+    CarrouselComponent,
+    AbmGestionComponent,
+    ContactanosComponent
   ],
   entryComponents: [AvatarDialogComponent],
   imports: [
-    BrowserModule,
+    BrowserModule,NgxCaptchaModule,NgbModule ,
     FormsModule,MatDatepickerModule, MatInputModule,MatNativeDateModule,
     AngularFireStorageModule,
-    AngularFireDatabaseModule,
-    ReactiveFormsModule,
+    AngularFireDatabaseModule,MatDialogModule,
+    ReactiveFormsModule,MatCardModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,    AngularFireAuthModule, AngularFirestoreModule,
-
+    ExportAsModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatInputModule,
+    MatInputModule,MatFormFieldModule,
     MatSliderModule,
-    MatDialogModule
   ],
-  providers: [FirebaseService,abmProfesionales, EditUserResolver],
+   providers: [FirebaseService,abmProfesionales, EditUserResolver],
+
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

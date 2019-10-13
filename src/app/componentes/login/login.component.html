@@ -1,19 +1,17 @@
-
+  
     <div class="login-box">
       <img src="/assets/imagenes/logo.png" class="avatar" alt="Avatar Image">
       <h1>Ingreso</h1>
       <form>
-        <!-- USERNAME INPUT -->
         <label for="username">Usuario </label>
         
         <input type="text" placeholder="Ingrese usuario"   name="uname" [(ngModel)]="email" >
-        <!-- PASSWORD INPUT -->
         <label for="password">Contraseña</label>
         <input type="password"  name="psw" style=" font-size: 22px"   placeholder="Ingrese contraseña"   [(ngModel)]="password" >
         <input type="submit"  (click)="loginUser()" value="Log In">
         <h4>Seleccione Usuario</h4>
  
-  <select  [(ngModel)]="tipousuario" #t (change)="usuario(t.value)" style="background-color:#b80f22;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  " >
+  <select  [(ngModel)]="tipousuario"name="something" #t (change)="usuario(t.value)" style="background-color:#b80f22;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  " >
     <option value="Administrador">Administrador</option>
     <option value="Recepcionista">Recepcionista</option>
     <option value="PacienteA">Paciente A </option>
@@ -23,8 +21,16 @@
 
 
   </select>
+  <div class="recaptcha">
+
+    <re-captcha (resolved)="resolved($event)" siteKey="6LfZBrwUAAAAAP65z4o0opk3bWPJ7-RdxwNucGZK
+  "></re-captcha>
+  </div>
 
         
         <a href="#">No tenes Cuenta? Registrate aquí!</a>
       </form>
+
+
     </div>
+

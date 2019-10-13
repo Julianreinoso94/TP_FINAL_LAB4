@@ -10,9 +10,29 @@
       
         <div class="col col-md-12">
           
+          
   
           <form class="create-form" style="   padding: 20px;" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
          
+              <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Especialidad</li>
+                  </ol>
+                </nav>
+    
+    
+                <div class="form-group">
+       
+                  <select placeholder="especialidad"  [(ngModel)]="especialidades" class="form-control" formControlName="especialidad"
+                    style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  ">
+              
+                    <option *ngFor="let tech of especialidadesTurno " [ngValue]="tech">
+                      {{ tech }}
+                    </option>
+              
+              
+                  </select>
+                </div>
               <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">Fecha del turno</li>
@@ -37,7 +57,7 @@
             </nav>
             <div class="form-group">
               <span></span>
-              <select placeholder="especialidad" class="form-control" formControlName="especialidad"
+              <select placeholder="horaTurno" class="form-control" (change)="profesionalLibrePorHora()" formControlName="horaTurno" [(ngModel)]="horaTurno"
                 style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  ">
           
                 <option *ngFor="let tech of allTechnologies" [ngValue]="tech">
@@ -47,29 +67,45 @@
           
               </select>
             </div>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Profesional</li>
+              </ol>
+            </nav>
+
+
+            <div class="form-group">
    
+              <select placeholder="cliente"  [(ngModel)]="profesional" class="form-control" formControlName="profesional"
+                style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  ">
+          
+                <option *ngFor="let tech of objectKeys(listadoespecialistaspordia) " [ngValue]="tech.id">
+                  {{ tech.email }}
+                </option>
+          
+          
+              </select>
+            </div>
+
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Consultorio</li>
+              </ol>
+            </nav>
 
 
-  <div class="form-group">
-    <mat-form-field class="input-style" style=" width: 100% ">
-      <input matInput type="number" min="1" max="31" placeholder="profesional" class="form-control"
-        formControlName="profesional">
-    </mat-form-field>
-    <!-- <ng-container *ngFor="let validation of validation_messages.age">
-                    <mat-error *ngIf="exampleForm.get('profesional').hasError(validation.type) && (exampleForm.get('profesional').dirty || exampleForm.get('profesional').touched)">{{validation.message}}</mat-error>
-                  </ng-container> -->
-  </div>
-  <div class="form-group">
-    <mat-form-field class="input-style" style=" width: 100% ">
-      <input matInput type="number" min="1" max="31" placeholder="consultorio" class="form-control"
-        formControlName="consultorio">
-    </mat-form-field>
-    <!-- <ng-container *ngFor="let validation of validation_messages.age">
-      <mat-error
-        *ngIf="exampleForm.get('consultorio').hasError(validation.type) && (exampleForm.get('profesional').dirty || exampleForm.get('profesional').touched)">
-        {{validation.message}}</mat-error>
-    </ng-container> -->
-  </div>
+            <div class="form-group">
+              <select placeholder="cliente"  [(ngModel)]="Consultorio" class="form-control" formControlName="Consultorio"
+                style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  ">
+          
+                <option *ngFor="let tech of consultorios" [ngValue]="tech">
+                  {{ tech }}
+                </option>
+          
+          
+              </select>
+            </div>
+
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item active" aria-current="page">Cliente</li>
@@ -78,10 +114,10 @@
 
   <div class="form-group">
    
-    <select placeholder="cliente" class="form-control" formControlName="especialidad"
+    <select placeholder="cliente"  [(ngModel)]="cliente" class="form-control" formControlName="cliente"
       style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  ">
 
-      <option *ngFor="let tech of clientes" [ngValue]="tech">
+      <option *ngFor="let tech of clientes" [ngValue]="tech.id">
         {{ tech.email }}
       </option>
 

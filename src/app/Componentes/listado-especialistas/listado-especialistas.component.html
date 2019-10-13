@@ -1,4 +1,10 @@
 <div class="row">
+    <button class="btn btn-outline-primary action" (click)="imprimir()" type="button">
+        Excel
+        </button>
+        <button class="btn btn-outline-primary action" (click)="exportPDF()" type="button">
+            PDF2
+            </button>
     <div class="col-md-4 offset-md-1">
       <div class="input-group">
         <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
@@ -29,7 +35,49 @@
       </div>
     </div>
   </div>
-  
+
+  <div >  
+      <mat-card>  
+        <table id="contentToConvert">  
+            <tr>  
+              <th>Column1</th>  
+              <th>Column2</th>  
+              <th>Column3</th>  
+            </tr>  
+            <tr>  
+              <td>Row 1</td>  
+              <td>Row 1</td>  
+              <td>Row 1</td>  
+            </tr>  
+            <tr>  
+              <td>Row 2</td>  
+              <td>Row 2</td>  
+              <td>Row 2</td>  
+            </tr>  
+            <tr>  
+              <td>Row 3</td>  
+              <td>Row 3</td>  
+              <td>Row 3</td>  
+            </tr>  
+            <tr>  
+              <td>Row 4</td>  
+              <td>Row 4</td>  
+              <td>Row 4</td>  
+            </tr>  
+            <tr>  
+              <td>Row 5</td>  
+              <td>Row 5</td>  
+              <td>Row 5</td>  
+            </tr>  
+            <tr>  
+              <td>Row 6</td>  
+              <td>Row 6</td>  
+              <td>Row 6</td>  
+            </tr>  
+          </table>  
+            
+      </mat-card>  
+    </div>  
   <div class="list-group users-list">
     <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="row">
@@ -75,5 +123,9 @@
         </div>
       </div>
     </div>
+
+ 
   </div>
+
+
   

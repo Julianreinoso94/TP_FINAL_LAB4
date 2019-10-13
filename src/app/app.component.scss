@@ -1,30 +1,96 @@
-.page-container {
-  display: grid;
-  grid-template-columns: 60px auto;
-  height: 100%;
-  width: 100%;
-  background-size: cover;
-
-  padding: 0px;
-	background: #0d1424 url(/assets/imagenes/fondo.jpg)    no-repeat fixed  top  !important;
-
-  .side-bar {
-    background: #252223;
-
-    .nav-link {
-      // color: #FFF;
-      font-size: 28px;
-    }
-  }
-
-  .content-container {
-    margin-top: 30px;
-  }
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 90px;
-  } 
+/* adds some margin below the link sets  */
+.navbar .dropdown-menu div[class*="col"] {
+  margin-bottom:1rem;
 }
+
+.navbar .dropdown-menu {
+ border:none;
+ //background-color:#0060c8!important;
+ background-color:#0060c8!important;
+}
+
+/* breakpoint and up - mega dropdown styles */
+@media screen and (min-width: 992px) {
+ 
+ /* remove the padding from the navbar so the dropdown hover state is not broken */
+.navbar {
+ padding-top:0px;
+ padding-bottom:0px;
+}
+
+/* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
+.navbar .nav-item {
+ padding:.5rem .5rem;
+ margin:0 .25rem;
+}
+
+/* makes the dropdown full width  */
+.navbar .dropdown {position:static;}
+
+.navbar .dropdown-menu {
+ width:100%;
+ left:0;
+ right:0;
+/*  height of nav-item  */
+ top:45px;
+ 
+ display:block;
+ visibility: hidden;
+ opacity: 0;
+ transition: visibility 0s, opacity 0.3s linear;
+ 
+}
+ 
+
+
+ 
+ /* shows the dropdown menu on hover */
+.navbar .dropdown:hover .dropdown-menu, .navbar .dropdown .dropdown-menu:hover {
+ display:block;
+ visibility: visible;
+ opacity: 1;
+ transition: visibility 0s, opacity 0.3s linear;
+}
+ 
+ .navbar .dropdown-menu {
+   border: 1px solid rgba(0,0,0,.15);
+   background-color: #fff;
+ }
+
+ // 1ermenu
+ 
+.pill-nav a {
+  font-weight: bold;
+  display: inline-block;
+  color: gray;
+  text-align: center;
+  padding: 33px;
+  text-decoration: none;
+  font-size: 25x;
+  border-radius: 2px;
+  
+}
+
+.pill-nav a:hover {
+  // background-color:#7c8288!important;
+  background-color: #ddd!important;
+  color: black;
+}
+.separador{
+ display: inline-block;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-size: 25x;
+  
+}
+
+.pill-nav a.active {
+  // background-color: dodgerblue;
+  background-color: #ddd!important;
+  color: rgb(17, 6, 6);
+} 
+
+}
+
+

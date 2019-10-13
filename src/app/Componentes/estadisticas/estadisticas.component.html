@@ -1,3 +1,138 @@
-<p>
-  estadisticas works!
-</p>
+<div class="create-page" style="    padding: 20px 60px;
+">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Estadisticas</li>
+      </ol>
+    </nav>
+    <div class="page-content" style=" background-color: #FFF;">
+      <div class="row">
+      
+        <div class="col col-md-12">
+          
+  
+          <form class="create-form" style="   padding: 20px;" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
+         
+            <h1>Empleados</h1>
+              <nav style="color:blueviolet" aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li  class="breadcrumb-item active" aria-current="page">Los días y horarios que se Ingresaron al sistema.</li>
+                  </ol>
+                </nav>
+                <div class="row submit-button-container" style="                width: 100%;
+                justify-content: flex-end; ">
+          <button mat-raised-button class="submit-button" style="background-color: #3f51b5 ;" type="submit"
+           >Mostrar</button>
+        </div>
+
+                <nav style="color:blueviolet" aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li  class="breadcrumb-item active" aria-current="page">Los días y horarios que se Ingresaron al sistema.</li>
+                  </ol>
+                </nav>
+                <h1>Turnos</h1>
+
+                <nav style="color:blueviolet" aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li  class="breadcrumb-item active" aria-current="page">Cantidad de turnos entre fechas dadas.
+                    </li>
+                  </ol>
+                </nav>
+
+                <div class="row">
+                    <div class="col-sm">
+                        <mat-form-field>
+                            <input matInput [matDatepicker] = "picker1" [(ngModel)]="fechaComienzo"  (dateChange)="addEvent('change', $event)"  formControlName="DiaTurno" placeholder = "Elegi ">
+                            <mat-datepicker-toggle matSuffix [for] = "picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                         </mat-form-field>                    </div>
+                    <div class="col-sm">
+                                    </div>
+                    <div class="col-sm">
+                        <mat-form-field>
+                            <input matInput [matDatepicker] = "picker" [(ngModel)]="fechaFinal"  (dateChange)="addEvent('change', $event)"  formControlName="DiaTurno" placeholder = "Elegi!">
+                            <mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                         </mat-form-field>                      
+                            </div>
+                  </div>
+                
+              
+
+      
+
+                <nav style="color:blueviolet" aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li  class="breadcrumb-item active" aria-current="page">Cantidad de días sin turnos por especialidad</li>
+                  </ol>
+                </nav>
+                <nav style="color:blueviolet" aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li  class="breadcrumb-item active" aria-current="page">Los realizados por especialidad.</li>
+                  </ol>
+                </nav>
+
+                <nav style="color:blueviolet" aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li  class="breadcrumb-item active" aria-current="page">Los cancelados por especialidad.                    </li>
+                  </ol>
+                </nav>
+                <nav style="color:blueviolet" aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li  class="breadcrumb-item active" aria-current="page">Los realizados por Clientes.                    </li>
+                  </ol>
+                </nav>
+                <nav style="color:blueviolet" aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li  class="breadcrumb-item active" aria-current="page">Los realizados por recepcionista.                    </li>
+                  </ol>
+                </nav>
+                <h1>De las especialidades:</h1>
+                <nav style="color:blueviolet" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li  class="breadcrumb-item active" aria-current="page">La más usada.                      </li>
+                    </ol>
+                  </nav>
+  
+                  <nav style="color:blueviolet" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li  class="breadcrumb-item active" aria-current="page">La menos usada.                      </li>
+                    </ol>
+                  </nav>
+                  <nav style="color:blueviolet" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li  class="breadcrumb-item active" aria-current="page">Mejores comentarios.                      </li>
+                    </ol>
+                  </nav>
+  
+                  <nav style="color:blueviolet" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li  class="breadcrumb-item active" aria-current="page">Peores comentarios.
+                      </li>
+                    </ol>
+                  </nav>
+
+
+
+
+
+  
+
+
+  <div class="row submit-button-container" style="                width: 100%;
+            justify-content: flex-end; ">
+    <div class="col-md-4">
+      <button mat-raised-button class="submit-button" color="primary" type="submit"
+       >Crear</button>
+    </div>
+  </div>
+
+  <!-- [disabled]="!exampleForm.valid" -->
+  </form>
+
+ 
+
+  </div>
+  </div>
+  </div>
+  </div>
