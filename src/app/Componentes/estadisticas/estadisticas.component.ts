@@ -18,6 +18,7 @@ import {MatDatepickerInputEvent} from '@angular/material/datepicker';
   styleUrls: ['./estadisticas.component.css']
 })
 export class EstadisticasComponent implements OnInit {
+  exampleForm: FormGroup;
 
   listadoFechas: Array<any>=[];
   picker1:any;
@@ -37,8 +38,18 @@ export class EstadisticasComponent implements OnInit {
  
  this.CantidadTurnosentreFechasEntreFecha();
  
+ this.createForm();
 
    }
+
+  
+  createForm() {
+    this.exampleForm = this.fb.group({
+      nombrePaciente: ['', Validators.required ],
+      apellidoPaciente: ['', Validators.required ],
+
+    });
+  }
 
   ngOnInit() {
     console.log("ngOnInit");
@@ -176,6 +187,15 @@ switch (valor.toString()) {
   this.events.length=0;
 }
 
-
+onSubmit(value){
+  // value.avatar = this.item.avatar;
+  // value.age = Number(value.age);
+  // this.firebaseService.updateUser(this.item.id, value)
+  // .then(
+  //   res => {
+  //     this.router.navigate(['/home']);
+  //   }
+  // )
+}
 
 }

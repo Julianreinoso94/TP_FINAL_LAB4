@@ -31,6 +31,8 @@ export class TurnosAltaComponent  implements OnInit {
   especialidades = [];
   imageUrl2;
   DiaTurno;
+  profesional;
+  consultorio;
   picker:any;
   fechatotal;
   allTechnologies = [

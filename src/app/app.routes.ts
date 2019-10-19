@@ -23,10 +23,25 @@ import { EditEspecialistaComponent } from './Componentes/edit-especialista/edit-
 import { CarrouselComponent } from './Componentes/carrousel/carrousel.component';
 import { AbmGestionComponent } from './Componentes/abm-gestion/abm-gestion.component';
 import { ContactanosComponent } from './Componentes/contactanos/contactanos.component';
+import { InformacionComponent } from './Componentes/informacion/informacion.component';
+import { ListadoConsultorioComponent } from './Componentes/listado-consultorio/listado-consultorio.component';
+import { AlertaLogueoComponent } from './Componentes/alerta-logueo/alerta-logueo.component';
+import { ServiciosComponent } from './Componentes/servicios/servicios.component';
+import { MiperfilComponent } from './Componentes/miperfil/miperfil.component';
+import { InstalacionComponent } from './Componentes/instalacion/instalacion.component';
+import { EstadisticasTurnosComponent } from './Componentes/estadisticas-turnos/estadisticas-turnos.component';
+import { EstadisticasEspecialidadesComponent } from './Componentes/estadisticas-especialidades/estadisticas-especialidades.component';
+import { EstadisticasEmpleadosComponent } from './Componentes/estadisticas-empleados/estadisticas-empleados.component';
+
+
+
+
+
 
 export const rootRouterConfig: Routes = [
  //{ path: '', component: LoginComponent },
  { path: '', component: HomeComponent},
+//  { path: '**', component: AlertaLogueoComponent},
 
   { path: 'altas', component: AltasComponent  ,canActivate:[AuthGuard] },
   { path: 'login', component: LoginComponent },
@@ -48,6 +63,16 @@ export const rootRouterConfig: Routes = [
   { path: 'Carrousel', component: CarrouselComponent},
   { path: 'ABMGESTION', component: AbmGestionComponent},
   { path: 'ContactanosComponent', component: ContactanosComponent},
+  { path: 'Informacion', component: InformacionComponent},
+  { path: 'ListadoConsultorio', component: ListadoConsultorioComponent},
+  { path: 'Servicios', component: ServiciosComponent},
+  { path: 'miPerfil', component: MiperfilComponent},
+  { path: 'EstadisticasTurnos', component: EstadisticasTurnosComponent},
+  { path: 'EstadisticasEspecialidades', component: EstadisticasEspecialidadesComponent},
+  { path: 'EstadisticasEmpleados', component: EstadisticasEmpleadosComponent},
+  { path: 'instalaciones', component: InstalacionComponent},
+
+
 
 
 

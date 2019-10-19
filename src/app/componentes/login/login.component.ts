@@ -54,8 +54,52 @@ resolved(captchaResponse: any[]){
     });
  
    }
- 
+
    async loginUser(): Promise<void> {
+    this.router.navigate(['/home'] );
+    this.perfil= "Supervisor";
+
+     if (
+       this.email == null||
+       this.password === null
+     ) {
+       return;
+     }
+ 
+       const email = this.email;
+       const password = this.password;
+ 
+       this.authService.login(email, password).then(() => {
+       
+alert("")
+       // alert("entro");
+        this.authService
+        .getUserProfile()
+        .get()
+        .then( userProfileSnapshot => {
+          this.userProfile = userProfileSnapshot.data();
+          // console.log(this.userProfile);
+        //  this.birthDate = userProfileSnapshot.data().birthDate;
+         this.perfil= userProfileSnapshot.data().perfil;
+        })
+
+  
+      })
+    
+      
+    //     this.nuevouser=new User(this.userProfile.perfil,this.userProfile.email);
+         alert("entro el user");
+         this.usuarioSeleccionado.emit(this.nuevouser);
+         // this.closeDialog();
+         this.router.navigate(['/home'] );
+        //  error => {
+        //  alert("Error: los datos no son correctos");
+        //  }
+    
+ 
+     }
+ 
+   async loginUser2(): Promise<void> {
     this.router.navigate(['/home'] );
     this.perfil= "Supervisor";
 
@@ -79,8 +123,8 @@ resolved(captchaResponse: any[]){
         .then( userProfileSnapshot => {
           this.userProfile = userProfileSnapshot.data();
           // console.log(this.userProfile);
-          this.birthDate = userProfileSnapshot.data().birthDate;
-          this.perfil= userProfileSnapshot.data().perfil;
+        //  this.birthDate = userProfileSnapshot.data().birthDate;
+      //    this.perfil= userProfileSnapshot.data().perfil;
         });
   this.nuevouser=new User(this.userProfile.perfil,this.userProfile.email);
               alert("entro el user");

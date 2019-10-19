@@ -66,7 +66,7 @@ public unProfesor:boolean;
   public currentUser: firebase.User;
   public userProfile: any;
 public  usuarioSeleccionado:User;
-
+public show=false;
   uidUsuario:any;
  perfil:any;
  email:any="ninguno";
@@ -84,6 +84,8 @@ public  usuarioSeleccionado:User;
   //   .then( userProfileSnapshot => {
   //    this.userProfile = userProfileSnapshot.data();
   //     this.email = userProfileSnapshot.data().email;
+ 
+ 
   //     this.perfil= userProfileSnapshot.data().perfil;
   //   });
   //  console.log(this.userProfile.perfil);
@@ -94,7 +96,7 @@ public  usuarioSeleccionado:User;
   {
     alert("entro2tomar");
     this.usuarioSeleccionado=UsuarioIngresado;   
-    this.perfil=this.usuarioSeleccionado.perfil;
+   // this.perfil=this.usuarioSeleccionado.perfil;
     this.email=this.usuarioSeleccionado.email;
     this.unProfesor=true;
 console.log(this.usuarioSeleccionado);
@@ -103,6 +105,7 @@ console.log(this.usuarioSeleccionado);
   
   logout(){
     console.log("logout");
+    this.show=true;
     this.AFauth.auth.signOut().then(() => {
       this.router.navigate(['/home']);
     })

@@ -19,8 +19,8 @@
                 <label>Seleccione una imagen para subir</label>
                 <input type="file" accept="image/*" class="form-control" #fileUploader formControlName="imageUrl"
                   (change)="showPreview($event)">
-                <div class="text-danger" *ngIf="isSubmitted && formControls.imageUrl.errors?.required">This field is required.
-                </div>
+                <!-- <div class="text-danger" *ngIf="isSubmitted && formControls.imageUrl.errors?.required">This field is required. -->
+                <!-- </div> -->
               </div>
 
         </div>

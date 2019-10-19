@@ -11,18 +11,18 @@
 	 </div>
 	 <div class="separador">
 	  </div>
-	  <a href="#news">Servicios</a>
+	  <a routerLink="/Servicios">Servicios</a>
 	   <div class="separador">
 	
-	  <a href="#contact">Información</a>
+	  <a routerLink="/Informacion">Información</a>
 	  </div>
 	   <div class="separador">
-	  <a href="#about">Contáctenos</a>
+	  <a  routerLink="/ContactanosComponent">Contáctenos</a>
 	  </div>
 	</div>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
-	<a class="navbar-brand" href="#">MegaDental</a>
+	<a class="navbar-brand" style="font-weight: bold;" href="#">MegaDental</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	  <span class="navbar-toggler-icon"></span>
 	</button>
@@ -30,62 +30,8 @@
 	<!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
 			<div class="collapse navbar-collapse" style="display: block;">
 	  <ul class="navbar-nav mr-auto">
-		<li class="nav-item">
-		  <a class="nav-link" href="#">Sala de Espera</a>
-		</li>
-		<li class="nav-item dropdown">
-		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-       INFORMACIÓN ÚTIL
-		</a>
-		  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-  
-			
-			<div class="container">
-			  <div class="row">
-				<div class="col-md-4">
-				  <span class="text-uppercase text-white">Category 1</span>
-				  <ul class="nav flex-column">
-				  <li class="nav-item">
-					<a class="nav-link active" href="#">Active</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" href="#">Link item</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" href="#">Link item</a>
-				  </li>
-				</ul>
-				</div>
-				<!-- /.col-md-4  -->
-				<div class="col-md-4">
-				  <ul class="nav flex-column">
-				  <li class="nav-item">
-					<a class="nav-link active" href="#">Active</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" href="#">Link item</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" href="#">Link item</a>
-				  </li>
-				</ul>
-				</div>
-				<!-- /.col-md-4  -->
-				<div class="col-md-4">
-				  <a href="">
-					<img src="https://dummyimage.com/200x100/ccc/000&text=image+link" alt="" class="img-fluid">
-				  </a>
-				  <p class="text-white">Short image call to action</p>
-  
-				</div>
-				<!-- /.col-md-4  -->
-			  </div>
-			</div>
-			<!--  /.container  -->
-  
-  
-		  </div>
-		</li>
+	
+	
 		<li class="nav-item dropdown">
 		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			TRÁMITES ONLINE
@@ -96,7 +42,7 @@
 			<div class="container">
 			  <div class="row">
 				<div class="col-md-4">
-				  <span class="text-uppercase text-white">Gestión</span>
+				  <span class="text-uppercase text-white"style="font-weight: bold;" >Gestión</span>
 				  <ul class="nav flex-column">
 				  <li class="nav-item">
 					<a class="nav-link active" href="#">Pedi tu Turno!</a>
@@ -109,28 +55,8 @@
 				  </li>
 				</ul>
 				</div>
-				<!-- /.col-md-4  -->
-				<!-- <div class="col-md-4">
-				  <ul class="nav flex-column">
-				  <li class="nav-item">
-					<a class="nav-link active" href="#">Active</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" href="#">Link item</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" href="#">Link item</a>
-				  </li>
-				</ul>
-				</div> -->
-				<!-- /.col-md-4  -->
-				<div class="col-md-4">
-				  <a href="">
-					<img src="https://dummyimage.com/200x100/ccc/000&text=image+link" alt="" class="img-fluid">
-				  </a>
-				  <p class="text-white">Short image call to action</p>
-  
-				</div>
+
+			
 				<!-- /.col-md-4  -->
 			  </div>
 			</div>
@@ -140,8 +66,8 @@
 		  </div>
 		</li>
 		<li class="nav-item dropdown">
-		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			Mis Datos
+		  <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			MIS DATOS
 		  </a>
 		  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
   
@@ -149,42 +75,23 @@
 			<div class="container">
 			  <div class="row">
 				<div class="col-md-4">
-				 <span class="text-uppercase text-white">Category 3</span>
+				 <span class="text-uppercase text-white" style="font-weight: bold;">Información Personal</span>
 				  <ul class="nav flex-column">
 				  <li class="nav-item">
-					<a class="nav-link active" href="#">Active</a>
+					<a class="nav-link active"  routerLink="/miPerfil" >Mi Perfil</a>
 				  </li>
 				  <li class="nav-item">
-					<a class="nav-link" href="#">Link item</a>
+					<a class="nav-link" href="#">Historial Clinico</a>
 				  </li>
 				  <li class="nav-item">
-					<a class="nav-link" href="#">Link item</a>
+					<a class="nav-link" href="#">Detalles</a>
 				  </li>
 				</ul>
 				</div>
 				<!-- /.col-md-4  -->
-				<div class="col-md-4">
-				  <ul class="nav flex-column">
-				  <li class="nav-item">
-					<a class="nav-link active" href="#">Active</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" href="#">Link item</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" href="#">Link item</a>
-				  </li>
-				</ul>
-				</div>
+			
 				<!-- /.col-md-4  -->
-				<div class="col-md-4">
-  
-				  <a href="">
-					<img src="https://dummyimage.com/200x100/ccc/000&text=image+link" alt="" class="img-fluid">
-				  </a>
-				  <p class="text-white">Short image call to action</p>
-				  
-				</div>
+			
 				<!-- /.col-md-4  -->
 			  </div>
 			</div>
@@ -196,7 +103,7 @@
 
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			  ADMINISTRADOR
+			  ADMINISTRACIÓN
 			</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	
@@ -204,45 +111,80 @@
 			  <div class="container">
 				<div class="row">
 				  <div class="col-md-4">
-					<span class="text-uppercase text-white">HISTORIAL</span>
+					<span class="text-uppercase text-white" style="font-weight: bold; ">REGISTRO</span>
 					<ul class="nav flex-column">
+					
 					<li class="nav-item">
-							<a class="nav-link active" routerLink="ABMGESTION">ABM </a>
+						<a class="nav-link" routerLink="/altas">Registrar Recepcionista
+						</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" routerLink="/new-user">Registrar Usuario
+							</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" routerLink="/altas">Registrar Especialista
+								</a>
+								</li>
+				  </ul>
+				  </div>
+				  				  <!-- /.col-md-4  -->
+
+						<div class="col-md-4">
+						  <span class="text-uppercase text-white" style="font-weight: bold; ">CONSULTORIOS</span>
+						  <ul class="nav flex-column">
+								<li class="nav-item">
+										<a class="nav-link" routerLink="/crearconsultario">Crear Consultorio</a>
+									  </li>
+						</ul>
+								<li class="nav-item">
+										<a class="nav-link" routerLink="/ListadoConsultorio">Nuestros Consultorios</a>
+									  </li>
+								
+						</div>
+				  <!-- /.col-md-4  -->
+				  <div class="col-md-4">
+					<span class="text-uppercase text-white" style="font-weight: bold; ">TURNOS</span>
+					<ul class="nav flex-column">
+							<li class="nav-item">
+									<a class="nav-link" routerLink="/TurnosAlta">Crear Turnos
+									</a>
+									</li>
+				
 					<li class="nav-item">
 					  <a class="nav-link active" routerLink="/Habilitarturnos">Habilitar Turnos</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link"  routerLink="/listadopacientes">Listado Pacientes</a>
 					  </li>
-					<li class="nav-item">
-						<a class="nav-link" routerLink="/TurnosAlta">	<ion-icon name="add"></ion-icon>
-						</a>
-						</li>
-				  </ul>
-				  </div>
-				  <!-- /.col-md-4  -->
-				  <div class="col-md-4">
-					<ul class="nav flex-column">
-					<li class="nav-item">
-					  <a class="nav-link active" href="#">ESTADISTICAS</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="#">Link item</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="#">Link item</a>
-					</li>
-				  </ul>
-				  </div>
-				  <!-- /.col-md-4  -->
-				  <div class="col-md-4">
-					<a href="">
-					  <img src="https://dummyimage.com/200x100/ccc/000&text=image+link" alt="" class="img-fluid">
-					</a>
-					<p class="text-white">Short image call to action</p>
+					  <li class="nav-item">
+							<a class="nav-link"  routerLink="/listadoespecialistas">Listado Especialista</a>
+						  </li>
 	
+
+					  
+				  </ul>
 				  </div>
+				
+				  <!-- /.col-md-4  -->
+
+				  <div class="col-md-4">
+						<span class="text-uppercase text-white" style="font-weight: bold; ">Estadisticas</span>
+						<ul class="nav flex-column">
+								<li class="nav-item">
+										<a class="nav-link" routerLink="/EstadisticasEmpleados">Estadisticas Empleados
+										</a>
+										</li>
+					
+						<li class="nav-item">
+						  <a class="nav-link active" routerLink="/EstadisticasTurnos">Estadisticas Turnos  </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link"  routerLink="/EstadisticasEspecialidades">Estadisticas Especialidades </a>
+						  </li>
+					  </ul>
+					  </div>
+			
 				  <!-- /.col-md-4  -->
 				</div>
 			  </div>
@@ -261,10 +203,10 @@
 				  <div class="container">
 					<div class="row">
 					  <div class="col-md-4">
-						<span class="text-uppercase text-white">Turnos</span>
+						<span class="text-uppercase text-white" style="font-weight: bold;">Turnos</span>
 						<ul class="nav flex-column">
 						<li class="nav-item">
-								<a class="nav-link active" routerLink="ABMGESTION">Proximos Turnos </a>
+								<a class="nav-link active" routerLink="verturnospaciente">Proximos Turnos </a>
 								</li>
 						<li class="nav-item">
 						  <a class="nav-link active" routerLink="Habilitarturnos">Marcar Asistencia</a>
@@ -279,27 +221,9 @@
 					  </ul>
 					  </div>
 					  <!-- /.col-md-4  -->
-					  <div class="col-md-4">
-						<ul class="nav flex-column">
-						<li class="nav-item">
-						  <a class="nav-link active" href="#">Active</a>
-						</li>
-						<li class="nav-item">
-						  <a class="nav-link" href="#">Link item</a>
-						</li>
-						<li class="nav-item">
-						  <a class="nav-link" href="#">Link item</a>
-						</li>
-					  </ul>
-					  </div>
+			
 					  <!-- /.col-md-4  -->
-					  <div class="col-md-4">
-						<a href="">
-						  <img src="https://dummyimage.com/200x100/ccc/000&text=image+link" alt="" class="img-fluid">
-						</a>
-						<p class="text-white">Short image call to action</p>
-		
-					  </div>
+					
 					  <!-- /.col-md-4  -->
 					</div>
 				  </div>
@@ -308,14 +232,62 @@
 		
 				</div>
 			  </li>
+			  <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
+					  RECEPCIÓN
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			
+			
+					  <div class="container">
+						<div class="row">
+						  <div class="col-md-4">
+							<span class="text-uppercase text-white" style="font-weight: bold;">Turnos</span>
+							<ul class="nav flex-column">
+							<li class="nav-item">
+									<a class="nav-link active" routerLink="ABMGESTION">Crear Turno Paciente</a>
+									</li>
+							<li class="nav-item">
+							  <a class="nav-link active" routerLink="Habilitarturnos">Crear tratamiento</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link"  routerLink="listadopacientes">Cancelar Turnos</a>
+							  </li>
+						  </ul>
+						  </div>
+						  <!-- /.col-md-4  -->
+						  <div class="col-md-4">
+							<ul class="nav flex-column">
+							<li class="nav-item">
+							  <a class="nav-link " routerLink="/SalaDeEspera">Sala de Espera</a>
+							</li>
+						
+						  </ul>
+						  </div>
+						  <!-- /.col-md-4  -->
+						  <div class="col-md-4">
+							<a href="">
+							  <img src=" https://cdn2.f-cdn.com/contestentries/1421844/27630627/5bace868330af_thumb900.jpg" style="width:180px;"class="img-fluid">
+							</a>
+							<!-- <p class="text-white">Short image call to action</p> -->
+			
+						  </div>
+						  <!-- /.col-md-4  -->
+						</div>
+					  </div>
+					  <!--  /.container  -->
+			
+			
+					</div>
+				  </li>
 	  </ul>
-	  <form class="form-inline my-2 my-lg-0">
+	  <form class="form-inline my-2 my-lg-0" *ngIf="show" >
 		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
 		<button class="btn btn-outline-light my-2 my-sm-0"  (click)="openDialog()" type="submit">Iniciar Sesíon</button>
 	  </form>
 	  <form class="form-inline my-2 my-lg-0">
 		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
-		<button class="btn btn-outline-light my-2 my-sm-0"   (click)="logout()" style="background-color: red;color:whitesmoke" >JUAN PEREZ</button>
+		<button class="btn btn-outline-light my-2 my-sm-0"   (click)="logout()" style="background-color: #00ff2a;color:whitesmoke" >JUAN PEREZ</button>
 	  </form>
 	  <form class="form-inline my-2 my-lg-0">
 		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
@@ -333,3 +305,33 @@
   <!-- <app-login  (usuarioSeleccionado)="tomarusuario($event)" ></app-login> -->
 
    <router-outlet></router-outlet>
+
+
+   <div class="jumbotron" style="  background: #124465;">
+		<footer class="liquidWrapper">
+			<div class="container" style="    display: flex;">
+			  <div class="col-xs-3 footer-brand boxsizingFooter">
+				<!-- <a class="boxsizingFooter" href="#"><img src="../img/logo_w.svg" height="35px"></a> -->
+			  </div>
+			  <div class="boxsizingFooter" style="position: relative; height: 100%;">
+				<div class="boxsizingFooter col-xs-2 col-xs-offset-1 " style="  box-sizing: border-box;   margin-left: 7.33333333%;
+				">
+				 
+				</div>
+			  
+			   
+				<div class="footerInf liquidWrapper">
+				  <div class="legales">
+					<p>MegaDental 2019 - Todos los derechos reservados - Av. Liniers 467 - Piso 9 - C1001AAF - Buenos Aires - 0800 555 Dental (6733)<br>Superintendencia de Servicios de Salud -Clinica Dental- 0800-222-DENTAL (72583) - <a href="http://www.dental.gob.ar" target="_blank" class="link_footer" style="font-size: 9px;">www.MegaDental.gob.ar</a> - R.N.E.M.P. (Prov.) 1408 - R.N.O.S. 4-0080-0<br></p>
+				  </div>
+				  <div id="logotipos">
+					<div class="pdp"><a target="_blank" href="http://ssl.comodo.com/"></a></div>
+					<div class="certisur"><a href="#!osde-direccion-nacional-de-datos-personales.html"></a></div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </footer>
+
+	  </div>
+

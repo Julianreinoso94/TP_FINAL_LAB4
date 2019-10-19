@@ -78,6 +78,16 @@ export class TurnosService {
   
   }
 
+  TraerTurnosDentista()
+  {
+    // console.log("entro");
+  
+    return this.db.collection('turnos', ref => ref.where('estado', '>=', 'Habilitado')
+    .where('estado', '<=', 'Habilitado' + '\uf8ff'))
+    .snapshotChanges();
+  
+  }
+
   cambiarEstado(id, valor)
   {
     //this.firestore.doc('Mesas/'+id).update({ monto: monto });

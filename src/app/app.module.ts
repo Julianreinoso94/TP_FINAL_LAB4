@@ -59,6 +59,15 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AbmGestionComponent } from './Componentes/abm-gestion/abm-gestion.component';
 import { ContactanosComponent } from './Componentes/contactanos/contactanos.component';
+import { InformacionComponent } from './Componentes/informacion/informacion.component';
+import { ListadoConsultorioComponent } from './Componentes/listado-consultorio/listado-consultorio.component';
+import { AlertaLogueoComponent } from './Componentes/alerta-logueo/alerta-logueo.component';
+import { ServiciosComponent } from './Componentes/servicios/servicios.component';
+import { MiperfilComponent } from './Componentes/miperfil/miperfil.component';
+import { InstalacionComponent } from './Componentes/instalacion/instalacion.component';
+import { EstadisticasTurnosComponent } from './Componentes/estadisticas-turnos/estadisticas-turnos.component';
+import { EstadisticasEspecialidadesComponent } from './Componentes/estadisticas-especialidades/estadisticas-especialidades.component';
+import { EstadisticasEmpleadosComponent } from './Componentes/estadisticas-empleados/estadisticas-empleados.component';
 
 
 @NgModule({
@@ -90,7 +99,16 @@ import { ContactanosComponent } from './Componentes/contactanos/contactanos.comp
     EditEspecialistaComponent,
     CarrouselComponent,
     AbmGestionComponent,
-    ContactanosComponent
+    ContactanosComponent,
+    InformacionComponent,
+    ListadoConsultorioComponent,
+    AlertaLogueoComponent,
+    ServiciosComponent,
+    MiperfilComponent,
+    InstalacionComponent,
+    EstadisticasTurnosComponent,
+    EstadisticasEspecialidadesComponent,
+    EstadisticasEmpleadosComponent
   ],
   entryComponents: [AvatarDialogComponent],
   imports: [
