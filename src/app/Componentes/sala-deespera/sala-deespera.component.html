@@ -7,8 +7,8 @@
        
             <div class="row" style="padding-top: 1px">
                     <div class="col-md-12"style="height: 200px;width: 25%; background-color: #006993">    
-                        <a style=" font-size: 40px!important;  color: #FFFFFF;    display: inline-block;                    "id="Content-ser-socio" href="#!quiero-ser-socio.html" alt="CONÓZCANOS">
-                            <h4 style="font-weight: bold;font-family: 'MuseoSans300', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 90px!important;" >SALA DE ESPERA</h4>
+                        <a  align="center"  style=" font-size: 40px!important;  color: #FFFFFF;    display: inline-block;                    "id="Content-ser-socio" href="#!quiero-ser-socio.html" alt="CONÓZCANOS">
+                            <h4  style="font-weight: bold;font-family: 'MuseoSans300', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 90px!important;" >SALA DE ESPERA</h4>
                     
                         </a>
                 </div>
@@ -52,13 +52,13 @@
             <div *ngFor="let item of turnos;let i = index"   style="font-size:bold; background-color: rgb(0, 0, 0)">
                 <div class="row" *ngIf="i==0"  style="font-size:bold;padding: 0px !important; background-color: rgb(0, 0, 0)">
                     <div class="col col-md-4 image-col" style="  padding-right:0px !important; padding: 0px !important">
-                        <p align="center" class="btn btn-outline-secondary action" style=" font-size:95px;font-weight:bold; background-color: RED; color: black;width:100%;height:100%; " >
-                            {{i}}
+                        <p align="center" class="btn btn-outline-secondary action" style=" font-size:95px;font-weight:bold; background-color: RED; color: white;width:100%;height:100%; " >
+                            {{item.consultorio}}
                     </p>
                   </div>
                     <div class="col col-md-8 text-col " style="  padding-right:0px !important; padding-left: 0px !important">
-                      <p align="center" style="font-size:95px;font-weight:bold; background-color: rgb(7, 1, 1); color: rgb(7, 207, 74);width:100%;height:100%; " >
-                      1000
+                      <p align="center" style="font-size:95px;font-weight:bold; background-color: red; color: white;width:100%;height:100%; " >
+                          {{item.numTurno}}
                       </p >
                      
                    
@@ -70,13 +70,14 @@
           <div *ngFor="let item of turnos;let i = index"   style="font-size:bold; background-color: rgb(0, 0, 0)">
               <div class="row" *ngIf="0< i && i<=2"  style="font-size:bold;padding: 0px !important; background-color: rgb(0, 0, 0)">
                   <div class="col col-md-4 image-col" style="  padding-right:0px !important; padding: 0px !important">
-                      <p align="center" class="btn btn-outline-secondary action" style=" font-size:55px;font-weight:bold; background-color: RED; color: black;width:100%;height:100%; ">
-                          {{i}}
+                      <p align="center" class="btn btn-outline-secondary action" style=" font-size:55px;font-weight:bold; background-color: rgb(25, 0, 255); color: black;width:100%;height:100%; ">
+                            {{item.consultorio}}
                   </p>
                 </div>
                   <div class="col col-md-8 text-col " style="  padding-right:0px !important; padding-left: 0px !important">
                     <p align="center" style="font-size:55px;font-weight:bold; background-color: rgb(25, 0, 255); color: rgb(92, 92, 92);width:100%;height:100%; " >
-                    1000
+                        {{item.numTurno}}
+
                     </p >
                    
                  

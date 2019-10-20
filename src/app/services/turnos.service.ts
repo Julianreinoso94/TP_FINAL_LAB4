@@ -40,7 +40,7 @@ export class TurnosService {
   }
 
 
-  createTurno(value, a:String){
+  createTurno(value, a:String,numTurno:String){
 
     return this.db.collection('turnos').add({
       nombrePaciente: value.nombrePaciente,
@@ -52,7 +52,8 @@ export class TurnosService {
       horaTurno: value.horaTurno,
       profesional:"value.profesional",
       estado:"En_Espera_Aceptacion",
-      consultorio:value.consultorio
+      consultorio:value.consultorio,
+      numTurno:numTurno
     });
   }
 

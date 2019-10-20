@@ -219,7 +219,7 @@ consultorios = [
   }
 
   onSubmit(value){
-    this.firebaseService.createTurno(value,this.fechatotal)
+    this.firebaseService.createTurno(value,this.fechatotal,this.makeRandom())
     .then(
       res => {
         this.resetFields();
@@ -227,6 +227,17 @@ consultorios = [
       }
     )
   }
+
+   makeRandom() {
+    var lengthOfCode = 5;
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    let text = "";
+    for (let i = 0; i < lengthOfCode; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+      return text;
+  }
+
 
   
 

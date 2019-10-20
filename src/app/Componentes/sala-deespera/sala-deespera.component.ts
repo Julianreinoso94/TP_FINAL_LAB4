@@ -18,6 +18,7 @@ export class SalaDeesperaComponent implements OnInit {
   age_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
   codigoTurno:any;
+  contador: number =0;
 
   constructor(public firebaseService: TurnosService,
     // public firebaseService: FirebaseService,
@@ -43,7 +44,8 @@ export class SalaDeesperaComponent implements OnInit {
           especialidad: e.payload.doc.data()['especialidad'],
           horaTurno: e.payload.doc.data()['horaTurno'],
           DiaTurno: e.payload.doc.data()['DiaTurno'],
-        
+          numTurno: e.payload.doc.data()['numTurno'],
+
         };
       })
       console.log(this.turnos);
