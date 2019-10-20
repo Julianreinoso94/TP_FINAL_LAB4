@@ -16,11 +16,11 @@ Trabajan en ella profesionales de diversas especialidades, que ocupan los consul
 
 ![](https://www.ecestaticos.com/imagestatic/clipping/979/1bb/9791bb377bd365b4e896336d1428302d/el-dentista-es-un-lujo-el-21-de-los-que-no-van-alega-razones-economicas.jpg?mtime=1523441851)
 
-## Online Demo
+## Online WEB
 
-You can try the online demo of this Angular 7 CRUD [here](https://jerconsultorio.000webhostapp.com).
+Para acceder, se accede desde aqui [here](https://jerconsultorio.000webhostapp.com).
 
-## Premium Starter Apps
+## Home -Pagina Principal
 If you want to build a complex and robust web app with Angular you should check [Angular Site Template](https://angular-templates.com/product/angular-site-template) which is a super complete application to build your next angular project. It includes Bootstrap 4, Angular Universal (Server Side Rendering), SEO, Lazy Loading and a detailed documentation on how to get started building Angular apps. Tons of use cases implemented the Angular way such as authentication flows, product listing, filtering, forms, routing guards and more.
 
 
