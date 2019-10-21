@@ -19,16 +19,26 @@
                 </ol>
               </nav>
           <h5 class="mb-1"> Codigo de Turno</h5>
-          <small>{{item.payload.doc.data().name}}</small>
+          <small>{{item.numTurno}}</small>
           <h5 class="mb-1">Horario </h5>
 
           <small    >{{item.horaTurno}}</small>
-          <small>Especialidad: {{item.payload.doc.data().especialidad}}</small>
+          <small>Especialidad: {{item.especialidad}}</small>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item active" aria-current="page">Datos Laborales</li>
             </ol>
           </nav>
+          <div class="row">
+          
+              <div class="col col-md-12 text-col">
+                  <input type="text" placeholder="Agregue Historia Clinica"   name="historiaClinica" [(ngModel)]="historiaClinica" >
+                  <button class="btn btn-outline-secondary action" style="font-size:bold; background-color: RED; color: black  "(click)="guardarHistoriaClinica()" type="button">
+                      <ion-icon name="close-circle"></ion-icon>Guardar Reseña
+                    </button>
+                </div>
+                
+              </div>
           <h5 class="mb-1"> Dias Turno</h5>
           <small>{{item.payload.doc.data().DiaTurno}}</small>
           <h5 class="mb-1">Horarios</h5>

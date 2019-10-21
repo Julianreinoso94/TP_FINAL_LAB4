@@ -14,7 +14,6 @@ export class ListadoPacientesComponent implements OnInit {
   items: Array<any>;
   age_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
-
   constructor(
     public firebaseService: FirebaseService,
     private router: Router

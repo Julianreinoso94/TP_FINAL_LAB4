@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { Router, Params } from '@angular/router';
+import { AngularFirestore } from "@angular/fire/firestore";
+import 'firebase/auth';
+import 'firebase/firestore';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +18,8 @@ export class HomeComponent implements OnInit {
   items: Array<any>;
   age_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
+  currentUser:any;
+  userProfile:any;
 
   images = [1, 2, 3, 4].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
   constructor(
@@ -26,6 +32,18 @@ export class HomeComponent implements OnInit {
       // config.wrap = false;
       // config.keyboard = false;
       // config.pauseOnHover = false;
+console.log ("constructor");
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          this.currentUser = user;
+        //   this.userProfile = firebase.firestore().doc(`/userProfile/${user.uid}`);
+         // this.userProfile = firebase.firestore().doc(/userProfile/'dCJc72k4F6UHUTDAkqELlJ3uExD2);
+         this.userProfile = firebase.firestore().doc(`/userProfile/dCJc72k4F6UHUTDAkqELlJ3uExD2`);
+
+        }
+      });
+  
+  console.log( this.userProfile);
    }
 
   ngOnInit() {

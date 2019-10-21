@@ -74,21 +74,20 @@ public show=false;
 
   constructor(private AFauth : AngularFireAuth,public auth:AuthService, private router : Router, private db : AngularFirestore,    public dialog: MatDialog
     ) {
-    
-    
-  //   this.unProfesor=false;
-  //   this.email="ninguno";
-  //   this.auth
-  //   .getUserProfile()
-  //   .get()
-  //   .then( userProfileSnapshot => {
-  //    this.userProfile = userProfileSnapshot.data();
-  //     this.email = userProfileSnapshot.data().email;
- 
- 
-  //     this.perfil= userProfileSnapshot.data().perfil;
-  //   });
-  //  console.log(this.userProfile.perfil);
+
+      //mia dCJc72k4F6UHUTDAkqELlJ3uExD2
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          this.currentUser = user;
+          //this.userProfile = firebase.firestore().doc(`/userProfile/${user.uid}`);
+          this.userProfile = firebase.firestore().doc(`/userProfile/dCJc72k4F6UHUTDAkqELlJ3uExD2`);
+
+        }
+      });
+  
+  console.log( this.userProfile);
+     ////////////////////////////////////////MI USUARIO
+
 
   }//fin constructor
 
@@ -100,6 +99,7 @@ public show=false;
     this.email=this.usuarioSeleccionado.email;
     this.unProfesor=true;
 console.log(this.usuarioSeleccionado);
+
   }
 
   

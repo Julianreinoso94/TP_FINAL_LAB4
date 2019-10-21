@@ -3,6 +3,8 @@ import { FirebaseService } from '../../services/firebase.service';
 import { Router, Params } from '@angular/router';
 import { abmProfesionales } from 'src/app/services/abmProfesionales.service';
 import{TurnosService} from 'src/app/services/turnos.service'
+import{HistoriaClinicaService} from 'src/app/services/historiaClinicaservice'
+
 @Component({
   selector: 'app-ver-turnos-paciente',
   templateUrl: './ver-turnos-paciente.component.html',
@@ -17,8 +19,9 @@ export class VerTurnosPacienteComponent implements OnInit {
   age_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
   codigoTurno:any;
+  historiaClinica:any;
 
-  constructor(public firebaseService: TurnosService,
+  constructor(public firebaseService: TurnosService, public historiaservice:HistoriaClinicaService,
     // public firebaseService: FirebaseService,
     private router: Router
   ) { }
@@ -42,6 +45,7 @@ export class VerTurnosPacienteComponent implements OnInit {
           especialidad: e.payload.doc.data()['especialidad'],
           horaTurno: e.payload.doc.data()['horaTurno'],
           DiaTurno: e.payload.doc.data()['DiaTurno'],
+          numTurno: e.payload.doc.data()['numTurno'],
         
         };
       })
@@ -63,24 +67,10 @@ export class VerTurnosPacienteComponent implements OnInit {
     this.firebaseService.cambiarEstado(codigo,"Ausente");
   }
 
-  capitalizeFirstLetter(value){
-    return value.charAt(0).toUpperCase() + value.slice(1);
-  }
+ 
 
-
-
-
-  combineLists(a, b){
-    let result = [];
-
-    a.filter(x => {
-      return b.filter(x2 =>{
-        if(x2.payload.doc.id == x.payload.doc.id){
-          result.push(x2);
-        }
-      });
-    });
-    return result;
+  guardarHistoriaClinica(){
+    this.historiaservice.createHistoriaClinica("uid","DiaTurno","descripcion","profesional");
   }
 
 }

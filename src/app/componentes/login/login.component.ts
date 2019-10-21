@@ -127,9 +127,8 @@ alert("")
       //    this.perfil= userProfileSnapshot.data().perfil;
         });
   this.nuevouser=new User(this.userProfile.perfil,this.userProfile.email);
-              alert("entro el user");
-              this.usuarioSeleccionado.emit(this.nuevouser);
-              // this.closeDialog();
+              // alert("entro el user");
+              // this.usuarioSeleccionado.emit(this.nuevouser);
               this.router.navigate(['/home'] );
          },
          error => {
