@@ -39,13 +39,11 @@ import { EstadisticasEmpleadosComponent } from './Componentes/estadisticas-emple
 
 
 export const rootRouterConfig: Routes = [
- //{ path: '', component: LoginComponent },
  { path: '', component: HomeComponent},
 //  { path: '**', component: AlertaLogueoComponent},
-
   { path: 'altas', component: AltasComponent  ,canActivate:[AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent  ,canActivate:[AuthGuard]},
+  { path: 'home', component: HomeComponent },
   { path: 'new-user', component: NewUserComponent  ,canActivate:[AuthGuard]},
   { path: 'details/:id', component: EditEspecialistaComponent, resolve:{data : EditUserResolver}  ,canActivate:[AuthGuard]},
   { path: 'listadoespecialistas', component: ListadoEspecialistasComponent  ,canActivate:[AuthGuard]},

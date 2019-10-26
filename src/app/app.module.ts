@@ -68,7 +68,7 @@ import { InstalacionComponent } from './Componentes/instalacion/instalacion.comp
 import { EstadisticasTurnosComponent } from './Componentes/estadisticas-turnos/estadisticas-turnos.component';
 import { EstadisticasEspecialidadesComponent } from './Componentes/estadisticas-especialidades/estadisticas-especialidades.component';
 import { EstadisticasEmpleadosComponent } from './Componentes/estadisticas-empleados/estadisticas-empleados.component';
-
+import {ProfileService} from "src/app/services/profile.service"
 
 @NgModule({
   declarations: [
@@ -126,7 +126,7 @@ import { EstadisticasEmpleadosComponent } from './Componentes/estadisticas-emple
     MatInputModule,MatFormFieldModule,
     MatSliderModule,
   ],
-   providers: [FirebaseService,abmProfesionales, EditUserResolver],
+   providers: [FirebaseService,abmProfesionales,ProfileService, EditUserResolver],
 
   bootstrap: [AppComponent],
   schemas: [

@@ -8,6 +8,8 @@ import { ReCaptchaV3Service } from 'ngx-captcha';
 import { Inject, Optional } from '@angular/core'; 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -28,6 +30,8 @@ export class LoginComponent implements OnInit {
 recaptcha: any[];
 
 
+
+
 ////////////////////////////////////NUEVA VERSION
 validatingForm: FormGroup;
 
@@ -39,7 +43,10 @@ fromDialog:string;
 ,    private router: Router,private authService: AuthService,
 // ,public dialogRef: MatDialogRef<LoginComponent>,
 @Optional() @Inject(MAT_DIALOG_DATA) public data: any
-) { }
+) {
+
+
+ }
 
 resolved(captchaResponse: any[]){
   this.recaptcha = captchaResponse;
@@ -55,87 +62,9 @@ resolved(captchaResponse: any[]){
  
    }
 
-   async loginUser(): Promise<void> {
-    this.router.navigate(['/home'] );
-    this.perfil= "Supervisor";
+   
+ 
 
-     if (
-       this.email == null||
-       this.password === null
-     ) {
-       return;
-     }
- 
-       const email = this.email;
-       const password = this.password;
- 
-       this.authService.login(email, password).then(() => {
-       
-alert("")
-       // alert("entro");
-        this.authService
-        .getUserProfile()
-        .get()
-        .then( userProfileSnapshot => {
-          this.userProfile = userProfileSnapshot.data();
-          // console.log(this.userProfile);
-        //  this.birthDate = userProfileSnapshot.data().birthDate;
-         this.perfil= userProfileSnapshot.data().perfil;
-        })
-
-  
-      })
-    
-      
-    //     this.nuevouser=new User(this.userProfile.perfil,this.userProfile.email);
-         alert("entro el user");
-         this.usuarioSeleccionado.emit(this.nuevouser);
-         // this.closeDialog();
-         this.router.navigate(['/home'] );
-        //  error => {
-        //  alert("Error: los datos no son correctos");
-        //  }
-    
- 
-     }
- 
-   async loginUser2(): Promise<void> {
-    this.router.navigate(['/home'] );
-    this.perfil= "Supervisor";
-
-     if (
-       this.email == null||
-       this.password === null
-     ) {
-       return;
-     }
- 
-       const email = this.email;
-       const password = this.password;
- 
-       this.authService.login(email, password).then(() => {
-       
-
-       // alert("entro");
-        this.authService
-        .getUserProfile()
-        .get()
-        .then( userProfileSnapshot => {
-          this.userProfile = userProfileSnapshot.data();
-          // console.log(this.userProfile);
-        //  this.birthDate = userProfileSnapshot.data().birthDate;
-      //    this.perfil= userProfileSnapshot.data().perfil;
-        });
-  this.nuevouser=new User(this.userProfile.perfil,this.userProfile.email);
-              // alert("entro el user");
-              // this.usuarioSeleccionado.emit(this.nuevouser);
-              this.router.navigate(['/home'] );
-         },
-         error => {
-         alert("Error: los datos no son correctos");
-         }
-       );
-     }
 
 
     //  mostrarDetalles()
@@ -147,6 +76,7 @@ alert("")
   
    usuario(valor)
    {
+    //  alert("entro seleccio")
 
      if(valor == "Administrador")
      {
@@ -156,7 +86,7 @@ alert("")
      }
      if(valor=="Odontologo1")
     {
-      this.email="odontologo1@odontologo1.com";
+      this.email="pppp@gmail.com";
       this.password="123456";
 
     }
@@ -184,6 +114,7 @@ alert("")
       this.password="123456";
 
     }
+
    }
 
 
@@ -199,5 +130,29 @@ alert("")
   //   this.dialogRef.close({event:'close',data:this.fromDialog}); 
   // }
    
+  loginUser(){
+    if (
+      this.email == null||
+      this.password === null
+    ) {
+      return;
+    }
+
+       const email = this.email;
+    //  const email = "mia@gmail.com";
+      const password = this.password;
+      //const password = "123456";
+
+      this.authService.login(email, password).then(() => {
+//alert("entro");
+            // this.router.navigate(['/principal'] );
+        },
+        error => {
+        alert("Error: los datos no son correctos");
+        }
+      );
+  }
+
+
  }
  

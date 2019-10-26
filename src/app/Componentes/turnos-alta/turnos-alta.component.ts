@@ -142,17 +142,7 @@ consultorios = [
     public firebaseService: TurnosService,private service: ImageService
   ) {
 
-    this.authprofile.traerBebidas().subscribe(data => {
-      this.clientes = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          // isEdit: false,
-          email: e.payload.doc.data()['email'],
-          uid: e.payload.doc.data()['uid'],
-        };
-      })
-      // console.log(this.clientes);
-    });
+ 
 
     this.createForm();
 

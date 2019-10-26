@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -8,6 +8,8 @@ import{User} from 'src/app/clases/user';
 import { MatDialog } from '@angular/material';
 import {LoginComponent} from 'src/app/Componentes/login/login.component'
 
+import {ProfileService} from "src/app/services/profile.service"
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -17,15 +19,35 @@ import * as $ from 'jquery';
 declare var jQuery:any;
 declare var $:any;
 
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
+
 export class AppComponent implements OnInit {
   dialogValue:string; 
   sendValue:string;
+ entroAllogin:false;
+  public interval;
+  public userProfile: any;
+  public birthDate: Date;
+  public perfil:string;
+
+  title = 'angular-firebase-crud';
+  public unProfesor:boolean;
+  public currentUser: firebase.User;
+  public  usuarioSeleccionado:User;
+  //public show=false;
+  public show=true;
+  public  uidUsuario:any;
+  email:any="ninguno";
 
   ngOnInit(): void {
 
@@ -35,7 +57,7 @@ export class AppComponent implements OnInit {
      // breakpoint and up  
      $(window).resize(function(){
          if ($(window).width() >= 980){  
-         console.log("entro");
+        // console.log("entro");
            // when you hover a toggle show its dropdown menu
            $(".navbar .dropdown-toggle").hover(function () {
               $(this).parent().toggleClass("show");
@@ -61,68 +83,55 @@ export class AppComponent implements OnInit {
   // @Input() alumnoParaMostrar: Alumno ;
 
 
-  title = 'angular-firebase-crud';
-public unProfesor:boolean;
-  public currentUser: firebase.User;
-  public userProfile: any;
-public  usuarioSeleccionado:User;
-public show=false;
-  uidUsuario:any;
- perfil:any;
- email:any="ninguno";
 
-
-  constructor(private AFauth : AngularFireAuth,public auth:AuthService, private router : Router, private db : AngularFirestore,    public dialog: MatDialog
+  constructor(private AFauth : AngularFireAuth,public auth:AuthService, private router : Router, private db : AngularFirestore, private profileService: ProfileService,    public dialog: MatDialog
     ) {
 
-      //mia dCJc72k4F6UHUTDAkqELlJ3uExD2
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          this.currentUser = user;
-          //this.userProfile = firebase.firestore().doc(`/userProfile/${user.uid}`);
-          this.userProfile = firebase.firestore().doc(`/userProfile/dCJc72k4F6UHUTDAkqELlJ3uExD2`);
-
-        }
-      });
-  
+      
+      this.interval = setInterval(() => this.Detectar(), 1000);
+      
+      console.log( "el userProfile es:");
   console.log( this.userProfile);
-     ////////////////////////////////////////MI USUARIO
-
 
   }//fin constructor
 
-  tomarusuario(UsuarioIngresado:User  )
-  {
-    alert("entro2tomar");
-    this.usuarioSeleccionado=UsuarioIngresado;   
-   // this.perfil=this.usuarioSeleccionado.perfil;
-    this.email=this.usuarioSeleccionado.email;
-    this.unProfesor=true;
-console.log(this.usuarioSeleccionado);
 
-  }
+  
 
   
   logout(){
     console.log("logout");
     this.show=true;
+    this.userProfile.perfil == undefined
     this.AFauth.auth.signOut().then(() => {
-      this.router.navigate(['/home']);
+   this.router.navigate(['/Servicios']);
+  
     })
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(LoginComponent,{width:'500px'});
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(LoginComponent, {
-      width: '250px',
-      backdropClass:'custom-dialog-backdrop-class',
-      panelClass:'custom-dialog-panel-class',
-      data: {pageValue: this.sendValue}
-    });
- 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed',result);
-      this.dialogValue = result.data;
+
+   //   this.Detectar();
+      console.log(`Dialog result: ${result}`);
     });
   }
+  Detectar(){
+    console.log("detectando perfil");
+    
+        this.profileService
+      .getUserProfile()
+      .get()
+      .then( userProfileSnapshot => {
+        this.userProfile = userProfileSnapshot.data();
+        // console.log(this.userProfile);
+        //this.birthDate = userProfileSnapshot.data().birthDate;
+        this.perfil= userProfileSnapshot.data().perfil;
+        console.log(this.perfil);
+
+      });
+  }
 }
+

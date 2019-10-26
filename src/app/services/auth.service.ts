@@ -35,16 +35,6 @@ export class AuthService {
     });
   }
 
-  traerBebidas()
-  {
-    return this.db.collection('userProfile', ref => ref.where('perfil', '>=', 'paciente')
-    .where('perfil', '<=', 'paciente' + '\uf8ff'))
-    .snapshotChanges();
-  }
-
-  getComidasList(): firebase.firestore.CollectionReference {
-    return this.listaComidasRef;
-  }
   
   getUserProfile(): firebase.firestore.DocumentReference {
     return this.userProfile;
