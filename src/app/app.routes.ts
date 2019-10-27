@@ -32,6 +32,7 @@ import { InstalacionComponent } from './Componentes/instalacion/instalacion.comp
 import { EstadisticasTurnosComponent } from './Componentes/estadisticas-turnos/estadisticas-turnos.component';
 import { EstadisticasEspecialidadesComponent } from './Componentes/estadisticas-especialidades/estadisticas-especialidades.component';
 import { EstadisticasEmpleadosComponent } from './Componentes/estadisticas-empleados/estadisticas-empleados.component';
+import { TurnosRecepcionComponent } from './Componentes/turnos-recepcion/turnos-recepcion.component'
 
 
 
@@ -40,7 +41,7 @@ import { EstadisticasEmpleadosComponent } from './Componentes/estadisticas-emple
 
 export const rootRouterConfig: Routes = [
  { path: '', component: HomeComponent},
-//  { path: '**', component: AlertaLogueoComponent},
+ //{ path: '**', component: AlertaLogueoComponent},
   { path: 'altas', component: AltasComponent  ,canActivate:[AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
@@ -64,11 +65,12 @@ export const rootRouterConfig: Routes = [
   { path: 'Informacion', component: InformacionComponent},
   { path: 'ListadoConsultorio', component: ListadoConsultorioComponent},
   { path: 'Servicios', component: ServiciosComponent},
-  { path: 'miPerfil', component: MiperfilComponent},
+  { path: 'miPerfil', component: MiperfilComponent ,canActivate:[AuthGuard] } ,
   { path: 'EstadisticasTurnos', component: EstadisticasTurnosComponent},
   { path: 'EstadisticasEspecialidades', component: EstadisticasEspecialidadesComponent},
   { path: 'EstadisticasEmpleados', component: EstadisticasEmpleadosComponent},
   { path: 'instalaciones', component: InstalacionComponent},
+  { path: 'TurnosRecepcion', component: TurnosRecepcionComponent ,canActivate:[AuthGuard]},
 
 
 

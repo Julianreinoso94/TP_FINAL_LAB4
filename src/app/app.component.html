@@ -32,7 +32,7 @@
 	  <ul class="navbar-nav mr-auto">
 	
 	
-		<li class="nav-item dropdown">
+		<li class="nav-item dropdown" *ngIf="userProfile?.perfil=='paciente'">
 		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			TRÁMITES ONLINE
 		  </a>
@@ -65,7 +65,7 @@
   
 		  </div>
 		</li>
-		<li class="nav-item dropdown">
+		<li class="nav-item dropdown" *ngIf="userProfile?.perfil=='paciente'">
 		  <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			MIS DATOS
 		  </a>
@@ -245,13 +245,11 @@
 							<span class="text-uppercase text-white" style="font-weight: bold;">Turnos</span>
 							<ul class="nav flex-column">
 							<li class="nav-item">
-									<a class="nav-link active" routerLink="ABMGESTION">Crear Turno Paciente</a>
+									<a class="nav-link active" routerLink="TurnosRecepcion">Crear Turno Paciente</a>
 									</li>
+
 							<li class="nav-item">
-							  <a class="nav-link active" routerLink="Habilitarturnos">Crear tratamiento</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link"  routerLink="listadopacientes">Cancelar Turnos</a>
+								<a class="nav-link"  routerLink="Habilitarturnos">Cancelar Turnos</a>
 							  </li>
 						  </ul>
 						  </div>
@@ -281,6 +279,11 @@
 					</div>
 				  </li>
 	  </ul>
+	  <form class="form-inline my-2 my-lg-0">
+			<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+			<button class="btn  my-2 my-sm-0"style="color: whitesmoke"  type="submit">{{perfil}}</button>
+		  </form>
+		</div>
 	  <form class="form-inline my-2 my-lg-0" *ngIf="show" >
 		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
 		<button class="btn btn-outline-light my-2 my-sm-0"  (click)="openDialog()" type="submit"  *ngIf="userProfile?.perfil == undefined ">Iniciar Sesíon</button>
@@ -292,11 +295,7 @@
 		<!-- <button class="btn btn-outline-light my-2 my-sm-0"   (click)="Detectar()" style="background-color: #00ff2a;color:whitesmoke" >Detectar</button> -->
 	 
 	</form>
-	  <form class="form-inline my-2 my-lg-0">
-		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
-		<button class="btn  my-2 my-sm-0"style="color: whitesmoke"  (click)="openDialog()" type="submit">{{perfil}}</button>
-	  </form>
-	</div>
+	
 
 	
   

@@ -95,7 +95,7 @@ export class AuthService {
   registerPaciente(value){
 
     return new Promise ((resolve, reject) => {
-      firebase.auth().createUserWithEmailAndPassword(value.email, value.password).then( res =>{
+      firebase.auth().createUserWithEmailAndPassword(value.email,"123456").then( res =>{
         const uid = res.user.uid;
  
   

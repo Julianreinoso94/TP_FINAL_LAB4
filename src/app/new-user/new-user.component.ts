@@ -30,7 +30,10 @@ export class NewUserComponent implements OnInit {
    ],
    'age': [
      { type: 'required', message: 'Age is required.' },
-   ]
+   ],
+   'email': [
+    { type: 'required', message: 'email is required.' },
+  ]
  };
 
   constructor(private storage: AngularFireStorage, 
@@ -48,7 +51,9 @@ export class NewUserComponent implements OnInit {
     this.exampleForm = this.fb.group({
       name: ['', Validators.required ],
       surname: ['', Validators.required ],
-      age: ['', Validators.required ]
+      age: ['', Validators.required ],
+      email: ['', Validators.required ],
+      
     });
   }
 
@@ -71,6 +76,8 @@ export class NewUserComponent implements OnInit {
       name: new FormControl('', Validators.required),
       surname: new FormControl('', Validators.required),
       age: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+
     });
   }
 

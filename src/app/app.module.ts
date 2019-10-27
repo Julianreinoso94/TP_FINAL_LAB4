@@ -68,7 +68,8 @@ import { InstalacionComponent } from './Componentes/instalacion/instalacion.comp
 import { EstadisticasTurnosComponent } from './Componentes/estadisticas-turnos/estadisticas-turnos.component';
 import { EstadisticasEspecialidadesComponent } from './Componentes/estadisticas-especialidades/estadisticas-especialidades.component';
 import { EstadisticasEmpleadosComponent } from './Componentes/estadisticas-empleados/estadisticas-empleados.component';
-import {ProfileService} from "src/app/services/profile.service"
+import {ProfileService} from "src/app/services/profile.service";
+import { TurnosRecepcionComponent } from './Componentes/turnos-recepcion/turnos-recepcion.component'
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import {ProfileService} from "src/app/services/profile.service"
     InstalacionComponent,
     EstadisticasTurnosComponent,
     EstadisticasEspecialidadesComponent,
-    EstadisticasEmpleadosComponent
+    EstadisticasEmpleadosComponent,
+    TurnosRecepcionComponent
   ],
   entryComponents: [AvatarDialogComponent],
   imports: [

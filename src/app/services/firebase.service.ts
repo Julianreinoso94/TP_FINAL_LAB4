@@ -46,6 +46,7 @@ export class FirebaseService {
   createUser(value, avatar){
     return this.db.collection('users').add({
       name: value.name,
+      email: value.email,
       nameToSearch: value.name.toLowerCase(),
       surname: value.surname,
       age: parseInt(value.age),

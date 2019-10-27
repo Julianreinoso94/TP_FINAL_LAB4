@@ -43,7 +43,7 @@ consultorios = [
   '1A', '1B', '1C'
 ] 
   events: string[] = [];
-  pedidos : any;
+  profesionales : any;
   horaTurno;
   turnos : any;
   ageValue: number = 0;
@@ -53,6 +53,7 @@ consultorios = [
   cliente;
   age_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
+  mostrarListado=false;
 
   especialidadesTurno = [
    'Odontologo',
@@ -60,6 +61,7 @@ consultorios = [
     'Implantólogo'		 
 ] 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    this.mostrarListado=true;
     this.events.push(`${event.value}`);
 
    var fecha= this.events.toString();
@@ -244,9 +246,10 @@ consultorios = [
   {
     this.servicioProfesionales.getUsers().subscribe(data => {
 
-      this.pedidos = data.map(e => {
+      this.profesionales = data.map(e => {
         return {
           id: e.payload.doc.id,
+          name: e.payload.doc.data()['name'],
           avatar: e.payload.doc.data()['avatar'],
           especialidad: e.payload.doc.data()['especialidad'],
           horario: e.payload.doc.data()['horario'],
@@ -259,7 +262,10 @@ consultorios = [
       
    
     });
-    return this.pedidos;
+    
+    console.log("el listado que trae de especialistas es")
+    console.log(this.profesionales);
+    return this.profesionales;
   }
 
   async traerturnos()
@@ -281,7 +287,7 @@ consultorios = [
       
    
     });
-    return this.pedidos;
+    return this.turnos;
   }
 
    especialistaPorDia (dia: String){
@@ -294,7 +300,7 @@ consultorios = [
       this.listadoespecialistaspordia.length = 0;
      }
 
-    this.pedidos.forEach(element => {
+    this.profesionales.forEach(element => {
      
       if(element.diasDeTrabajo == dia)
       {

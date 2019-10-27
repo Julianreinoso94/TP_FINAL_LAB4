@@ -16,6 +16,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 declare var $: any;
 import * as $ from 'jquery';
+
 declare var jQuery:any;
 declare var $:any;
 
@@ -48,7 +49,7 @@ export class AppComponent implements OnInit {
   public show=true;
   public  uidUsuario:any;
   email:any="ninguno";
-
+  ingresarperfil=false;
   ngOnInit(): void {
 
     $(document).ready(function() {
@@ -89,7 +90,7 @@ export class AppComponent implements OnInit {
 
       
       this.interval = setInterval(() => this.Detectar(), 1000);
-      
+    
       console.log( "el userProfile es:");
   console.log( this.userProfile);
 
@@ -116,11 +117,16 @@ export class AppComponent implements OnInit {
 
    //   this.Detectar();
       console.log(`Dialog result: ${result}`);
+      this.ingresarperfil= true;
     });
   }
   Detectar(){
-    console.log("detectando perfil");
+   // console.log(this.perfil);
     
+   //console.log(this.ingresarperfil);
+    // if(this.ingresarperfil  )
+    // {
+      this.ingresarperfil=false;
         this.profileService
       .getUserProfile()
       .get()
@@ -129,9 +135,12 @@ export class AppComponent implements OnInit {
         // console.log(this.userProfile);
         //this.birthDate = userProfileSnapshot.data().birthDate;
         this.perfil= userProfileSnapshot.data().perfil;
-        console.log(this.perfil);
+        //console.log(this.perfil);
 
       });
+    // }
   }
+
+
 }
 
