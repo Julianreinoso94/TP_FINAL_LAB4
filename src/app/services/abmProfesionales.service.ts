@@ -50,7 +50,7 @@ ActulizarHorarioTrabajo(userKey, value){
       nameToSearch: value.name.toLowerCase(),
       surname: value.surname,
       age: parseInt(value.age),
-      cliente: value.cliente,
+      // cliente: value.cliente,
       especialidad: value.especialidad,
       diasDeTrabajo:value.dias,
        avatar: avatar

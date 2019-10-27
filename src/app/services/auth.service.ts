@@ -82,7 +82,7 @@ export class AuthService {
             //name : name,
             uid : uid,
             //nombre: nombre,
-            perfil: "perfil",
+            perfil: "especialista",
             //dni: dni,
             email: value.email
             //clave: password
@@ -92,7 +92,27 @@ export class AuthService {
       }).catch( err => reject(err))
     })
   }
+  registerPaciente(value){
+
+    return new Promise ((resolve, reject) => {
+      firebase.auth().createUserWithEmailAndPassword(value.email, value.password).then( res =>{
+        const uid = res.user.uid;
+ 
   
+          this.db.collection('userProfile').doc(uid).set({
+            //name : name,
+            uid : uid,
+            //nombre: nombre,
+            perfil: "paciente",
+            //dni: dni,
+            email: value.email
+            //clave: password
+          })
+        
+        resolve(res)
+      }).catch( err => reject(err))
+    })
+  }
 
 
 

@@ -287,7 +287,8 @@
 	  </form>
 	  <form class="form-inline my-2 my-lg-0">
 		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
-		<button class="btn btn-outline-light my-2 my-sm-0"   (click)="logout()" style="font-weight:bold;background-color: #ff0000;color:whitesmoke" >logout</button>
+		<button class="btn btn-outline-light my-2 my-sm-0"   (click)="logout()" style="font-weight:bold;background-color: #ff0000;color:whitesmoke"  *ngIf="userProfile?.perfil != undefined " >  <ion-icon name="md-log-out"></ion-icon>
+			Salir</button>
 		<!-- <button class="btn btn-outline-light my-2 my-sm-0"   (click)="Detectar()" style="background-color: #00ff2a;color:whitesmoke" >Detectar</button> -->
 	 
 	</form>

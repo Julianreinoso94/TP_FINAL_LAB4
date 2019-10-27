@@ -26,7 +26,6 @@ export class AltasComponent implements OnInit {
   especialidades = [];
   imageUrl2;
   allTechnologies = [
-     'Recepcionistava',
     'Odontologo',
      'Odontopediatría',
      'Implantólogo'		 
