@@ -131,12 +131,12 @@ resolved(captchaResponse: any[]){
   // }
    
   loginUser(){
-    if (
-      this.email == null||
-      this.password === null
-    ) {
-      return;
-    }
+    // if (
+    //   this.email == null||
+    //   this.password === null
+    // ) {
+    //   return;
+    // }
 
        const email = this.email;
     //  const email = "mia@gmail.com";

@@ -89,7 +89,7 @@ export class AppComponent implements OnInit {
     ) {
 
       
-      this.interval = setInterval(() => this.Detectar(), 1000);
+     // this.interval = setInterval(() => this.Detectar(), 1000);
     
       console.log( "el userProfile es:");
   console.log( this.userProfile);
