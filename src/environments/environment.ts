@@ -18,7 +18,7 @@ export const environment = {
  firebase : {
   apiKey: "AIzaSyCLSYKDOG1gfi1n4i6bkFdykW8WuQXvjsA",
   authDomain: "odontologia-41ba6.firebaseapp.com",
-  databaseURL: "https://odontologia-41ba6.firebaseio.com",
+  databaseURL: "http://odontologia-41ba6.firebaseio.com",
   projectId: "odontologia-41ba6",
   storageBucket: "odontologia-41ba6.appspot.com",
   messagingSenderId: "867048316085",

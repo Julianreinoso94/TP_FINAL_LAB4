@@ -34,35 +34,35 @@ export class ListadoEspecialistasComponent  implements OnInit {
 
     this.data = [
       {
-        name: 'Test 1',
-        age: 13,
-        average: 8.2,
-        approved: true,
-        description: "using 'Content here, content here' "
+        EDAD: 'Test 1',
+        dias: 13,
+        especialidad: 8.2,
+        nombre : true,
+        apellido: "using 'Content here, content here' "
       },
       {
-        name: 'Test 2',
-        age: 11,
-        average: 8.2,
-        approved: true,
-        description: "using 'Content here, content here' "
+        EDAD: 'Test 1',
+        dias: 13,
+        especialidad: 8.2,
+        nombre : true,
+        apellido: "using 'Content here, content here' "
       },
       {
-        name: 'Test 4',
-        age: 10,
-        average: 8.2,
-        approved: true,
-        description: "using 'Content here, content here' "
+        EDAD: 'Test 1',
+        dias: 13,
+        especialidad: 8.2,
+        nombre : true,
+        apellido: "using 'Content here, content here' "
       },
     ];
      
        this.options = { 
-        fieldSeparator: ',',
+        fieldSeparator: '   |   ',
         quoteStrings: '"',
         decimalSeparator: '.',
         showLabels: true, 
         showTitle: true,
-        title: 'My Awesome CSV',
+        title: 'INFORMACION DE ESPECIALISTAS',
         useTextFile: false,
         useBom: true,
         useKeysAsHeaders: true,
@@ -132,20 +132,23 @@ export class ListadoEspecialistasComponent  implements OnInit {
 
 
    exportPDF() {
-    var data = document.getElementById('contentToConvert');  
-    html2canvas(data).then(canvas => {  
+   var data = document.getElementById('contentToConvert'); 
+    
+  html2canvas(data).then(canvas => {  
       // Few necessary setting options  
       var imgWidth = 208;   
       var pageHeight = 295;    
-      var imgHeight = canvas.height * imgWidth / canvas.width;  
+    //  var imgHeight = canvas.height * imgWidth / canvas.width;
+    var imgHeight = 5 * imgWidth / 6;  
       var heightLeft = imgHeight;  
   
-      const contentDataURL = canvas.toDataURL('image/png')  
+   //   const contentDataURL = canvas.toDataURL('image/png')
+      const contentDataURL = "canvas.toDataURL('image/png') " ;
       let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
       var position = 0;  
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
-      pdf.save('MYPdf.pdf'); // Generated PDF   
-    });  
+      pdf.save('Especialistas.pdf'); // Generated PDF   
+ });  
   }
   
 

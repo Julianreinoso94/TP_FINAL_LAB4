@@ -38,16 +38,16 @@
 
   <div >  
       <mat-card>  
-        <table id="contentToConvert">  
+        <table *ngFor="let item of items"  id="contentToConvert">  
             <tr>  
-              <th>Column1</th>  
-              <th>Column2</th>  
-              <th>Column3</th>  
+              <th>Legajo</th>  
+              <th>Nombre</th>  
+              <th>Especialidad</th>  
             </tr>  
             <tr>  
-              <td>Row 1</td>  
-              <td>Row 1</td>  
-              <td>Row 1</td>  
+              <td>{{item.payload.doc.data().name}}</td>  
+              <td>pepe1</td>  
+              <td>coco 1</td>  
             </tr>  
             <tr>  
               <td>Row 2</td>  
