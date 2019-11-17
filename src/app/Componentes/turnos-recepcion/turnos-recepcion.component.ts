@@ -207,15 +207,15 @@ consultorios = [
    }
  }
 
- onSubmit(value){
-   this.firebaseService.createTurno(value,this.fechatotal,this.makeRandom())
-   .then(
-     res => {
-       this.resetFields();
-       this.router.navigate(['/home']);
-     }
-   )
- }
+//  onSubmit(value){
+//    this.firebaseService.createTurno("profes",value,this.fechatotal,this.makeRandom())
+//    .then(
+//      res => {
+//        this.resetFields();
+//        this.router.navigate(['/home']);
+//      }
+//    )
+//  }
 
   makeRandom() {
    var lengthOfCode = 5;

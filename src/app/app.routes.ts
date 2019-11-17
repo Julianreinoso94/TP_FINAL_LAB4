@@ -33,6 +33,7 @@ import { EstadisticasTurnosComponent } from './Componentes/estadisticas-turnos/e
 import { EstadisticasEspecialidadesComponent } from './Componentes/estadisticas-especialidades/estadisticas-especialidades.component';
 import { EstadisticasEmpleadosComponent } from './Componentes/estadisticas-empleados/estadisticas-empleados.component';
 import { TurnosRecepcionComponent } from './Componentes/turnos-recepcion/turnos-recepcion.component'
+import { MisTurnosComponent } from './Componentes/mis-turnos/mis-turnos.component'
 
 
 
@@ -71,6 +72,7 @@ export const rootRouterConfig: Routes = [
   { path: 'EstadisticasEmpleados', component: EstadisticasEmpleadosComponent},
   { path: 'instalaciones', component: InstalacionComponent},
   { path: 'TurnosRecepcion', component: TurnosRecepcionComponent ,canActivate:[AuthGuard]},
+  { path: 'misTurnos', component: MisTurnosComponent ,canActivate:[AuthGuard]},
 
 
 

@@ -1,0 +1,49 @@
+<button class="btn btn-outline-primary action"  style="background-color: green;"   (click)="mostrar()" type="button">
+    <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
+    Elegir
+</button>
+             
+            <div class="list-group users-list"    >
+                <div   style="background-color:gray;"*ngFor="let item of listadoespecialistaspordia " class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="row"  >
+                   
+                    <div class="col col-md-8 text-col">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item active" aria-current="page">Datos Turnos</li>
+                            </ol>
+                          </nav>
+                      <h5 class="mb-1"> Especialista</h5>
+                      <small>{{item.DiaTurno}}</small>
+                      <small>{{item.cliente}}</small>
+                      <small>{{item.consultorio}}</small>
+                      <small>{{item.estado}}</small>
+
+                      <small>{{item.horaTurno}}</small>
+                      <small>{{item.numTurno}}</small>
+                      <small>{{item.profesional}}</small>
+
+
+                
+                    </div>
+                  
+                    <div class="col col-md-2 actions-col" >
+                      <!-- <button class="btn btn-outline-primary action"  style="background-color: green;"   (click)="viewDetails(item)" type="button">
+                        <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
+                        Elegir
+                      </button> -->
+                    
+                    </div>
+                  </div>
+                </div>
+            
+             
+              </div>
+              <!--Fin listado -->
+
+     
+
+
+  
+
+

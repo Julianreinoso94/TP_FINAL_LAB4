@@ -138,7 +138,17 @@ export class AppComponent implements OnInit {
         //console.log(this.perfil);
 
       });
+
+      firebase.auth().onAuthStateChanged(user => {
+ 
+        this.currentUser = user;
+        this.uidUsuario = user.uid});
     // }
+
+    console.log(this.currentUser);
+    console.log(this.uidUsuario); 
+
+
   }
 
 

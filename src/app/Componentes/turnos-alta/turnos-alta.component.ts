@@ -13,12 +13,37 @@ import {AuthService} from 'src/app/services/auth.service'
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+
+
+class profesional {
+  age: String;
+  avatar: String;
+  DiasDeTrabajo: String;
+  especialidad: String;
+  name: String;
+
+  surname: String;
+  constructor(age:String,avatar:String,DiasDeTrabajo:String,especialidad:String,name:String )
+  {
+    this.age=age;
+    this.avatar=avatar;
+    this.DiasDeTrabajo=DiasDeTrabajo;
+    this.especialidad=especialidad;
+    this.name=name;
+
+  }
+}
 
 @Component({
   selector: 'app-turnos-alta',
   templateUrl: './turnos-alta.component.html',
   styleUrls: ['./turnos-alta.component.css']
 })
+
+
 export class TurnosAltaComponent  implements OnInit {
 
   public clientes:any;
@@ -55,24 +80,31 @@ public fotoespecialistElegido:String;
   searchValue: string = "";
   
   
-  listadoespecialistas: Array<any>;
-  listadoespecialistaspordia: Array<any>=[];
+  listadoespecialistas: Array<profesional>;
+  listadoespecialistaspordia: any;
    filtrarlistaporespecialidad:any;
-   listadoespecialistasSinTurnos: Array<any>=[];
+   listadoespecialistasconTurnos:any;
    listadoFinal: Array<any>=[];
-
+   profesional1:profesional;
 
   cliente;
   age_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
   mostrarListado=false;
   mostrarEspecialistaelegido=false;
+  mostrarListadoFinal=false;
 
   especialidadesTurno = [
    'Odontologo',
     'Odontopediatría',
     'Implantólogo'		 
 ] 
+usuarioactual:any;
+
+public currentUser: firebase.User;
+uidUsuario:any;
+ocultarPrimerListado=false;
+
  
 
  constructor(private storage: AngularFireStorage,  private authprofile: AuthService,
@@ -133,17 +165,15 @@ public fotoespecialistElegido:String;
      
   
    });
-   
-   console.log("el listado que trae de especialistas es")
-   console.log(this.profesionales);
+
    return this.profesionales;
  }
  
  createForm() {
   this.exampleForm = this.fb.group({
     nombrePaciente: ['', Validators.required ],
-    apellidoPaciente: ['', Validators.required ],
-    cliente:"this.cliente",
+//    apellidoPaciente: ['', Validators.required ],
+    cliente: this.usuarioactual,
     DiaTurno: this.fechatotal,
     horaTurno: this.horaTurno,
     profesional: ['', Validators.required ],
@@ -172,67 +202,13 @@ resetFields(){
 
 
  ngOnInit() {
-  console.log("ngOnInit");
+  
 
 
 }
 
 
 
-
- eventoCalendario(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.mostrarListado=true;
-    this.events.push(`${event.value}`);
-
-   var fecha= this.events.toString();
-   this.fechatotal=fecha;
-   console.log("esta es l fecha"+fecha);
-   var valor=fecha.split(" ",1);
-
-   var color: string;
-
-   
-
-  switch (valor.toString()) {
-    case "Mon":
-        var buscrcomo= "Lunes,Miercoles,Viernes";
-        this.especialistaPorDia(buscrcomo);
-    break;
-    case "Tue":
-     var buscrcomo= "Martes,Jueves";
-     this.especialistaPorDia(buscrcomo);
-     break;
-    case "Wed":
-        var buscrcomo= "Lunes,Miercoles,Viernes";
-
-      this.especialistaPorDia(buscrcomo);
-    //  this.compararFecha();
-      break;
-    case "Thu":
-        var buscrcomo= "Martes,Jueves";
-
-      this.especialistaPorDia(buscrcomo);
-      break;
-    case "Fri":
-        var buscrcomo= "Lunes,Miercoles,Viernes";
-
-      this.especialistaPorDia(buscrcomo);
-      break;
-      case "Sat":
-          var buscrcomo= "Jueves,Sabados";
-
-        this.especialistaPorDia(buscrcomo);
-        break;
-    default:
-      confirm("Sorry, that color is not in the system yet!");
-  }
-
-    // console.log(valor);
-
-    // console.log(this.events);
-    
-    this.events.length=0;
-  }
 
 
 //   validation_messages = {
@@ -275,7 +251,11 @@ resetFields(){
   }
 
   onSubmit(value){
-    this.firebaseService.createTurno(value,this.fechatotal,this.makeRandom())
+    console.log("_________________________________________");
+    console.log(this.usuarioactual);
+    console.log(this.nombreEspecialistaelegido);
+
+    this.firebaseService.createTurno(this.nombreEspecialistaelegido,this.uidUsuario,value,this.fechatotal,this.makeRandom())
     .then(
       res => {
         this.resetFields();
@@ -297,16 +277,89 @@ resetFields(){
 
   
 
-  getData(){
-    this.firebaseService.getespecialistas()
-    .subscribe(result => {
-      this.listadoespecialistas = result;
-      this.age_filtered_items = result;
-      this.name_filtered_items = result;
-    })
-  }
+  // getData(){
+  //   this.firebaseService.getespecialistas()
+  //   .subscribe(result => {
+  //     this.listadoespecialistas = result;
+  //     this.age_filtered_items = result;
+  //     this.name_filtered_items = result;
+  //   })
+  // }
 
  
+
+  
+ eventoCalendario(type: string, event: MatDatepickerInputEvent<Date>) {
+   
+  this.datosCliente();
+  this.mostrarListado=true;
+  this.events.push(`${event.value}`);
+
+ var fecha= this.events.toString();
+ this.fechatotal=fecha;
+ //console.log("esta es l fecha"+fecha);
+ var valor=fecha.split(" ",1);
+
+ var color: string;
+
+ 
+
+switch (valor.toString()) {
+  case "Mon":
+      var buscrcomo= "Lunes,Miercoles,Viernes";
+      this.especialistaPorDia(buscrcomo);
+  break;
+  case "Tue":
+   var buscrcomo= "Martes,Jueves";
+   this.especialistaPorDia(buscrcomo);
+   break;
+  case "Wed":
+      var buscrcomo= "Lunes,Miercoles,Viernes";
+
+    this.especialistaPorDia(buscrcomo);
+  //  this.compararFecha();
+    break;
+  case "Thu":
+      var buscrcomo= "Martes,Jueves";
+
+    this.especialistaPorDia(buscrcomo);
+    break;
+  case "Fri":
+      var buscrcomo= "Lunes,Miercoles,Viernes";
+
+    this.especialistaPorDia(buscrcomo);
+    break;
+    case "Sat":
+        var buscrcomo= "Jueves,Sabados";
+
+      this.especialistaPorDia(buscrcomo);
+      break;
+  default:
+    confirm("Sorry, that color is not in the system yet!");
+}
+
+
+  
+  this.events.length=0;
+}
+
+
+
+especialistaPorDia (dia: String)///////////////////////////////////////////////////////////CLASIFICA POR DIA
+{
+       this.listadoespecialistaspordia = [];
+
+        
+       this.filtrarlistaporespecialidad.forEach(element => {
+       
+         if(element.diasDeTrabajo == dia)
+         {
+            this.profesional = new profesional(element.age,element.avatar,element.DiasDeTrabajo,element.especialidad,element.name);
+           this.listadoespecialistaspordia.push(this.profesional);
+         }
+         });
+  
+}
 
   
  filtrarEspecialidad(){
@@ -321,100 +374,165 @@ resetFields(){
       this.filtrarlistaporespecialidad.push(element);
     }
     });
-    console.log("this.filtrarlistaporespecialidad)");
-    console.log(this.filtrarlistaporespecialidad);
-//this.compararFecha();
-//alert("filtro por especialidad ")
+
  }
 
 
-   especialistaPorDia (dia: String)///////////////////////////////////////////////////////////CLASIFICA POR DIA
-   {
-          this.listadoespecialistaspordia = [];
-
-    
-          this.filtrarlistaporespecialidad.forEach(element => {
-          
-            if(element.diasDeTrabajo == dia)
-            {
-              this.listadoespecialistaspordia.push(element);
-            }
-            });
-            console.log("calendario");
-            console.log(this.listadoespecialistaspordia);
-        //this.compararFecha();
-  }
 
 
 
-          seleccionandoHoraDeturno()//AL CAMBIAR EL HORARIO INGRESA ACA SELECTHORARIO
+
+          seleccionandoHoraDeturnoOLD()//AL CAMBIAR EL HORARIO INGRESA ACA SELECTHORARIO
           {
+            this.datosCliente();
+
             this.mostrarbotonSeleccionar=true;
+            this.mostrarListadoFinal=true;
 
-            this.listadoespecialistasSinTurnos=[];
+            this.listadoespecialistasconTurnos=[];
 
-            alert(this.especialidades);
+           // alert(this.especialidades);
 
 
             //////////////////////////primer foreach
+
+        
      this.turnos.forEach(element => {
             
-     
+              
+     //         console.log("turnos iterados");
+     //         console.log(element.horaTurno);
+     //         console.log(element.DiaTurno);
 
-              if(element.horaTurno == this.horaTurno && element.DiaTurno == this.DiaTurno)
+              if(element.horaTurno == this.horaTurno && element.DiaTurno == this.DiaTurno.toString())
               {
-                alert("ya existe un turno en esa fecha");
+             // console.log("ya existe un turno en esa fecha");
               }
               else
               {
                 //ESPECIALISTA EN TURNO LIBRE
-                this.listadoespecialistasSinTurnos.push( element);
+                this.listadoespecialistasconTurnos.push( element.profesional);//
                
               }
            });
+          //  console.log("listadoespecialistas sin turnos");
+          //  console.log(  this.listadoespecialistasconTurnos);
+
 
               //ultimo foreach
 
-              this.listadoespecialistasSinTurnos.forEach(element => {///////////////////////////primer foreach
-            
-                this.turnos.forEach(item => {
-
-                if(item.profesional ==  element.name)
+              this.listadoespecialistasconTurnos.forEach(element => {///////////////////////////primer foreach
+               
+                this.listadoespecialistaspordia.forEach(item => {
+        //   console.log(item.name);
+        //   console.log("==");
+        // console.log(element);
+                if(item.name ==  element)
                 {
-                  this.listadoFinal.push(element);
+                  this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.name);
+             //     this.listadoespecialistaspordia.push(this.profesional);
+                  this.listadoFinal.push(this.profesional);
+                  console.log("agregoAllistadofinal");
                 }
              
 
               });
              });
-             
-             console.log(this.listadoFinal);
+
 
           }
 
-          // compararFecha()
-          // {
+
+          seleccionandoHoraDeturno()//AL CAMBIAR EL HORARIO INGRESA ACA SELECTHORARIO
+          {
+            this.mostrarListado=false;
+            this.listadoFinal.length=0;
+            this.datosCliente();
+
+            this.mostrarbotonSeleccionar=true;
+            this.mostrarListadoFinal=true;
+
+      this.listadoespecialistasconTurnos=[];
+            //this.listadoespecialistasconTurnos;
+            // console.log("this.listadoespecialistasconTurnos");
+
+            // console.log(this.listadoespecialistasconTurnos);
+            console.log(this.listadoespecialistasconTurnos);
+
+            this.listadoespecialistaspordia.forEach(element => {
+              this.turnos.forEach(item => {///////////////////////////primer foreach
+
             
-          //  console.log("la fechaelegida es:"+this.DiaTurno.getTime() );
-          //   this.turnos.forEach(element => {
-            
-
-          //     if(element.DiaTurno == this.fechatotal)
-          //     {
-          //       this.listadoespecialistaspordia = element;
-          //       alert("ya existe un turno en esa fecha");
-          //     }
-          //     });
-
-
+              
    
-          // }
 
-  objectKeys (objeto: any) {
-            const keys = Object.keys(objeto);
-           // console.log(keys); // echa un vistazo por consola para que veas lo que hace "Object.keys"
-            return keys;
-         }
+              if(item.horaTurno == this.horaTurno && item.DiaTurno == this.DiaTurno.toString() && element.name == item.profesional ) 
+              {
+                this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.profesional);
+                //     this.listadoespecialistaspordia.push(this.profesional);
+                  //   this.listadoFinal.push(this.profesional);
+
+                this.listadoespecialistasconTurnos.push(this.profesional);         
+                   }
+              else
+              {
+                //ESPECIALISTA EN TURNO LIBRE
+               
+              }
+           });
+          });
+
+        //  console.log(this.listadoespecialistasconTurnos);
+
+          //SEGUNDO FOR TOMA LOS ESPECIALISTAS POR DIA QUE NO ESTAN RESERVADOS
+          console.log(this.listadoespecialistaspordia);
+          console.log( this.listadoespecialistasconTurnos);
+
+          this.listadoespecialistaspordia.forEach(element => {
+              this.listadoespecialistasconTurnos.forEach(item => {///////////////////////////primer foreach
+
+            
+              
+   
+              console.log(item.name);
+              console.log(element.name);
+              if(element.name == item.name ) 
+              {
+
+                   }
+              else
+              {
+                //ESPECIALISTA EN TURNO LIBRE
+                this.listadoFinal.push( element);         
+
+              }
+           });
+          });
+
+          if(this.listadoespecialistasconTurnos.length == 0)
+          {
+            console.log("entor");
+            this.listadoespecialistaspordia.forEach(element => {
+
+            
+              
+                
+                //ESPECIALISTA EN TURNO LIBRE
+                this.listadoFinal.push( element);         
+
+           
+         
+          });
+          }
+   
+
+
+
+          }
+
+      
+   
+
 
          viewDetails(item)
          {
@@ -424,17 +542,35 @@ resetFields(){
           //3 selecciono el horario y que consulte en turnos si algun especialista a esa hs tiene turno.. si tiene
           //(B)guardo en una tercera lista los especialistas que no estan ocupados y muestro el boton seleccionar
 
-           console.log(item);
            this.mostrarListado=false;
+           this.mostrarListadoFinal=false;
            this.mostrarEspecialistaelegido=true;
 
            this.fotoespecialistElegido= item.avatar;
            this.nombreEspecialistaelegido=item.name;
 
-           console.log( this.fotoespecialistElegido);
-           console.log( this.nombreEspecialistaelegido);
+        
          }
 
+
+    
+
+         datosCliente(){
+  
+             firebase.auth().onAuthStateChanged(user => {
+        
+               this.currentUser = user;
+               this.uidUsuario = user.uid});
+           // }
+       
+          //  console.log("el cliente actual es");
+          //  console.log(this.currentUser);
+          //  console.log(this.uidUsuario); 
+          //  this.usuarioactual= this.uidUsuario;
+       
+       
+         }
+       
 
          
 
