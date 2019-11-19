@@ -86,13 +86,13 @@ resolved(captchaResponse: any[]){
      }
      if(valor=="Odontologo1")
     {
-      this.email="pppp@gmail.com";
+      this.email="pedropicapiedra@gmail.com";
       this.password="123456";
 
     }
     if(valor=="Odontologo2")
     {
-      this.email="odontologo2@odontologo2.com";
+      this.email="fabiandiaz@gmail.com";
       this.password="123456";
 
     }

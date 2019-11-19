@@ -33,7 +33,7 @@
     <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="row">
         <div class="col col-md-2 image-col">
-          <img class="image" [src]="item.payload.doc.data().avatar">
+          <img    style="width: 128px;height:128px;" class="image" [src]="item.payload.doc.data().avatar">
         </div>
         <div class="col col-md-8 text-col">
           <h5 class="mb-1">{{item.payload.doc.data().name}} {{item.payload.doc.data().surname}}</h5>
