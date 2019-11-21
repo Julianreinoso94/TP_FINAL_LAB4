@@ -47,4 +47,66 @@ export class EncuestasService {
       descripcion: value.descripcion
     });
   }
+
+
+  /////////////////////////////////////////////////////////////////////////////
+  // Podrá ver, estadísticas:
+  // 1- De los empleados:
+   //A) Los días y horarios que se Ingresaron al sistema.
+  // B)Cantidad de turnos realizados de todos por especialidad.
+  // 2- De los turnos:
+  // C)Cantidad de turnos entre fechas dadas.
+  // D)Cantidad de días sin turnos por especialidad.
+  // E)Los realizados por especialidad.
+  // F)Los cancelados por especialidad.
+  // G)Los realizados por Clientes.
+  // H)Los realizados por recepcionista.
+  // 3- De las especialidades:
+  // I)La más usada.
+  // J)La menos usada.
+  //K) Mejores comentarios.
+  //L) Peores comentarios.
+
+
+  //estadisticas
+
+  //B
+  VotoEspecialidad(value){
+    return this.db.collection('encuestas').add({
+      especialidad: value,
+    });
+  }
+
+//D
+  DiasYhorariosIngresaronSistema (value)
+  {
+    return this.db.collection('fechaIngreso').add({
+      fecha: value,
+    });
+  }
+
+  //F
+
+  CanceladosPorEspecialidad (value)
+  {
+    return this.db.collection('TurnosCancelados').add({
+      fecha: value,
+    });
+  }
+
+  //G Los realizados por PERFIL Clientes.
+  RealizadosPorcliente (value)
+  {
+    return this.db.collection('TurnosPerfilCliente').add({
+      fecha: value,
+    });
+  }
+    //G Los realizados por PERFIL recepcionista.
+    RealizadosPorRecepcionista(value)
+    {
+      return this.db.collection('TurnosPerfilCliente').add({
+        fecha: value,
+      });
+    }
+  
 }

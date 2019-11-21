@@ -52,7 +52,7 @@ import { ExportAsModule } from 'ngx-export-as';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { CarrouselComponent } from './Componentes/carrousel/carrousel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';  
-
+import { ChartsModule } from 'ng2-charts';
 // import 'hammerjs';
 
 import {MatCardModule} from '@angular/material/card';
@@ -130,7 +130,8 @@ import { TurnosAltaEspecialistaComponent } from './Componentes/turnos-alta-espec
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,MatFormFieldModule,
-    MatSliderModule,
+    MatSliderModule,    ChartsModule
+
   ],
    providers: [FirebaseService,abmProfesionales,ProfileService, EditUserResolver],
 

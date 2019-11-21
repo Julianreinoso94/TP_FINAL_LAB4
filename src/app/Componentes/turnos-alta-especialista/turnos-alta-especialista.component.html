@@ -1,1 +1,204 @@
-<p>turnos-alta-especialista works!</p>
+<div class="create-page" style="    padding: 20px 60px;
+">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Crear Turno mi paciente!</li>
+      </ol>
+    </nav>
+    <div class="page-content" style=" background-color: #FFF;">
+      <div class="row">
+      
+        <div class="col col-md-12">
+          
+          
+  
+          <form class="create-form" style="   padding: 20px;" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
+         
+              <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Especialidad</li>
+                  </ol>
+                </nav>
+    
+    
+                <div class="form-group">
+       
+                  <select placeholder="especialidad"  (change)="filtrarEspecialidad()" [(ngModel)]="especialidades"  class="form-control" formControlName="especialidad"
+                    style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  ">
+              
+                    <option *ngFor="let tech of especialidadesTurno " [ngValue]="tech">
+                      {{ tech }}
+                    </option>
+              
+              
+                  </select>
+                </div>
+              <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Fecha del turno</li>
+                  </ol>
+                </nav>
+
+
+                <div class="form-group">
+
+                  <mat-form-field>
+                      <input matInput [matDatepicker] = "picker" [(ngModel)]="DiaTurno"  (dateChange)="eventoCalendario('change', $event)"  formControlName="DiaTurno" >
+                      <mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                   </mat-form-field>
+                  </div>
+
+                   
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Horario</li>
+              </ol>
+            </nav>
+            
+            <div class="form-group">
+                <span></span>
+                <select placeholder="horaTurno" class="form-control" (change)="seleccionandoHoraDeturno()" formControlName="horaTurno" [(ngModel)]="horaTurno"
+                  style="background-color:#007bff;border-radius: 20px;     height: 40px; font-size: 22px; border: none;  color: #fff;  ">
+            
+                  <option *ngFor="let tech of allTechnologies" [ngValue]="tech">
+                    {{ tech }}
+                  </option>
+            
+            
+                </select>
+              </div>
+<!--listado-->
+            <div class="list-group users-list"  *ngIf="mostrarListado" >
+                <div *ngFor="let item of listadoespecialistaspordia " class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="row">
+                    <div class="col col-md-2 image-col">
+                      <img class="image"   style="width: 270px;height: 275px;" [src]="item.avatar">
+                    </div>
+                    <div class="col col-md-8 text-col">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item active" aria-current="page">Datos Personales</li>
+                            </ol>
+                          </nav>
+                      <h5 class="mb-1"> Especialista</h5>
+                      <small>{{item.name}}</small>
+
+                
+                    </div>
+                  
+                    <!-- <div class="col col-md-2 actions-col"   *ngIf="mostrarbotonSeleccionar">
+               
+                      <button type="button"   (click)="viewDetails(item)"  style="  color: orangered;font-weight: bold;font-size: 33px;   border-radius: 8px !important;padding: .84rem 2.14rem; width: 100%;background: linear-gradient(40deg,#45cafc,#303f9f)!important;" mdbBtn gradient="blue" block="true" rounded="true" class="z-depth-1a waves-light"
+                      mdbWavesEffect><ion-icon class="icon" name="arrow-round-forward"></ion-icon> ELEGIR
+              </button>
+                    
+                    </div> -->
+                  </div>
+                </div>
+            
+             
+              </div>
+              <!--Fin listado -->
+
+
+              <!--mostrar especialista elegido-->
+              <div class="row" *ngIf="mostrarEspecialistaelegido" >
+                <div class="col col-md-2 image-col">
+                  <img class="image"   style="width: 270px;height: 275px;" [src]="fotoespecialistElegido">
+                </div>
+                <div class="col col-md-8 text-col">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item active" aria-current="page">Datos Personales</li>
+                        </ol>
+                      </nav>
+                  <h5 class="mb-1"> Especialista</h5>
+                  <small>{{nombreEspecialistaelegido}}</small>
+
+            
+                </div>
+              
+                <div class="col col-md-2 actions-col">
+                  <!-- <button class="btn btn-outline-primary action"  style="background-color: green;"   (click)="viewDetails(item)" type="button">
+                    <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
+                    Elegir
+                  </button> -->
+                
+                
+                </div>
+              </div>
+
+              <!---->
+              
+              <!--mostrar LISTADOFINAL elegido-->
+             
+            <div class="list-group users-list"    *ngIf="mostrarListadoFinal">
+                <div   style="background-color:red;"*ngFor="let item of listadoFinal " class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="row"  >
+                    <div class="col col-md-2 image-col">
+                      <img class="image"   style="width: 270px;height: 275px;" [src]="item.avatar">
+                    </div>
+                    <div class="col col-md-8 text-col">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item active" aria-current="page">Datos Personales</li>
+                            </ol>
+                          </nav>
+                      <h5 class="mb-1"> Especialista</h5>
+                      <small>{{item.name}}</small>
+
+                
+                    </div>
+                  
+                    <div class="col col-md-2 actions-col" >
+                      <!-- <button class="btn btn-outline-primary action"  style="background-color: green;"   (click)="viewDetails(item)" type="button">
+                        <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
+                        Elegir
+                      </button> -->
+                      <button type="button"   (click)="viewDetails(item)"  style="  color: orangered;font-weight: bold;font-size: 33px;   border-radius: 8px !important;padding: .84rem 2.14rem; width: 100%;background: linear-gradient(40deg,#45cafc,#303f9f)!important;" mdbBtn gradient="blue" block="true" rounded="true" class="z-depth-1a waves-light"
+                      mdbWavesEffect><ion-icon class="icon" name="arrow-round-forward"></ion-icon> ELEGIR
+                     </button>
+                    
+                    </div>
+                  </div>
+                </div>
+            
+             
+              </div>
+              <!--Fin listado -->
+
+     
+
+
+  
+
+
+  <div class="row submit-button-container" style="                width: 100%;
+            justify-content: flex-end; ">
+    <div class="col-md-4">
+      <!-- <button mat-raised-button class="submit-button" color="primary" type="submit"
+       >Crear</button> -->
+
+       <button type="submit"  mat-button   style="  color: white;font-weight: bold;font-size: 33px;   border-radius: 8px !important;padding: .84rem 2.14rem; width: 100%;background: linear-gradient(40deg,#45cafc,#303f9f)!important;" mdbBtn gradient="blue" block="true" rounded="true" class="z-depth-1a waves-light"
+       mdbWavesEffect>
+       <ion-icon class="icon" name="md-checkmark-circle" ></ion-icon>CREAR</button>
+    </div>
+
+    <button type="button"   (click)="datosCliente()"  style="  color: orangered;font-weight: bold;font-size: 33px;   border-radius: 8px !important;padding: .84rem 2.14rem; width: 100%;background: linear-gradient(40deg,#45cafc,#303f9f)!important;" mdbBtn gradient="blue" block="true" rounded="true" class="z-depth-1a waves-light"
+    mdbWavesEffect><ion-icon class="icon" name="arrow-round-forward"></ion-icon> Datos Cliente
+</button>
+
+  </div>
+
+
+
+  <!-- [disabled]="!exampleForm.valid" -->
+  </form>
+
+ 
+
+  </div>
+  </div>
+  </div>
+  </div>
