@@ -6,19 +6,19 @@
             
 			<div class="jumbotron">
 				<h2>
-					Contactanos!
+                    Especialidades!
 				</h2>
 				<p>
                     Para obtener mas información acerca de nuestros servicios, llamanos al siguiente numero 0800-222-DENTAL (72583).
 				</p>
 				<p>
-					<a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
+					<a class="btn btn-primary btn-large"  (click)="VotarEspecialista('Odontologo')" >Odontologo</a>
                 </p>
                 <p>
-                        <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
+                        <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('Odontopediatría')" >Odontopediatría</a>
                     </p>
                     <p>
-                            <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
+                            <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('Implantólogo')" >Implantólogo</a>
                         </p>
 			</div>
 			<ul class="nav nav-pills">
@@ -35,19 +35,17 @@
             
                 <div class="jumbotron">
                     <h2>
-                        Contactanos!
+                        turnos cancelados por Especialidad
                     </h2>
                     <p>
-                        Para obtener mas información acerca de nuestros servicios, llamanos al siguiente numero 0800-222-DENTAL (72583).
+                        <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('Odontologo')" >Odontologo</a>
                     </p>
+             
                     <p>
-                        <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
-                    </p>
-                    <p>
-                            <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
+                            <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('Odontopediatría')" >Odontopediatría</a>
                         </p>
                         <p>
-                                <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
+                                <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('Implantólogo')" >Implantólogo</a>
                             </p>
                 </div>
                 <ul class="nav nav-pills">
@@ -69,11 +67,14 @@
                             Para obtener mas información acerca de nuestros servicios, llamanos al siguiente numero 0800-222-DENTAL (72583).
                         </p>
                         <p>
-                            <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
+                            <a class="btn btn-primary btn-large"  (click)="RealizadosPorcliente()" >Turno Realizado por cliente</a>
                         </p>
                         <p>
-                                <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
+                                <a class="btn btn-primary btn-large"  (click)="RealizadosPorRecepcion()" >Turno Realizado por Recepcion</a>
                             </p>
+                            <p>
+                                    <a class="btn btn-primary btn-large"  (click)="mostrarvariable()" >Fecha Ingreso</a>
+                                </p>
                             <p>
                                     <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
                                 </p>
@@ -90,6 +91,8 @@
                 <div class="col-md-3">
             
                         <div class="jumbotron">
+                                <h2> especialidades mas elegidas
+                                                        </h2>
                                 <div class="chart-wrapper">
                                         <canvas baseChart 
                                         [datasets]="barChartData"
@@ -114,14 +117,12 @@
                 
                 <div class="jumbotron">
                     <h2>
-                        Contactanos!
+                        horario ingresado al sistema!
                     </h2>
                     <p>
                         Para obtener mas información acerca de nuestros servicios, llamanos al siguiente numero 0800-222-DENTAL (72583).
                     </p>
-                    <p>
-                        <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
-                    </p>
+                 
                     <p>
                             <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
                         </p>
@@ -142,21 +143,26 @@
             <div class="col-md-3">
                 
                     <div class="jumbotron">
-                        <h2>
-                            Contactanos!
-                        </h2>
-                        <p>
-                            Para obtener mas información acerca de nuestros servicios, llamanos al siguiente numero 0800-222-DENTAL (72583).
-                        </p>
-                        <p>
-                            <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
-                        </p>
-                        <p>
-                                <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
-                            </p>
-                            <p>
-                                    <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
-                                </p>
+                            <h2> Fechas de Ingreso
+                                </h2>
+                                <div >  
+                                        <mat-card>  
+                                          <table *ngFor="let item of items"  id="contentToConvert">  
+                                              <tr>  
+                                                <th>Legajo</th>  
+                                                <th>Nombre</th>  
+                                                <th>Especialidad</th>  
+                                              </tr>  
+                                              <tr>  
+                                                <td>{{item.fecha}}</td>  
+                                                <td>{{item.payload.doc.data().fecha}}</td>  
+                                                <td>coco 1</td>  
+                                              </tr>  
+                                             
+                                            </table>  
+                                              
+                                        </mat-card>  
+                                      </div>  
                     </div>
                     <ul class="nav nav-pills">
                         <li class="nav-item">
@@ -170,21 +176,13 @@
                 <div class="col-md-3">
                 
                         <div class="jumbotron">
-                            <h2>
-                                Contactanos!
-                            </h2>
-                            <p>
-                                Para obtener mas información acerca de nuestros servicios, llamanos al siguiente numero 0800-222-DENTAL (72583).
-                            </p>
-                            <p>
-                                <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
-                            </p>
-                            <p>
-                                    <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
-                                </p>
-                                <p>
-                                        <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('a')" >Votar Especialidad</a>
-                                    </p>
+                                <div class="chart-wrapper">
+                                        <canvas baseChart 
+                                        [data]="doughnutChartData"
+                                        [labels]="doughnutChartLabels"
+                                        [chartType]="doughnutChartType">
+                                      </canvas>
+                                    </div>
                         </div>
                         <ul class="nav nav-pills">
                             <li class="nav-item">
@@ -198,15 +196,17 @@
                     <div class="col-md-3">
                 
                             <div class="jumbotron">
+                            <h1>        turnos cancelados por Especialidad         </h1>        
                                     <div class="chart-wrapper">
                                             <canvas baseChart 
-                                            [datasets]="barChartData"
-                                            [labels]="barChartLabels"
-                                            [options]="barChartOptions"
-                                            [plugins]="barChartPlugins"
-                                            [legend]="barChartLegend"
-                                            [chartType]="barChartType">
-                                          </canvas>
+                                                [datasets]="lineChartData" 
+                                                [labels]="lineChartLabels" 
+                                                [options]="lineChartOptions"
+                                                [colors]="lineChartColors" 
+                                                [legend]="lineChartLegend" 
+                                                [chartType]="lineChartType" 
+                                                [plugins]="lineChartPlugins">
+                                            </canvas>
                                         </div>
                         </div>
         </div>

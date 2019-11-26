@@ -94,6 +94,12 @@ export class EncuestasService {
     });
   }
 
+  RealizadosPorRecepcion(value)
+  {
+    return this.db.collection('TurnosPerfilRecepcion').add({
+      fecha: value,
+    });
+  }
   //G Los realizados por PERFIL Clientes.
   RealizadosPorcliente (value)
   {
@@ -101,12 +107,22 @@ export class EncuestasService {
       fecha: value,
     });
   }
-    //G Los realizados por PERFIL recepcionista.
+    //h Los realizados por PERFIL recepcionista.
     RealizadosPorRecepcionista(value)
     {
       return this.db.collection('TurnosPerfilCliente').add({
         fecha: value,
       });
     }
+
+    //especialidadMasUsada
+
+
+    // GET DATOS ENCUESTAS
+
+    getDatosfechaingreso(){
+      return this.db.collection('fechaIngreso').snapshotChanges();
+    }
   
+
 }

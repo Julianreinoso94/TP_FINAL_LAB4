@@ -12,7 +12,7 @@ import{HistoriaClinicaService} from 'src/app/services/historiaClinicaservice'
 })
 export class VerTurnosPacienteComponent implements OnInit {
   turnos : any;
-
+  public fechaHoy =  new Date();
   ageValue: number = 0;
   searchValue: string = "";
   items: Array<any>;
@@ -69,8 +69,10 @@ export class VerTurnosPacienteComponent implements OnInit {
 
  
 
-  guardarHistoriaClinica(){
-    this.historiaservice.createHistoriaClinica("uid","DiaTurno","descripcion","profesional");
+  guardarHistoriaClinica(val){
+    console.log(val);
+   // "uid","DiaTurno","descripcion","profesional"
+    this.historiaservice.createHistoriaClinica("uid",this.fechaHoy.toString(),this.historiaClinica,"profesional");
   }
 
 }
