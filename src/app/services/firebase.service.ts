@@ -16,14 +16,22 @@ export class FirebaseService {
     return this.db.collection('users').doc(userKey).snapshotChanges();
   }
 
-  updateUser(userKey, value){
+  updateProfesional(userKey, value){
     value.nameToSearch = value.name.toLowerCase();
-    return this.db.collection('users').doc(userKey).set(value);
+    return this.db.collection('profesionales').doc(userKey).set(value);
   }
 
+  deleteProfesional(userKey){
+    return this.db.collection('profesionales').doc(userKey).delete();
+  }
   deleteUser(userKey){
     return this.db.collection('users').doc(userKey).delete();
   }
+  updateUser(userKey, value){
+    
+      value.nameToSearch = value.name.toLowerCase();
+      return this.db.collection('users').doc(userKey).set(value);
+    }
 
   getUsers(){
     return this.db.collection('users').snapshotChanges();

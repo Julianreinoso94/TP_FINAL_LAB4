@@ -71,7 +71,8 @@ import { EstadisticasEmpleadosComponent } from './Componentes/estadisticas-emple
 import {ProfileService} from "src/app/services/profile.service";
 import { TurnosRecepcionComponent } from './Componentes/turnos-recepcion/turnos-recepcion.component';
 import { MisTurnosComponent } from './Componentes/mis-turnos/mis-turnos.component';
-import { TurnosAltaEspecialistaComponent } from './Componentes/turnos-alta-especialista/turnos-alta-especialista.component'
+import { TurnosAltaEspecialistaComponent } from './Componentes/turnos-alta-especialista/turnos-alta-especialista.component';
+import { EditPacienteComponent } from './edit-paciente/edit-paciente.component'
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import { TurnosAltaEspecialistaComponent } from './Componentes/turnos-alta-espec
     EstadisticasEmpleadosComponent,
     TurnosRecepcionComponent,
     MisTurnosComponent,
-    TurnosAltaEspecialistaComponent
+    TurnosAltaEspecialistaComponent,
+    EditPacienteComponent
   ],
   entryComponents: [AvatarDialogComponent],
   imports: [

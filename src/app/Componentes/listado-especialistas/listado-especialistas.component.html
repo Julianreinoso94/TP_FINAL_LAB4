@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-
+<!-- 
   <div >  
       <mat-card>  
         <table *ngFor="let item of items"  id="contentToConvert">  
@@ -77,12 +77,12 @@
           </table>  
             
       </mat-card>  
-    </div>  
+    </div>   -->
   <div class="list-group users-list">
     <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="row">
         <div class="col col-md-2 image-col">
-          <img class="image"  style="width: 128px;height:128px;"  [src]="item.payload.doc.data().avatar">
+          <img class="image"  style="width: 300px;height:300px;"  [src]="item.payload.doc.data().avatar">
         </div>
         <div class="col col-md-8 text-col">
             <nav aria-label="breadcrumb">
@@ -92,11 +92,11 @@
               </nav>
           <h5 class="mb-1"> Codigo de Legajo</h5>
           <small>{{item.payload.doc.data().name}}</small>
-          <h5 class="mb-1">Horarios</h5>
+          <h5 class="mb-1">Especialidad</h5>
 
-          <small>{{item.payload.doc.data().name}}</small>
+          <!-- <small>{{item.payload.doc.data().name}}</small> -->
     
-          <small>Age: {{item.payload.doc.data().especialidad}}</small>
+          <small>{{item.payload.doc.data().especialidad}}</small>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item active" aria-current="page">Datos Laborales</li>
@@ -104,22 +104,22 @@
           </nav>
           <h5 class="mb-1"> Dias Laborables</h5>
           <small>{{item.payload.doc.data().diasDeTrabajo}}</small>
-          <h5 class="mb-1">Horarios</h5>
+          <h5 class="mb-1"></h5>
 
-          <small>{{item.payload.doc.data().horario}}</small>
+          <!-- <small>{{item.payload.doc.data().horario}}</small> -->
     
         </div>
         <div class="col col-md-8 text-col">
-          <h5 class="mb-1">{{item.payload.doc.data().name}} {{item.payload.doc.data().surname}}</h5>
+          <h5 class="mb-1" style="text-transform:uppercase " >{{item.payload.doc.data().name}} {{item.payload.doc.data().surname}}</h5>
        
         </div>
         <div class="col col-md-2 actions-col">
           <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
             <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
           </button>
-          <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
+          <!-- <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
             <ion-icon name="md-clock">Asignar</ion-icon>
-          </button>
+          </button> -->
         </div>
       </div>
     </div>

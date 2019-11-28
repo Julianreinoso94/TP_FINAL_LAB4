@@ -35,6 +35,7 @@ import { EstadisticasEmpleadosComponent } from './Componentes/estadisticas-emple
 import { TurnosRecepcionComponent } from './Componentes/turnos-recepcion/turnos-recepcion.component'
 import { MisTurnosComponent } from './Componentes/mis-turnos/mis-turnos.component'
 import { TurnosAltaEspecialistaComponent } from './Componentes/turnos-alta-especialista/turnos-alta-especialista.component'
+import { EditPacienteComponent } from './edit-paciente/edit-paciente.component'
 
 
 
@@ -49,6 +50,7 @@ export const rootRouterConfig: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'new-user', component: NewUserComponent  ,canActivate:[AuthGuard]},
   { path: 'details/:id', component: EditEspecialistaComponent, resolve:{data : EditUserResolver}  ,canActivate:[AuthGuard]},
+  { path: 'detailsEspecialista/:id', component: EditPacienteComponent, resolve:{data : EditUserResolver}  ,canActivate:[AuthGuard]},
   { path: 'listadoespecialistas', component: ListadoEspecialistasComponent  ,canActivate:[AuthGuard]},
   { path: 'ModificarProfesional', component: ModificarProfesionalComponent  ,canActivate:[AuthGuard]},
   { path: 'TurnosAlta', component: TurnosAltaComponent  ,canActivate:[AuthGuard]},

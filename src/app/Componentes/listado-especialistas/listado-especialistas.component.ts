@@ -86,7 +86,7 @@ export class ListadoEspecialistasComponent  implements OnInit {
   }
 
   viewDetails(item){
-    this.router.navigate(['/details/'+ item.payload.doc.id]);
+    this.router.navigate(['/detailsEspecialista/'+ item.payload.doc.id]);
   }
 
   capitalizeFirstLetter(value){
