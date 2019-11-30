@@ -7,6 +7,9 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import * as firebase from 'firebase/app';
 
+import { BehaviorSubject } from 'rxjs';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +19,27 @@ export class AuthService {
 
   public listaComidasRef: firebase.firestore.CollectionReference;
 
+
+
+
+
+  //////////////////////nuevo
+  private loggedIn = new BehaviorSubject<boolean>(false);
+  private loggedOut = new BehaviorSubject<boolean>(true);
+
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
+  }
+
+  get isLoggedOut() {
+    return this.loggedOut.asObservable();
+  }
+
+  public isAuthenticated() {
+
+    this.loggedIn.next(true);
+    this.loggedOut.next(false);
+  }
 
   constructor(private AFauth : AngularFireAuth, private router : Router, private db : AngularFirestore) { 
 
@@ -53,8 +77,10 @@ export class AuthService {
 
   logout(){
     this.AFauth.auth.signOut().then(() => {
-      this.router.navigate(['/login']);
-    })
+      console.info("signOut")
+      this.loggedIn.next(false);
+      this.loggedOut.next(true);
+      this.router.navigate(['/home']);    })
   }
 
   

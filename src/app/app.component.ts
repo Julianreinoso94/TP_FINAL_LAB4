@@ -6,7 +6,9 @@ import {AuthService} from "src/app/services/auth.service"
 import { OnInit ,Input} from '@angular/core';
 import{User} from 'src/app/clases/user';
 import { MatDialog } from '@angular/material';
-import {LoginComponent} from 'src/app/Componentes/login/login.component'
+import {LoginComponent} from 'src/app/Componentes/login/login.component';
+import {AuthGuard} from 'src/app/guards/auth.guard';
+import { Observable } from 'rxjs';
 
 import {ProfileService} from "src/app/services/profile.service"
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -50,6 +52,13 @@ export class AppComponent implements OnInit {
   public  uidUsuario:any;
   email:any="ninguno";
   ingresarperfil=false;
+
+
+  isLoggedIn$: Observable<boolean>;
+  usrName = '';
+  Logueado= false;
+
+
   ngOnInit(): void {
 
     $(document).ready(function() {
@@ -78,6 +87,16 @@ export class AppComponent implements OnInit {
      // document ready  
      });
 
+
+     ///////////////////////////////////////////////////////////////////////////////////////////////observable
+     this.isLoggedIn$ = this.auth.isLoggedIn;
+     console.log(this.isLoggedIn$)
+     this.isLoggedIn$.subscribe(res => {
+       if(res){
+         this.setUsrName()
+       }
+     });
+
   }
 
 
@@ -85,7 +104,7 @@ export class AppComponent implements OnInit {
 
 
 
-  constructor(private AFauth : AngularFireAuth,public auth:AuthService, private router : Router, private db : AngularFirestore, private profileService: ProfileService,    public dialog: MatDialog
+  constructor(private AFauth : AngularFireAuth,public auth:AuthService, public auth2:AuthGuard, private router : Router, private db : AngularFirestore, private profileService: ProfileService,    public dialog: MatDialog
     ) {
 
       
@@ -101,13 +120,10 @@ export class AppComponent implements OnInit {
 
   
   logout(){
+    this.Logueado=false;
+
     console.log("logout");
-    this.show=true;
-    this.userProfile.perfil == undefined
-    this.AFauth.auth.signOut().then(() => {
-   this.router.navigate(['/Servicios']);
-  
-    })
+  this.auth.logout();
   }
 
   openDialog() {
@@ -120,19 +136,16 @@ export class AppComponent implements OnInit {
       this.ingresarperfil= true;
     });
   }
+
   Detectar(){
-   // console.log(this.perfil);
-    
-   //console.log(this.ingresarperfil);
-    // if(this.ingresarperfil  )
-    // {
-      this.ingresarperfil=false;
+    this.Logueado=true;
+console.log("entro a detectar");
         this.profileService
       .getUserProfile()
       .get()
       .then( userProfileSnapshot => {
         this.userProfile = userProfileSnapshot.data();
-        // console.log(this.userProfile);
+         console.log(this.userProfile);
         //this.birthDate = userProfileSnapshot.data().birthDate;
         this.perfil= userProfileSnapshot.data().perfil;
         //console.log(this.perfil);
@@ -149,6 +162,11 @@ export class AppComponent implements OnInit {
     console.log(this.uidUsuario); 
 
 
+  }
+  setUsrName(){
+  // let usr = this.auth.getCurrentUser();
+    //this.usrName = usr.email;
+    this.Detectar();
   }
 
 

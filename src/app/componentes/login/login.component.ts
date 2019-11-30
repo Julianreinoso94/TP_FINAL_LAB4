@@ -8,6 +8,7 @@ import { ReCaptchaV3Service } from 'ngx-captcha';
 import { Inject, Optional } from '@angular/core'; 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -41,7 +42,7 @@ fromDialog:string;
    constructor(private formBuilder: FormBuilder, 
       private reCaptchaV3Service: ReCaptchaV3Service
 ,    private router: Router,private authService: AuthService,
-// ,public dialogRef: MatDialogRef<LoginComponent>,
+
 @Optional() @Inject(MAT_DIALOG_DATA) public data: any
 ) {
 
@@ -144,6 +145,8 @@ resolved(captchaResponse: any[]){
       //const password = "123456";
 
       this.authService.login(email, password).then(() => {
+        this.authService.isAuthenticated();
+
 //alert("entro");
             // this.router.navigate(['/principal'] );
         },
@@ -153,6 +156,24 @@ resolved(captchaResponse: any[]){
       );
   }
 
+
+   //////////////////////nuevo
+   private loggedIn = new BehaviorSubject<boolean>(false);
+   private loggedOut = new BehaviorSubject<boolean>(true);
+ 
+   get isLoggedIn() {
+     return this.loggedIn.asObservable();
+   }
+ 
+   get isLoggedOut() {
+     return this.loggedOut.asObservable();
+   }
+ 
+   public isAuthenticated() {
+ 
+     this.loggedIn.next(true);
+     this.loggedOut.next(false);
+   }
 
  }
  

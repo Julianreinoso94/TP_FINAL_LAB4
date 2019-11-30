@@ -33,7 +33,7 @@
 	
 	
 		<li class="nav-item dropdown" *ngIf="userProfile?.perfil=='paciente'">
-		  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		  <a class="nav-link dropdown-toggle"   *ngIf="Logueado" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			TRÁMITES ONLINE
 		  </a>
 		  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -66,7 +66,7 @@
 		  </div>
 		</li>
 		<li class="nav-item dropdown" *ngIf="userProfile?.perfil=='paciente'">
-		  <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		  <a class="nav-link dropdown-toggle"  *ngIf="Logueado" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			MIS DATOS
 		  </a>
 		  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -99,7 +99,7 @@
 		</li>
 
 		<li class="nav-item dropdown" *ngIf="userProfile?.perfil=='Supervisor'">
-			<a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<a class="nav-link dropdown-toggle"  *ngIf="Logueado"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			  ADMINISTRACIÓN
 			</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -191,7 +191,7 @@
 			</div>
 		  </li>
 		  <li class="nav-item dropdown"  *ngIf="userProfile?.perfil=='especialista' ">
-				<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<a class="nav-link dropdown-toggle"  *ngIf="Logueado" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				  ESPECIALISTA
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -230,7 +230,7 @@
 				</div>
 			  </li>
 			  <li class="nav-item dropdown" *ngIf="userProfile?.perfil=='recepcionista'"> 
-					<a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
+					<a class="nav-link dropdown-toggle"  *ngIf="Logueado"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
 					  RECEPCIÓN
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -277,22 +277,23 @@
 				  </li>
 	  </ul>
 	  <form class="form-inline my-2 my-lg-0">
+		  
 			<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
-			<button class="btn  my-2 my-sm-0"style="color: whitesmoke"  type="submit">{{perfil}}</button>
+			<button *ngIf="Logueado" class="btn  my-2 my-sm-0"style="color: whitesmoke"  type="submit">{{perfil}}</button>
 		  </form>
 		</div>
 	  <form class="form-inline my-2 my-lg-0" *ngIf="show" >
 		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
-		<button class="btn btn-outline-light my-2 my-sm-0"  (click)="openDialog()" type="submit"  *ngIf="userProfile?.perfil == undefined ">Iniciar Sesíon</button>
+		<button class="btn btn-outline-light my-2 my-sm-0"  (click)="openDialog()" type="submit"  *ngIf="!Logueado">Iniciar Sesíon</button>
 	  </form>
 	  <form class="form-inline my-2 my-lg-0">
 		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
-		<button class="btn btn-outline-light my-2 my-sm-0" href="#"  (click)="logout()" style="font-weight:bold;background-color: #ff0000;color:whitesmoke"  *ngIf="userProfile?.perfil != undefined " >  <ion-icon name="md-log-out"></ion-icon>
-		<a href="#home"> salir</a>	</button>
+		<button *ngIf="Logueado" class="btn btn-outline-light my-2 my-sm-0" href="#"  (click)="logout()" style="font-weight:bold;background-color: #ff0000;color:whitesmoke"  >  <ion-icon name="md-log-out"></ion-icon>
+		Salir	</button>
 	
 		<!-- <button class="btn btn-outline-light my-2 my-sm-0"   (click)="Detectar()" style="background-color: #00ff2a;color:whitesmoke" >Detectar</button> -->
-		<button class="btn btn-outline-light my-2 my-sm-0"   (click)="Detectar()" style="font-weight:bold;background-color: #ff0000;color:whitesmoke" >  <ion-icon name="md-log-out"></ion-icon>
-			Detectar</button>
+		<!-- <button class="btn btn-outline-light my-2 my-sm-0"   (click)="Detectar()" style="font-weight:bold;background-color: #ff0000;color:whitesmoke" >  <ion-icon name="md-log-out"></ion-icon>
+			Detectar</button> -->
 	</form>
 	
 
