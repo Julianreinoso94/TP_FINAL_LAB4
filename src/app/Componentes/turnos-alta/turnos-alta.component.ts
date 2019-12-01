@@ -18,6 +18,11 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 
+//DETECTAR USUARIO
+import { Observable } from 'rxjs';
+import {ProfileService} from "src/app/services/profile.service"
+
+
 class profesional {
   age: String;
   avatar: String;
@@ -26,6 +31,17 @@ class profesional {
   name: String;
 
   surname: String;
+
+  ingresarperfil=false;
+
+//DETECTAR USUARIO
+  isLoggedIn$: Observable<boolean>;
+  usrName = '';
+  Logueado= false;
+  public userProfile: any;
+  public birthDate: Date;
+  public perfil:string;
+
   constructor(age:String,avatar:String,DiasDeTrabajo:String,especialidad:String,name:String )
   {
     this.age=age;
@@ -104,11 +120,18 @@ usuarioactual:any;
 public currentUser: firebase.User;
 uidUsuario:any;
 ocultarPrimerListado=false;
+isLoggedIn$: Observable<boolean>;
+usrName = '';
+Logueado= false;
+public userProfile: any;
+public perfil:string;
 
  
+// constructor(private AFauth : AngularFireAuth,public auth:AuthService, public auth2:AuthGuard, private router : Router, private db : AngularFirestore,
+//   ) {
 
- constructor(private storage: AngularFireStorage,  private authprofile: AuthService,
-  private fb: FormBuilder,private servicioProfesionales: abmProfesionales,
+ constructor(private storage: AngularFireStorage,  private authprofile: AuthService,public auth:AuthService,
+  private fb: FormBuilder,private servicioProfesionales: abmProfesionales, private profileService: ProfileService,
   public dialog: MatDialog,
   private router: Router,
   public firebaseService: TurnosService,private service: ImageService
@@ -121,6 +144,16 @@ ocultarPrimerListado=false;
 
   this.traerprofesional();
   this.traerturnos();
+
+       ///////////////////////////////////////////////////////////////////////////////////////////////observable
+       this.isLoggedIn$ = this.auth.isLoggedIn;
+       console.log(this.isLoggedIn$)
+       this.isLoggedIn$.subscribe(res => {
+         if(res){
+           this.setUsrName()
+         }
+       });
+  
 
  }
  
@@ -173,11 +206,11 @@ ocultarPrimerListado=false;
   this.exampleForm = this.fb.group({
     nombrePaciente: ['', Validators.required ],
 //    apellidoPaciente: ['', Validators.required ],
-    cliente: this.usuarioactual,
+    cliente: this.uidUsuario,
     DiaTurno: this.fechatotal,
     horaTurno: this.horaTurno,
     profesional: ['', Validators.required ],
-    consultorio: ['', Validators.required ],
+    consultorio: "3F",
     especialidad: ['', Validators.required ]
   });
 }
@@ -291,7 +324,7 @@ resetFields(){
   
  eventoCalendario(type: string, event: MatDatepickerInputEvent<Date>) {
    
-  this.datosCliente();
+  //this.datosCliente();
   this.mostrarListado=true;
   this.events.push(`${event.value}`);
 
@@ -384,7 +417,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
 
           seleccionandoHoraDeturnoOLD()//AL CAMBIAR EL HORARIO INGRESA ACA SELECTHORARIO
           {
-            this.datosCliente();
+           // this.datosCliente();
 
             this.mostrarbotonSeleccionar=true;
             this.mostrarListadoFinal=true;
@@ -447,7 +480,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
           {
             this.mostrarListado=false;
             this.listadoFinal.length=0;
-            this.datosCliente();
+           // this.datosCliente();
 
             this.mostrarbotonSeleccionar=true;
             this.mostrarListadoFinal=true;
@@ -554,23 +587,44 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
 
 
     
+         Detectar(){
+         // this.Logueado=true;
+      console.log("entro a detectar");
+              this.profileService
+            .getUserProfile()
+            .get()
+            .then( userProfileSnapshot => {
+              this.userProfile = userProfileSnapshot.data();
+               console.log(this.userProfile);
+              //this.birthDate = userProfileSnapshot.data().birthDate;
+              this.perfil= userProfileSnapshot.data().perfil;
+              //console.log(this.perfil);
+      
+            });
+      
+            firebase.auth().onAuthStateChanged(user => {
+       
+              this.currentUser = user;
+              this.uidUsuario = user.uid});
+          // }
+      
+          console.log(this.currentUser);
+          console.log(this.uidUsuario); 
+      
+      
+        }
+        setUsrName(){
+        // let usr = this.auth.getCurrentUser();
+          //this.usrName = usr.email;
+          this.Detectar();
+        }
+       
+        usuarioes()
+        {
+          alert(this.userProfile);
 
-         datosCliente(){
-  
-             firebase.auth().onAuthStateChanged(user => {
-        
-               this.currentUser = user;
-               this.uidUsuario = user.uid});
-           // }
-       
-          //  console.log("el cliente actual es");
-          //  console.log(this.currentUser);
-          //  console.log(this.uidUsuario); 
-          //  this.usuarioactual= this.uidUsuario;
-       
-       
-         }
-       
+          alert(this.uidUsuario);
+        }
 
          
 

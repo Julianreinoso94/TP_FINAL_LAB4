@@ -5,6 +5,14 @@ import { abmProfesionales } from 'src/app/services/abmProfesionales.service';
 import{TurnosService} from 'src/app/services/turnos.service'
 import{HistoriaClinicaService} from 'src/app/services/historiaClinicaservice'
 
+
+
+//DETECTAR USUARIO
+import { Observable } from 'rxjs';
+import {ProfileService} from "src/app/services/profile.service"
+import {AuthService} from 'src/app/services/auth.service'
+
+
 @Component({
   selector: 'app-ver-turnos-paciente',
   templateUrl: './ver-turnos-paciente.component.html',
@@ -20,6 +28,7 @@ export class VerTurnosPacienteComponent implements OnInit {
   name_filtered_items: Array<any>;
   codigoTurno:any;
   historiaClinica:any;
+  
 
   constructor(public firebaseService: TurnosService, public historiaservice:HistoriaClinicaService,
     // public firebaseService: FirebaseService,
