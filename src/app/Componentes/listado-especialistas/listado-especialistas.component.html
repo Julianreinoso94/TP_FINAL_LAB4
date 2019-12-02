@@ -35,49 +35,29 @@
       </div>
     </div>
   </div>
-<!-- 
-  <div >  
-      <mat-card>  
-        <table *ngFor="let item of items"  id="contentToConvert">  
-            <tr>  
-              <th>Legajo</th>  
-              <th>Nombre</th>  
-              <th>Especialidad</th>  
+
+   <!-- listado pdf   -------------------------------------------------------------------------------- -->
+  <div style="padding-left: 22px !important;">  
+      <mat-card style="width: 550px;">  
+        <table  class="table table-striped" id="contentToConvert">  
+          <thead class="thead-dark"> 
+            <tr class="row">  
+              <th class="col-sm-3">Legajo</th>  
+              <th class="col-sm-6">Nombre</th>  
+              <th class="col-sm-3">Especialidad</th>  
+            </tr>
+         </thead>      
+        <tbody>     
+            <tr class="row" *ngFor="let item of items" >  
+              <td class="col-sm-3" style="padding: 11px;">{{item.payload.doc.data().name}}</td>  
+              <td class="col-sm-6 ">{{item.payload.doc.data().especialidad}}</td>  
+              <td class="col-sm-3">{{item.payload.doc.data().especialidad}}</td>  
             </tr>  
-            <tr>  
-              <td>{{item.payload.doc.data().name}}</td>  
-              <td>pepe1</td>  
-              <td>coco 1</td>  
-            </tr>  
-            <tr>  
-              <td>Row 2</td>  
-              <td>Row 2</td>  
-              <td>Row 2</td>  
-            </tr>  
-            <tr>  
-              <td>Row 3</td>  
-              <td>Row 3</td>  
-              <td>Row 3</td>  
-            </tr>  
-            <tr>  
-              <td>Row 4</td>  
-              <td>Row 4</td>  
-              <td>Row 4</td>  
-            </tr>  
-            <tr>  
-              <td>Row 5</td>  
-              <td>Row 5</td>  
-              <td>Row 5</td>  
-            </tr>  
-            <tr>  
-              <td>Row 6</td>  
-              <td>Row 6</td>  
-              <td>Row 6</td>  
-            </tr>  
-          </table>  
+       </tbody>  
+       </table>  
             
       </mat-card>  
-    </div>   -->
+    </div>  
   <div class="list-group users-list">
     <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="row">

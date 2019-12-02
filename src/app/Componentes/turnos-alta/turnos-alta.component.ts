@@ -236,6 +236,15 @@ resetFields(){
 
  ngOnInit() {
   
+       ///////////////////////////////////////////////////////////////////////////////////////////////observable
+       this.isLoggedIn$ = this.auth.isLoggedIn;
+       console.log(this.isLoggedIn$)
+       this.isLoggedIn$.subscribe(res => {
+         if(res){
+           this.setUsrName()
+         }
+       });
+  
 
 
 }
@@ -431,11 +440,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
 
         
      this.turnos.forEach(element => {
-            
-              
-     //         console.log("turnos iterados");
-     //         console.log(element.horaTurno);
-     //         console.log(element.DiaTurno);
+          
 
               if(element.horaTurno == this.horaTurno && element.DiaTurno == this.DiaTurno.toString())
               {

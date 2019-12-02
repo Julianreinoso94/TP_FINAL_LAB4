@@ -119,8 +119,9 @@ dias = [
         fileRef.getDownloadURL().subscribe((url) => {
          // formValue['imageUrl'] = url;
     console.log("entro");
-      this.firebaseService.createUser(value, url)
-      .then(
+     // this.firebaseService.createUser(value, url)
+     this.auth.registerEmpleado(value,url)
+     .then(
         res => {
         this.resetFields();
         
@@ -129,7 +130,7 @@ dias = [
     })
       })
     ).subscribe();
-    this.auth.registerEmpleado(value);
+  //  this.auth.registerEmpleado(value);
   
 this.router.navigate(['/listadoespecialistas']);
 }

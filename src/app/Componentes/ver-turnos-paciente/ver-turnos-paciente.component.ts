@@ -11,7 +11,39 @@ import{HistoriaClinicaService} from 'src/app/services/historiaClinicaservice'
 import { Observable } from 'rxjs';
 import {ProfileService} from "src/app/services/profile.service"
 import {AuthService} from 'src/app/services/auth.service'
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
+
+class Turnos {
+
+  diaTurno: String;
+  cliente: String;
+  consultorio: String;
+  especialidad: String;
+  estado: String;
+
+  horaTurno: String;
+  numTurno: String;
+  profesional:String;
+
+  // ingresarperfil=false;
+
+
+  constructor(diaTurno:String,cliente:String,consultorio:String,especialidad:String,estado:String,horaTurno:String,numTurno:String,profesional:string )
+  {
+    this.diaTurno=diaTurno;
+    this.cliente=cliente;
+    this.consultorio=consultorio;
+    this.especialidad=especialidad;
+    this.estado=estado;
+    this.horaTurno=horaTurno;
+    this.numTurno=numTurno;
+    this.profesional=profesional;
+
+  }
+}
 
 @Component({
   selector: 'app-ver-turnos-paciente',
@@ -28,15 +60,36 @@ export class VerTurnosPacienteComponent implements OnInit {
   name_filtered_items: Array<any>;
   codigoTurno:any;
   historiaClinica:any;
-  
+  listadomisTurnos:any;
+  turno:any;
 
-  constructor(public firebaseService: TurnosService, public historiaservice:HistoriaClinicaService,
-    // public firebaseService: FirebaseService,
+  //DETECTAR USUARIO
+  isLoggedIn$: Observable<boolean>;
+  usrName = '';
+  Logueado= false;
+  public userProfile: any;
+  public email:any;
+  public birthDate: Date;
+  public perfil:string;
+  uidUsuario:any;
+  public currentUser: firebase.User;
+
+  constructor(public firebaseService: TurnosService,private profileService: ProfileService, public historiaservice:HistoriaClinicaService,
+    private authprofile: AuthService,public auth:AuthService,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.getData();
+     ///////////////////////////////////////////////////////////////////////////////////////////////observable
+     this.isLoggedIn$ = this.auth.isLoggedIn;
+     console.log(this.isLoggedIn$)
+     this.isLoggedIn$.subscribe(res => {
+       if(res){
+         this.setUsrName()
+       }
+     });
+
   }
 
   getData(){
@@ -83,5 +136,74 @@ export class VerTurnosPacienteComponent implements OnInit {
    // "uid","DiaTurno","descripcion","profesional"
     this.historiaservice.createHistoriaClinica("uid",this.fechaHoy.toString(),this.historiaClinica,"profesional");
   }
+
+
+  Detectar(){
+    // this.Logueado=true;
+ console.log("entro a detectar");
+         this.profileService
+       .getUserProfile()
+       .get()
+       .then( userProfileSnapshot => {
+         this.userProfile = userProfileSnapshot.data();
+      
+         //this.birthDate = userProfileSnapshot.data().birthDate;
+         this.perfil= userProfileSnapshot.data().perfil;
+         this.email= userProfileSnapshot.data().email;
+
+         //console.log(this.perfil);
+ 
+       });
+ 
+       firebase.auth().onAuthStateChanged(user => {
+  
+         this.currentUser = user;
+         this.uidUsuario = user.uid
+        });
+     this.mostrarTurnos();
+ 
+   }
+   setUsrName(){
+   // let usr = this.auth.getCurrentUser();
+     //this.usrName = usr.email;
+     this.Detectar();
+   }
+  
+   usuarioes()
+   {
+     alert(this.userProfile);
+
+     alert(this.uidUsuario);
+   }
+
+
+   mostrarTurnos()
+   {
+    alert( this.userProfile);
+
+    //  alert("");
+    this.listadomisTurnos= [];
+
+    this.turnos.forEach(item => {///////////////////////////primer foreach
+
+            
+
+      // if(item.profesional == this.uidUsuario ) 
+      // {
+        this.turno = new Turnos(item.diaTurno,item.cliente,item.DiasDeTrabajo,item.consultorio,item.especialidad,item.horaTurno,item.numTurno,item.profesional);
+        //     this.listadoespecialistaspordia.push(this.profesional);
+          //   this.listadoFinal.push(this.profesional);
+
+          console.log(this.turno);
+        this.listadomisTurnos.push(this.turno);         
+      //      }
+      // else
+      // {
+      //   //ESPECIALISTA EN TURNO LIBRE
+       
+      // }
+   });
+  
+   }
 
 }

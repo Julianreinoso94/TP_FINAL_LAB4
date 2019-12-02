@@ -97,11 +97,24 @@ export class AuthService {
   // }
 
     // registerEmpleado(email : string, password : string, dni: string, nombre: string, apellido: string, cuil: string, perfil: string, foto:string){
-      registerEmpleado(value){
+      registerEmpleado(value,url){
 
     return new Promise ((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password).then( res =>{
         const uid = res.user.uid;
+        
+
+        this.db.collection('profesionales').doc(uid).set({
+          name: value.name,
+       nameToSearch: value.name.toLowerCase(),
+       surname: value.surname,
+       age: parseInt(value.age),
+       uid:uid,
+       email:value.email,
+       especialidad: value.especialidad,
+       diasDeTrabajo:value.dias,
+        avatar: url
+         })
  
   
           this.db.collection('userProfile').doc(uid).set({
