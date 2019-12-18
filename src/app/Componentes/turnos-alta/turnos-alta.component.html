@@ -134,7 +134,7 @@
               <!--mostrar LISTADOFINAL elegido-->
              
             <div class="list-group users-list"    *ngIf="mostrarListadoFinal">
-                <div   style="background-color:red;"*ngFor="let item of listadoFinal " class="list-group-item list-group-item-action flex-column align-items-start">
+                <div   style="background-color:gray"*ngFor="let item of listadoFinal " class="list-group-item list-group-item-action flex-column align-items-start">
                   <div class="row"  >
                     <div class="col col-md-2 image-col">
                       <img class="image"   style="width: 270px;height: 275px;" [src]="item.avatar">
@@ -148,7 +148,7 @@
                       <h5 class="mb-1"> Especialista</h5>
                       <small>{{item.name}}</small>
 
-                
+                     <small> {{item.uidProfesional}}</small> 
                     </div>
                   
                     <div class="col col-md-2 actions-col" >

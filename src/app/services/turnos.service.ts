@@ -40,7 +40,7 @@ export class TurnosService {
   }
 
 
-  createTurno(profesional,usuario,value, a:String,numTurno:String){
+  createTurno(profesional,usuario,value, a:String,numTurno:String,email:String,uidProfesional:String){
 
     return this.db.collection('turnos').add({
     //  nombrePaciente: value.nombrePaciente,
@@ -53,7 +53,10 @@ export class TurnosService {
       profesional:profesional,
       estado:"En_Espera_Aceptacion",
       consultorio:value.consultorio,
-      numTurno:numTurno
+      numTurno:numTurno,
+      email:email,
+      uidProfesional:uidProfesional
+
     });
   }
 

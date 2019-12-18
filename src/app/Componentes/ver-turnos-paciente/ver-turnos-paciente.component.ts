@@ -23,6 +23,8 @@ class Turnos {
   consultorio: String;
   especialidad: String;
   estado: String;
+  uidProfesional:String;
+  emailPaciente:String;
 
   horaTurno: String;
   numTurno: String;
@@ -31,7 +33,7 @@ class Turnos {
   // ingresarperfil=false;
 
 
-  constructor(diaTurno:String,cliente:String,consultorio:String,especialidad:String,estado:String,horaTurno:String,numTurno:String,profesional:string )
+  constructor(diaTurno:String,cliente:String,consultorio:String,especialidad:String,estado:String,horaTurno:String,numTurno:String,profesional:string,uidProfesional:String,emailPaciente:String )
   {
     this.diaTurno=diaTurno;
     this.cliente=cliente;
@@ -41,7 +43,8 @@ class Turnos {
     this.horaTurno=horaTurno;
     this.numTurno=numTurno;
     this.profesional=profesional;
-
+  this.uidProfesional=uidProfesional;
+  this.emailPaciente =emailPaciente;
   }
 }
 
@@ -74,6 +77,7 @@ export class VerTurnosPacienteComponent implements OnInit {
   public birthDate: Date;
   public perfil:string;
   uidUsuario:any;
+
   public currentUser: firebase.User;
 
   constructor(public firebaseService: TurnosService,private profileService: ProfileService, public historiaservice:HistoriaClinicaService,
@@ -191,15 +195,15 @@ export class VerTurnosPacienteComponent implements OnInit {
 
             
 
-      // if(item.profesional == this.uidUsuario ) 
-      // {
-        this.turno = new Turnos(item.diaTurno,item.cliente,item.DiasDeTrabajo,item.consultorio,item.especialidad,item.horaTurno,item.numTurno,item.profesional);
+      if(item.profesional == this.uidUsuario ) 
+      {
+        this.turno = new Turnos(item.diaTurno,item.cliente,item.DiasDeTrabajo,item.consultorio,item.especialidad,item.horaTurno,item.numTurno,item.profesional,item.uidProfesional);
         //     this.listadoespecialistaspordia.push(this.profesional);
           //   this.listadoFinal.push(this.profesional);
 
           console.log(this.turno);
         this.listadomisTurnos.push(this.turno);         
-      //      }
+         }
       // else
       // {
       //   //ESPECIALISTA EN TURNO LIBRE

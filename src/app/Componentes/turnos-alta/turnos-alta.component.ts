@@ -31,6 +31,7 @@ class profesional {
   name: String;
 
   surname: String;
+  uidProfesional:String;
 
   ingresarperfil=false;
 
@@ -42,13 +43,14 @@ class profesional {
   public birthDate: Date;
   public perfil:string;
 
-  constructor(age:String,avatar:String,DiasDeTrabajo:String,especialidad:String,name:String )
+  constructor(age:String,avatar:String,DiasDeTrabajo:String,especialidad:String,name:String,uidProfesional:String )
   {
     this.age=age;
     this.avatar=avatar;
     this.DiasDeTrabajo=DiasDeTrabajo;
     this.especialidad=especialidad;
     this.name=name;
+    this.uidProfesional=uidProfesional;
 
   }
 }
@@ -87,6 +89,7 @@ consultorios = [
 
 public fotoespecialistElegido:String;
  public nombreEspecialistaelegido:String;
+ public uidProfesional:String;
  public mostrarbotonSeleccionar=false;
   events: string[] = [];
   profesionales : any;
@@ -125,6 +128,7 @@ usrName = '';
 Logueado= false;
 public userProfile: any;
 public perfil:string;
+public email:String;
 
  
 // constructor(private AFauth : AngularFireAuth,public auth:AuthService, public auth2:AuthGuard, private router : Router, private db : AngularFirestore,
@@ -169,6 +173,8 @@ public perfil:string;
          horaTurno: e.payload.doc.data()['horaTurno'],
          nombrePaciente: e.payload.doc.data()['nombrePaciente'],
          profesional: e.payload.doc.data()['profesional'],
+         email: e.payload.doc.data()['email'],
+
 
        };
      })
@@ -191,6 +197,7 @@ public perfil:string;
          horario: e.payload.doc.data()['horario'],
          diasDeTrabajo: e.payload.doc.data()['diasDeTrabajo'],
          surname: e.payload.doc.data()['surname'],
+         uid: e.payload.doc.data()['uid'],
      
        };
      })
@@ -297,7 +304,7 @@ resetFields(){
     console.log(this.usuarioactual);
     console.log(this.nombreEspecialistaelegido);
 
-    this.firebaseService.createTurno(this.nombreEspecialistaelegido,this.uidUsuario,value,this.fechatotal,this.makeRandom())
+    this.firebaseService.createTurno(this.nombreEspecialistaelegido,this.uidUsuario,value,this.fechatotal,this.makeRandom(),this.email,this.uidProfesional)
     .then(
       res => {
         this.resetFields();
@@ -396,7 +403,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
        
          if(element.diasDeTrabajo == dia)
          {
-            this.profesional = new profesional(element.age,element.avatar,element.DiasDeTrabajo,element.especialidad,element.name);
+            this.profesional = new profesional(element.age,element.avatar,element.DiasDeTrabajo,element.especialidad,element.name,element.uid);
            this.listadoespecialistaspordia.push(this.profesional);
          }
          });
@@ -467,7 +474,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
         // console.log(element);
                 if(item.name ==  element)
                 {
-                  this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.name);
+                  this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.name,item.uid);
              //     this.listadoespecialistaspordia.push(this.profesional);
                   this.listadoFinal.push(this.profesional);
                   console.log("agregoAllistadofinal");
@@ -506,7 +513,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
 
               if(item.horaTurno == this.horaTurno && item.DiaTurno == this.DiaTurno.toString() && element.name == item.profesional ) 
               {
-                this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.profesional);
+                this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.profesiona,item.uid);
                 //     this.listadoespecialistaspordia.push(this.profesional);
                   //   this.listadoFinal.push(this.profesional);
 
@@ -586,6 +593,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
 
            this.fotoespecialistElegido= item.avatar;
            this.nombreEspecialistaelegido=item.name;
+           this.uidProfesional=item.uidProfesional;
 
         
          }
@@ -601,7 +609,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
             .then( userProfileSnapshot => {
               this.userProfile = userProfileSnapshot.data();
                console.log(this.userProfile);
-              //this.birthDate = userProfileSnapshot.data().birthDate;
+              this.email = userProfileSnapshot.data().email;
               this.perfil= userProfileSnapshot.data().perfil;
               //console.log(this.perfil);
       
@@ -614,6 +622,8 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
           // }
       
           console.log(this.currentUser);
+          console.log(this.email);
+
           console.log(this.uidUsuario); 
       
       
