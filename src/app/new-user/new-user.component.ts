@@ -17,10 +17,12 @@ import { ImageService } from 'src/app/services/image.service';
 export class NewUserComponent implements OnInit {
   selectedImage: any = null;
   imgSrc: string;
+  inputCaptcha:string;
+  mostrarCaptcha=false;
 
   exampleForm: FormGroup;
   avatarLink: string = "https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg";
-
+captcha:string="";
   validation_messages = {
    'name': [
      { type: 'required', message: 'Name is required.' }
@@ -41,10 +43,18 @@ export class NewUserComponent implements OnInit {
     public dialog: MatDialog,public auth:AuthService,
     private router: Router,
     public firebaseService: FirebaseService
-  ) { }
+  ) { 
+    this.makeRandom();
+    
+    this.createForm();
+
+  }
 
   ngOnInit() {
+
+
     this.createForm();
+    this.makeRandom();
   }
 
   createForm() {
@@ -53,6 +63,10 @@ export class NewUserComponent implements OnInit {
       surname: ['', Validators.required ],
       age: ['', Validators.required ],
       email: ['', Validators.required ],
+      imageUrl: ['', Validators.required ],
+      captcha: ['', Validators.required ]
+
+
       
     });
   }
@@ -81,15 +95,34 @@ export class NewUserComponent implements OnInit {
     });
   }
 
-  // onSubmit2(value){
-  //   this.firebaseService.createUser(value, this.avatarLink)
-  //   .then(
-  //     res => {
-  //       this.resetFields();
-  //       this.router.navigate(['/home']);
-  //     }
-  //   )
-  // }
+  makeRandom() {
+    var lengthOfCode = 5;
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    let text = "";
+    for (let i = 0; i < lengthOfCode; i++) {
+      this.captcha += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+      console.log(this.captcha);
+  }
+
+  probarCaptcha()
+  {
+    console.log(this.inputCaptcha );
+    console.log(this.captcha);
+    if(this.inputCaptcha == this.captcha)
+    {
+      // alert("son iguales");
+      this.mostrarCaptcha=true;
+    }
+    else
+    {
+      // alert("son diferentes");
+
+    }
+   
+  }
+
+
   onSubmit(value){
     var filePath = `${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
     const fileRef = this.storage.ref(filePath);

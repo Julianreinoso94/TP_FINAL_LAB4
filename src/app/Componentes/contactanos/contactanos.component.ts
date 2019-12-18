@@ -26,6 +26,9 @@ export class ContactanosComponent implements OnInit {
   public pieChartPlugins = [];
   public items:any;
 
+  public userProfile: any;
+
+
 
   lineChartData: ChartDataSets[] = [
     { data: [85, 72, 78, 75, 77, 75], label: 'Crude oil prices' },
@@ -88,9 +91,8 @@ export class ContactanosComponent implements OnInit {
   //      'Odontopediatría',
   //      'Implantólogo'		 
   // }
-   var a= "Odontologo";
-  alert("especialidad votada");
-  switch (a) {
+
+  switch (valor) {
     case  "Odontologo":
       this.encuesta.VotoEspecialidad('Odontologo');
       break;
@@ -130,6 +132,7 @@ export class ContactanosComponent implements OnInit {
   ];
   doughnutChartType: ChartType = 'doughnut';
 
+  
 
 
 

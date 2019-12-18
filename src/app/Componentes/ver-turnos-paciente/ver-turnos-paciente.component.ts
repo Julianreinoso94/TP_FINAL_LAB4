@@ -63,6 +63,8 @@ export class VerTurnosPacienteComponent implements OnInit {
   listadomisTurnos:any;
   turno:any;
 
+  mostrarHistoriaClinica=true;
+
   //DETECTAR USUARIO
   isLoggedIn$: Observable<boolean>;
   usrName = '';
@@ -131,10 +133,11 @@ export class VerTurnosPacienteComponent implements OnInit {
 
  
 
-  guardarHistoriaClinica(val){
+  guardarHistoriaClinica(val,profesional){
+    this.mostrarHistoriaClinica=false;
     console.log(val);
    // "uid","DiaTurno","descripcion","profesional"
-    this.historiaservice.createHistoriaClinica("uid",this.fechaHoy.toString(),this.historiaClinica,"profesional");
+    this.historiaservice.createHistoriaClinica(val,this.fechaHoy.toString(),this.historiaClinica,profesional);
   }
 
 
@@ -171,15 +174,15 @@ export class VerTurnosPacienteComponent implements OnInit {
   
    usuarioes()
    {
-     alert(this.userProfile);
+    //  alert(this.userProfile);
 
-     alert(this.uidUsuario);
+    //  alert(this.uidUsuario);
    }
 
 
    mostrarTurnos()
    {
-    alert( this.userProfile);
+    // alert( this.userProfile);
 
     //  alert("");
     this.listadomisTurnos= [];

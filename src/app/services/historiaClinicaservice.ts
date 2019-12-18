@@ -18,8 +18,8 @@ export class HistoriaClinicaService {
     return this.db.collection('turnos').doc(userKey).delete();
   }
 
-  getTurnos(){
-    return this.db.collection('turnos').snapshotChanges();
+  getHistoriaClinica(){
+    return this.db.collection('historiaClinica').snapshotChanges();
   }
   getespecialistas(){
     return this.db.collection('turnos').snapshotChanges();

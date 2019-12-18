@@ -626,9 +626,9 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
        
         usuarioes()
         {
-          alert(this.userProfile);
+          // alert(this.userProfile);
 
-          alert(this.uidUsuario);
+          // alert(this.uidUsuario);
         }
 
          

@@ -22,8 +22,8 @@ export class EncuestasService {
     return this.db.collection('turnos').doc(userKey).delete();
   }
 
-  getUsers(){
-    return this.db.collection('turnos').snapshotChanges();
+  getResultadoncuestaElegida(){
+    return this.db.collection('encuestas').snapshotChanges();
   }
   getespecialistas(){
     return this.db.collection('turnos').snapshotChanges();
