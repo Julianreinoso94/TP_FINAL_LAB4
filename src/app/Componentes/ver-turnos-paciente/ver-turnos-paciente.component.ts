@@ -95,30 +95,33 @@ export class VerTurnosPacienteComponent implements OnInit {
          this.setUsrName()
        }
      });
-
+this.getData();
   }
 
   getData(){
+    this.listadomisTurnos= [];
+
     this.firebaseService.TraerTurnosDentista().subscribe(data => {
       
-      this.turnos = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          codigo: e.payload.doc.data()['codigo'],
-          estado: e.payload.doc.data()['estado'],
-          profesional: e.payload.doc.data()['profesional'],
-          consultorio: e.payload.doc.data()['consultorio'],
-          cliente: e.payload.doc.data()['cliente'],
-          especialidad: e.payload.doc.data()['especialidad'],
-          horaTurno: e.payload.doc.data()['horaTurno'],
-          DiaTurno: e.payload.doc.data()['DiaTurno'],
-          numTurno: e.payload.doc.data()['numTurno'],
+     data.forEach(e => {
+
+      console.log(e.payload.doc.data()['uidProfesional']);
+       
+      if( this.uidUsuario == e.payload.doc.data()['uidProfesional'] )// SI INGRESO COMO MEDICO
+    {
+      console.log(this.uidUsuario);
+      this.turno= new Turnos (e.payload.doc.data()['DiaTurno'],e.payload.doc.data()['cliente'], e.payload.doc.data()['consultorio'], e.payload.doc.data()['especialidad'],e.payload.doc.data()['estado'],e.payload.doc.data()['horaTurno'],e.payload.doc.data()['numTurno'],e.payload.doc.data()['profesional'],e.payload.doc.data()['uid'],e.payload.doc.data()['email']);
+         
+          this.listadomisTurnos.push(this.turno);      
+
         
-        };
+     }
       })
       console.log(this.turnos);
     });
+
+
+    
   }
   
 
@@ -167,7 +170,6 @@ export class VerTurnosPacienteComponent implements OnInit {
          this.currentUser = user;
          this.uidUsuario = user.uid
         });
-     this.mostrarTurnos();
  
    }
    setUsrName(){
@@ -184,33 +186,5 @@ export class VerTurnosPacienteComponent implements OnInit {
    }
 
 
-   mostrarTurnos()
-   {
-    // alert( this.userProfile);
-
-    //  alert("");
-    this.listadomisTurnos= [];
-
-    this.turnos.forEach(item => {///////////////////////////primer foreach
-
-            
-
-      if(item.profesional == this.uidUsuario ) 
-      {
-        this.turno = new Turnos(item.diaTurno,item.cliente,item.DiasDeTrabajo,item.consultorio,item.especialidad,item.horaTurno,item.numTurno,item.profesional,item.uidProfesional);
-        //     this.listadoespecialistaspordia.push(this.profesional);
-          //   this.listadoFinal.push(this.profesional);
-
-          console.log(this.turno);
-        this.listadomisTurnos.push(this.turno);         
-         }
-      // else
-      // {
-      //   //ESPECIALISTA EN TURNO LIBRE
-       
-      // }
-   });
-  
-   }
 
 }
