@@ -92,6 +92,8 @@ export class TurnosService {
   
   }
 
+  
+
   cambiarEstado(id, valor)
   {
     //this.firestore.doc('Mesas/'+id).update({ monto: monto });

@@ -86,7 +86,7 @@ export class VerTurnosPacienteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getData();
+    // this.getData();
      ///////////////////////////////////////////////////////////////////////////////////////////////observable
      this.isLoggedIn$ = this.auth.isLoggedIn;
      console.log(this.isLoggedIn$)

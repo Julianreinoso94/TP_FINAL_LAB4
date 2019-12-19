@@ -11,11 +11,18 @@ import { from } from 'rxjs';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {AuthService} from 'src/app/services/auth.service'
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+import { FirebaseService } from '../../services/firebase.service';
 
 
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+
+
+
+//DETECTAR USUARIO
+import { Observable } from 'rxjs';
+import {ProfileService} from "src/app/services/profile.service"
 
 
 class profesional {
@@ -26,13 +33,26 @@ class profesional {
   name: String;
 
   surname: String;
-  constructor(age:String,avatar:String,DiasDeTrabajo:String,especialidad:String,name:String )
+  uidProfesional:String;
+
+  ingresarperfil=false;
+
+//DETECTAR USUARIO
+  isLoggedIn$: Observable<boolean>;
+  usrName = '';
+  Logueado= false;
+  public userProfile: any;
+  public birthDate: Date;
+  public perfil:string;
+
+  constructor(age:String,avatar:String,DiasDeTrabajo:String,especialidad:String,name:String,uidProfesional:String )
   {
     this.age=age;
     this.avatar=avatar;
     this.DiasDeTrabajo=DiasDeTrabajo;
     this.especialidad=especialidad;
     this.name=name;
+    this.uidProfesional=uidProfesional;
 
   }
 }
@@ -41,7 +61,7 @@ class profesional {
   templateUrl: './turnos-recepcion.component.html',
   styleUrls: ['./turnos-recepcion.component.css']
 })
-export class TurnosRecepcionComponent implements OnInit {
+export class TurnosRecepcionComponent  implements OnInit {
 
   public clientes:any;
    contador:any;
@@ -57,6 +77,9 @@ export class TurnosRecepcionComponent implements OnInit {
   consultorio;
   picker:any;
   fechatotal;
+
+  items: Array<any>;
+
   allTechnologies = [
      '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00',
      '14:30', '15:00', '16:00', '16:30', '17:00', '17:30', '18:00'
@@ -68,6 +91,7 @@ consultorios = [
 
 public fotoespecialistElegido:String;
  public nombreEspecialistaelegido:String;
+ public uidProfesional:String;
  public mostrarbotonSeleccionar=false;
   events: string[] = [];
   profesionales : any;
@@ -101,13 +125,22 @@ usuarioactual:any;
 public currentUser: firebase.User;
 uidUsuario:any;
 ocultarPrimerListado=false;
+isLoggedIn$: Observable<boolean>;
+usrName = '';
+Logueado= false;
+public userProfile: any;
+public perfil:string;
+public email:String;
 
  
+// constructor(private AFauth : AngularFireAuth,public auth:AuthService, public auth2:AuthGuard, private router : Router, private db : AngularFirestore,
+//   ) {
 
- constructor(private storage: AngularFireStorage,  private authprofile: AuthService,
-  private fb: FormBuilder,private servicioProfesionales: abmProfesionales,
+ constructor(private storage: AngularFireStorage,  private authprofile: AuthService,public auth:AuthService,
+  private fb: FormBuilder,private servicioProfesionales: abmProfesionales, private profileService: ProfileService,
   public dialog: MatDialog,
-  private router: Router,
+  private router: Router, 
+   public firebasePacientes: FirebaseService,
   public firebaseService: TurnosService,private service: ImageService
 ) {
 
@@ -119,7 +152,28 @@ ocultarPrimerListado=false;
   this.traerprofesional();
   this.traerturnos();
 
+       ///////////////////////////////////////////////////////////////////////////////////////////////observable
+       this.isLoggedIn$ = this.auth.isLoggedIn;
+       console.log(this.isLoggedIn$)
+       this.isLoggedIn$.subscribe(res => {
+         if(res){
+           this.setUsrName()
+         }
+       });
+  
+
  }
+
+ 
+ getPacientes(){
+  this.firebasePacientes.getUsers()
+  .subscribe(result => {
+    this.items = result;
+    this.age_filtered_items = result;
+    this.name_filtered_items = result;
+  })
+}
+
  
  async traerturnos()
  {
@@ -133,6 +187,8 @@ ocultarPrimerListado=false;
          horaTurno: e.payload.doc.data()['horaTurno'],
          nombrePaciente: e.payload.doc.data()['nombrePaciente'],
          profesional: e.payload.doc.data()['profesional'],
+         email: e.payload.doc.data()['email'],
+
 
        };
      })
@@ -155,6 +211,7 @@ ocultarPrimerListado=false;
          horario: e.payload.doc.data()['horario'],
          diasDeTrabajo: e.payload.doc.data()['diasDeTrabajo'],
          surname: e.payload.doc.data()['surname'],
+         uid: e.payload.doc.data()['uid'],
      
        };
      })
@@ -170,11 +227,11 @@ ocultarPrimerListado=false;
   this.exampleForm = this.fb.group({
     nombrePaciente: ['', Validators.required ],
 //    apellidoPaciente: ['', Validators.required ],
-    cliente: this.usuarioactual,
+    cliente: this.uidUsuario,
     DiaTurno: this.fechatotal,
     horaTurno: this.horaTurno,
     profesional: ['', Validators.required ],
-    consultorio: ['', Validators.required ],
+    consultorio: "3F",
     especialidad: ['', Validators.required ]
   });
 }
@@ -199,6 +256,15 @@ resetFields(){
 
 
  ngOnInit() {
+  
+       ///////////////////////////////////////////////////////////////////////////////////////////////observable
+       this.isLoggedIn$ = this.auth.isLoggedIn;
+       console.log(this.isLoggedIn$)
+       this.isLoggedIn$.subscribe(res => {
+         if(res){
+           this.setUsrName()
+         }
+       });
   
 
 
@@ -252,7 +318,7 @@ resetFields(){
     console.log(this.usuarioactual);
     console.log(this.nombreEspecialistaelegido);
 
-    this.firebaseService.createTurno(this.nombreEspecialistaelegido,this.uidUsuario,value,this.fechatotal,this.makeRandom())
+    this.firebaseService.createTurno(this.nombreEspecialistaelegido,this.uidUsuario,value,this.fechatotal,this.makeRandom(),this.email,this.uidProfesional)
     .then(
       res => {
         this.resetFields();
@@ -288,7 +354,7 @@ resetFields(){
   
  eventoCalendario(type: string, event: MatDatepickerInputEvent<Date>) {
    
-  this.datosCliente();
+  //this.datosCliente();
   this.mostrarListado=true;
   this.events.push(`${event.value}`);
 
@@ -351,7 +417,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
        
          if(element.diasDeTrabajo == dia)
          {
-            this.profesional = new profesional(element.age,element.avatar,element.DiasDeTrabajo,element.especialidad,element.name);
+            this.profesional = new profesional(element.age,element.avatar,element.DiasDeTrabajo,element.especialidad,element.name,element.uid);
            this.listadoespecialistaspordia.push(this.profesional);
          }
          });
@@ -381,7 +447,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
 
           seleccionandoHoraDeturnoOLD()//AL CAMBIAR EL HORARIO INGRESA ACA SELECTHORARIO
           {
-            this.datosCliente();
+           // this.datosCliente();
 
             this.mostrarbotonSeleccionar=true;
             this.mostrarListadoFinal=true;
@@ -395,11 +461,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
 
         
      this.turnos.forEach(element => {
-            
-              
-     //         console.log("turnos iterados");
-     //         console.log(element.horaTurno);
-     //         console.log(element.DiaTurno);
+          
 
               if(element.horaTurno == this.horaTurno && element.DiaTurno == this.DiaTurno.toString())
               {
@@ -426,7 +488,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
         // console.log(element);
                 if(item.name ==  element)
                 {
-                  this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.name);
+                  this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.name,item.uid);
              //     this.listadoespecialistaspordia.push(this.profesional);
                   this.listadoFinal.push(this.profesional);
                   console.log("agregoAllistadofinal");
@@ -444,7 +506,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
           {
             this.mostrarListado=false;
             this.listadoFinal.length=0;
-            this.datosCliente();
+           // this.datosCliente();
 
             this.mostrarbotonSeleccionar=true;
             this.mostrarListadoFinal=true;
@@ -465,7 +527,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
 
               if(item.horaTurno == this.horaTurno && item.DiaTurno == this.DiaTurno.toString() && element.name == item.profesional ) 
               {
-                this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.profesional);
+                this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.profesiona,item.uid);
                 //     this.listadoespecialistaspordia.push(this.profesional);
                   //   this.listadoFinal.push(this.profesional);
 
@@ -545,29 +607,53 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
 
            this.fotoespecialistElegido= item.avatar;
            this.nombreEspecialistaelegido=item.name;
+           this.uidProfesional=item.uidProfesional;
 
         
          }
 
 
     
+         Detectar(){
+         // this.Logueado=true;
+      console.log("entro a detectar");
+              this.profileService
+            .getUserProfile()
+            .get()
+            .then( userProfileSnapshot => {
+              this.userProfile = userProfileSnapshot.data();
+               console.log(this.userProfile);
+              this.email = userProfileSnapshot.data().email;
+              this.perfil= userProfileSnapshot.data().perfil;
+              //console.log(this.perfil);
+      
+            });
+      
+            firebase.auth().onAuthStateChanged(user => {
+       
+              this.currentUser = user;
+              this.uidUsuario = user.uid});
+          // }
+      
+          console.log(this.currentUser);
+          console.log(this.email);
 
-         datosCliente(){
-  
-             firebase.auth().onAuthStateChanged(user => {
-        
-               this.currentUser = user;
-               this.uidUsuario = user.uid});
-           // }
+          console.log(this.uidUsuario); 
+      
+      
+        }
+        setUsrName(){
+        // let usr = this.auth.getCurrentUser();
+          //this.usrName = usr.email;
+          this.Detectar();
+        }
        
-          //  console.log("el cliente actual es");
-          //  console.log(this.currentUser);
-          //  console.log(this.uidUsuario); 
-          //  this.usuarioactual= this.uidUsuario;
-       
-       
-         }
-       
+        usuarioes()
+        {
+          // alert(this.userProfile);
+
+          // alert(this.uidUsuario);
+        }
 
          
 
