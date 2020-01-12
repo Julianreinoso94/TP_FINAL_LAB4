@@ -3,6 +3,7 @@ import { FirebaseService } from '../../services/firebase.service';
 import { Router, Params } from '@angular/router';
 import { abmProfesionales } from 'src/app/services/abmProfesionales.service';
 import{TurnosService} from 'src/app/services/turnos.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-sala-deespera',
@@ -20,13 +21,16 @@ export class SalaDeesperaComponent implements OnInit {
   codigoTurno:any;
   contador: number =0;
 
-  constructor(public firebaseService: TurnosService,
+  constructor(public firebaseService: TurnosService, private spinnerService: NgxSpinnerService,
+
     // public firebaseService: FirebaseService,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.getData();
+    this.spinner();
+
   }
 
   getData(){

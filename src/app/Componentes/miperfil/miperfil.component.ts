@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material';
 import {LoginComponent} from 'src/app/Componentes/login/login.component'
 import {ProfileService} from "src/app/services/profile.service"
 import{HistoriaClinicaService} from 'src/app/services/historiaClinicaservice'
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 //
@@ -75,7 +76,8 @@ export class MiperfilComponent implements OnInit {
   historias : any;
 
 
-  constructor(private AFauth : AngularFireAuth, public historiaservice:HistoriaClinicaService,public auth:AuthService, private router : Router, private db : AngularFirestore, private profileService: ProfileService,    public dialog: MatDialog
+  constructor( private spinnerService: NgxSpinnerService,
+    private AFauth : AngularFireAuth, public historiaservice:HistoriaClinicaService,public auth:AuthService, private router : Router, private db : AngularFirestore, private profileService: ProfileService,    public dialog: MatDialog
     ) {
 
    
@@ -83,6 +85,8 @@ export class MiperfilComponent implements OnInit {
 
 
   ngOnInit() {
+    this.spinner();
+
     this.isLoggedIn$ = this.auth.isLoggedIn;
     console.log(this.isLoggedIn$)
     this.isLoggedIn$.subscribe(res => {
@@ -118,7 +122,14 @@ console.log("entro a detectar");
     console.log(this.uidUsuario); 
 }
 
+spinner()
+{
+  this.spinnerService.show();
 
+  setTimeout(() => {
+    this.spinnerService.hide();
+  }, 2000);
+}
 getData(){
 
   this.listadoHistorial= [];

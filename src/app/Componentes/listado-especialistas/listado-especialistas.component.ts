@@ -8,6 +8,7 @@ import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 import * as jspdf from 'jspdf';  
 import html2canvas from 'html2canvas';  
 
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 class profesional {
@@ -60,7 +61,7 @@ export class ListadoEspecialistasComponent  implements OnInit {
     elementId: 'myTableElementId', // the id of html/table element
   }
 
-  constructor(
+  constructor(private spinnerService: NgxSpinnerService,
     public firebaseService: FirebaseService,private exportAsService: ExportAsService,
     private router: Router,private servicioProfesionales: abmProfesionales
   ) {
@@ -86,8 +87,20 @@ export class ListadoEspecialistasComponent  implements OnInit {
 
    
   ngOnInit() {
+    this.spinner();
+
     this.getData();
     this.traerprofesional;
+
+  }
+
+  spinner()
+  {
+    this.spinnerService.show();
+
+    setTimeout(() => {
+      this.spinnerService.hide();
+    }, 2000);
   }
 
   getData(){

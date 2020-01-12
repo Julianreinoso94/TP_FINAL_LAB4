@@ -74,6 +74,9 @@ import { MisTurnosComponent } from './Componentes/mis-turnos/mis-turnos.componen
 import { TurnosAltaEspecialistaComponent } from './Componentes/turnos-alta-especialista/turnos-alta-especialista.component';
 import { EditPacienteComponent } from './edit-paciente/edit-paciente.component'
 
+// Import library module
+import { NgxSpinnerModule } from "ngx-spinner";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -131,7 +134,8 @@ import { EditPacienteComponent } from './edit-paciente/edit-paciente.component'
     ExportAsModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatInputModule,MatFormFieldModule,
+    MatInputModule,MatFormFieldModule,NgxSpinnerModule
+    ,
     MatSliderModule,    ChartsModule
 
   ],

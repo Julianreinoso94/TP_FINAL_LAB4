@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import { Router, Params } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-listado-pacientes',
@@ -14,15 +15,24 @@ export class ListadoPacientesComponent implements OnInit {
   items: Array<any>;
   age_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
-  constructor(
+  constructor(private spinnerService: NgxSpinnerService,
     public firebaseService: FirebaseService,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.getData();
-  }
+    this.spinner();
 
+  }
+  spinner()
+  {
+    this.spinnerService.show();
+
+    setTimeout(() => {
+      this.spinnerService.hide();
+    }, 2000);
+  }
   getData(){
     this.firebaseService.getUsers()
     .subscribe(result => {

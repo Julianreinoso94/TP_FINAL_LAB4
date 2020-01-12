@@ -22,6 +22,9 @@ import * as $ from 'jquery';
 declare var jQuery:any;
 declare var $:any;
 
+
+import { NgxSpinnerService } from "ngx-spinner";
+
 export interface DialogData {
   animal: string;
   name: string;
@@ -60,6 +63,7 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.spinner();
 
     $(document).ready(function() {
       // executes when HTML-Document is loaded and DOM is ready
@@ -104,7 +108,7 @@ export class AppComponent implements OnInit {
 
 
 
-  constructor(private AFauth : AngularFireAuth,public auth:AuthService, public auth2:AuthGuard, private router : Router, private db : AngularFirestore, private profileService: ProfileService,    public dialog: MatDialog
+  constructor(private spinnerService: NgxSpinnerService,private AFauth : AngularFireAuth,public auth:AuthService, public auth2:AuthGuard, private router : Router, private db : AngularFirestore, private profileService: ProfileService,    public dialog: MatDialog
     ) {
 
       
@@ -116,7 +120,14 @@ export class AppComponent implements OnInit {
   }//fin constructor
 
 
-  
+  spinner()
+  {
+    this.spinnerService.show();
+
+    setTimeout(() => {
+      this.spinnerService.hide();
+    }, 2000);
+  }
 
   
   logout(){

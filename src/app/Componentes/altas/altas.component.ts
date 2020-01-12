@@ -8,6 +8,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from "rxjs/operators";
 import {AuthService} from "src/app/services/auth.service"
 import { ImageService } from 'src/app/services/image.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 import { AvatarDialogComponent } from 'src/app/avatar-dialog/avatar-dialog.component';
@@ -53,7 +54,8 @@ dias = [
  };
 
   constructor(private storage: AngularFireStorage, 
-    private fb: FormBuilder,
+    private fb: FormBuilder, private spinnerService: NgxSpinnerService,
+
     public dialog: MatDialog,public auth:AuthService,
     private router: Router,
     public firebaseService: abmProfesionales,private service: ImageService
@@ -62,7 +64,18 @@ dias = [
    }
 
   ngOnInit() {
+    this.spinner();
+
     this.createForm();
+    
+  }
+  spinner()
+  {
+    this.spinnerService.show();
+
+    setTimeout(() => {
+      this.spinnerService.hide();
+    }, 2000);
   }
 
 

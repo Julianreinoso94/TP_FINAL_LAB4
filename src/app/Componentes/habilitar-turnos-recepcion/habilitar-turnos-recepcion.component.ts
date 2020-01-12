@@ -3,6 +3,7 @@ import { FirebaseService } from '../../services/firebase.service';
 import { Router, Params } from '@angular/router';
 import { abmProfesionales } from 'src/app/services/abmProfesionales.service';
 import{TurnosService} from 'src/app/services/turnos.service'
+import { NgxSpinnerService } from "ngx-spinner";
 
 class Turnos {
   DiaTurno: String;
@@ -54,15 +55,24 @@ export class HabilitarTurnosRecepcionComponent implements OnInit {
   listadoTurnosHabilitar: Array <Turnos>;
   listadoTurnosMostrar: Array <Turnos>;
 
-  constructor(public firebaseService: TurnosService,
+  constructor(public firebaseService: TurnosService,private spinnerService: NgxSpinnerService,
     // public firebaseService: FirebaseService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.spinner();
+
     this.getData();
   }
+  spinner()
+  {
+    this.spinnerService.show();
 
+    setTimeout(() => {
+      this.spinnerService.hide();
+    }, 2000);
+  }
   getData(){
     this.firebaseService.TraerTurnosRecepcion()
     .subscribe(result => {
