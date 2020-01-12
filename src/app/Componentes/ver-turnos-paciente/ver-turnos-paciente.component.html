@@ -26,9 +26,14 @@
           <small>Especialidad: {{item.especialidad}}</small>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">Datos Laborales</li>
+              <li class="breadcrumb-item active" aria-current="page">Datos del Paciente</li>
             </ol>
           </nav>
+          <h5 class="mb-1"> Nombre y Apellido del Paciente</h5>
+          <small>{{item.numTurno}}</small>
+          <h5 class="mb-1">Codigo del Paciente </h5>
+          <small>{{item.numTurno}}</small>
+
           <div class="row" *ngIf="mostrarHistoriaClinica" >
           
               <div class="col col-md-12 text-col">
@@ -40,11 +45,7 @@
                 </div>
                 
               </div>
-          <h5 class="mb-1"> Dias Turno</h5>
-          <!-- <small>{{item.payload.doc.data().DiaTurno}}</small> -->
-          <h5 class="mb-1">Horarios</h5>
-
-          <!-- <small>{{item.payload.doc.data().horario}}</small> -->
+        
     
         </div>
         <div class="col col-md-8 text-col">

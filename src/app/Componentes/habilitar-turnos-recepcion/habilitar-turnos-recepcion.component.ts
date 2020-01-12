@@ -52,6 +52,8 @@ export class HabilitarTurnosRecepcionComponent implements OnInit {
   codigoTurno:any;
 
   listadoTurnosHabilitar: Array <Turnos>;
+  listadoTurnosMostrar: Array <Turnos>;
+
   constructor(public firebaseService: TurnosService,
     // public firebaseService: FirebaseService,
     private router: Router
@@ -62,50 +64,21 @@ export class HabilitarTurnosRecepcionComponent implements OnInit {
   }
 
   getData(){
-
-    this.listadoTurnosHabilitar = [];
-    this.firebaseService.TraerTurnosRecepcion().subscribe(data => {
-      
-      data.forEach(element => {
-           
-        this.turno = new Turnos(element.payload.doc.id,element.payload.doc.data()['DiaTurno'],element.payload.doc.data()['cliente'],element.payload.doc.data()['consultorio'],element.payload.doc.data()['especialidad'],element.payload.doc.data()['estado'],element.payload.doc.data()['horaTurno'],element.payload.doc.data()['numTurno'],element.payload.doc.data()['profesional']);
-       this.listadoTurnosHabilitar.push(this.turno);
-  });
-
-      // this.turnos = data.map(e => {
-      //   return {
-      //     id: e.payload.doc.id,
-      //     isEdit: false,
-      //     codigo: e.payload.doc.data()['codigo'],
-      //     estado: e.payload.doc.data()['estado'],
-      //     profesional: e.payload.doc.data()['profesional'],
-      //     consultorio: e.payload.doc.data()['consultorio'],
-      //     cliente: e.payload.doc.data()['cliente'],
-      //     especialidad: e.payload.doc.data()['especialidad'],
-      //     horaTurno: e.payload.doc.data()['horaTurno'],
-      //     DiaTurno: e.payload.doc.data()['DiaTurno'],
-        
-      //   };
-      // })
-      console.log(this.turnos);
-    });
-
-    // this.listadoTurnosHabilitar = [];
-    // console.log(this.turnos);
-             
-    
-    //     this.turnos.forEach(element => {
-           
-    //          this.turno = new Turnos(element.DiaTurno,element.cliente,element.consultorio,element.especialidad,element.estado,element.horaTurno,element.numTurno,element.profesional);
-    //         this.listadoTurnosHabilitar.push(this.turno);
-    //    });
+    this.firebaseService.TraerTurnosRecepcion()
+    .subscribe(result => {
+      this.items = result;
+      this.age_filtered_items = result;
+      this.name_filtered_items = result;
+    })
   }
+
   
 
   habilitarTurno(codigo){
     console.log(codigo);
 
-    this.firebaseService.cambiarEstado(codigo,"Habilitado");
+    this.firebaseService.cambiarEstado( codigo.payload.doc.id,"Habilitado");
+    // this.getData();
   }
 
 
@@ -113,10 +86,6 @@ export class HabilitarTurnosRecepcionComponent implements OnInit {
     console.log(codigo);
 
     this.firebaseService.cambiarEstado(codigo,"Cancelado");
-  }
-
-  capitalizeFirstLetter(value){
-    return value.charAt(0).toUpperCase() + value.slice(1);
   }
 
 

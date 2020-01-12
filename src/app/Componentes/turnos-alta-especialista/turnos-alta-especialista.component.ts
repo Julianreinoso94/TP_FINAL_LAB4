@@ -249,17 +249,17 @@ resetFields(){
   }
 
   onSubmit(value){
-    console.log("_________________________________________");
-    console.log(this.usuarioactual);
-    console.log(this.nombreEspecialistaelegido);
+// <    console.log("_________________________________________");
+//     console.log(this.usuarioactual);
+//     console.log(this.nombreEspecialistaelegido);
 
-    this.firebaseService.createTurno(this.nombreEspecialistaelegido,this.uidUsuario,value,this.fechatotal,this.makeRandom())
-    .then(
-      res => {
-        this.resetFields();
-        this.router.navigate(['/home']);
-      }
-    )
+//     this.firebaseService.createTurno(this.nombreEspecialistaelegido,this.uidUsuario,value,this.fechatotal,this.makeRandom())
+//     .then(
+//       res => {
+//         this.resetFields();
+//         this.router.navigate(['/home']);
+//       }
+//     )>
   }
 
    makeRandom() {

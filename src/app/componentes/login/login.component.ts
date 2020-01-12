@@ -105,7 +105,7 @@ resolved(captchaResponse: any[]){
     }
     if(valor=="PacienteB")
     {
-      this.email="pacienteb@pacienteb.com";
+      this.email="pepe@gmail.com";
       this.password="123456";
 
     }

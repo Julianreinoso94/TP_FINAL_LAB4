@@ -24,6 +24,27 @@ import 'firebase/firestore';
 import { Observable } from 'rxjs';
 import {ProfileService} from "src/app/services/profile.service"
 
+class paciente {
+  age: String;
+  avatar: String;
+  DiasDeTrabajo: String;
+  especialidad: String;
+  name: String;
+  email:String;
+
+  surname: String;
+  ui
+
+  constructor(age:String,avatar:String,email:String,name:String,surname:String )
+  {
+    this.age=age;
+    this.avatar=avatar;
+    this.email=email;
+    this.name=name;
+    this.surname=surname;
+
+  }
+}
 
 class profesional {
   age: String;

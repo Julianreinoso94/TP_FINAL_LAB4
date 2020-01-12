@@ -129,6 +129,8 @@ this.getData();
     console.log(codigo);
 
     this.firebaseService.cambiarEstado(codigo,"Presente");
+    this.getData();
+
   }
 
 

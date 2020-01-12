@@ -384,7 +384,7 @@ switch (valor.toString()) {
       this.especialistaPorDia(buscrcomo);
       break;
   default:
-    confirm("Sorry, that color is not in the system yet!");
+   // confirm("Sorry, that color is not in the system yet!");
 }
 
 

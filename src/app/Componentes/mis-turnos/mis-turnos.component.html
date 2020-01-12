@@ -2,17 +2,15 @@
   <div class="list-group users-list">
       <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Turnos Especialista</li>
+            <li class="breadcrumb-item active" aria-current="page">Turnos </li>
           </ol>
         </nav>
         
 
     <div *ngFor="let item of listadomisTurnos" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="row">
-        <div class="col col-md-2 image-col">
-          <!-- <img class="image" [src]="item.payload.doc.data().avatar"> -->
-        </div>
-        <div class="col col-md-8 text-col">
+
+        <div class="col col-md-12 text-col">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item active" aria-current="page">Datos Personales</li>
@@ -20,28 +18,21 @@
               </nav>
           <h5 class="mb-1"> Codigo de Turno</h5>
           <small>{{item.numTurno}}</small>
+          <h5 class="mb-1"> Codigo de Turno</h5>
+          <small>{{item.numTurno}}</small>
+          <h5 class="mb-1">ESTADO DEL TURNO </h5>
           <h5 class="mb-1">Horario </h5>
 
           <small    >{{item.horaTurno}}</small>
           <small>Especialidad: {{item.especialidad}}</small>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">Datos Laborales</li>
+              <li class="breadcrumb-item active" aria-current="page">Información del Profesional</li>
             </ol>
           </nav>
-          <div class="row" *ngIf="mostrarHistoriaClinica" >
-          
-              <div class="col col-md-12 text-col">
-                  <input   maxlength="30" type="text" style="background-color: #c3e6cb;height: 90px;  width:100%" placeholder="Agregue Historia Clinica"   name="historiaClinica" [(ngModel)]="historiaClinica" >
-                  
-                  <button class="btn btn-outline-secondary action" style=" font-size:bold; background-color: RED; color: black  "(click)="guardarHistoriaClinica(item.cliente,item.profesional)" type="button">
-                      <ion-icon name="close-circle"></ion-icon>Guardar Reseña
-                    </button>
-                </div>
-                
-              </div>
+       
           <h5 class="mb-1"> Dias Turno</h5>
-          <!-- <small>{{item.payload.doc.data().DiaTurno}}</small> -->
+           <small>{{item.Profesional}}</small> 
           <h5 class="mb-1">Horarios</h5>
 
           <!-- <small>{{item.payload.doc.data().horario}}</small> -->

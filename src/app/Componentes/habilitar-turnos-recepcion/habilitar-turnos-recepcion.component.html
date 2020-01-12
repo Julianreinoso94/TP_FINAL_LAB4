@@ -7,7 +7,7 @@
         </nav>
         
 
-    <div *ngFor="let item of listadoTurnosHabilitar" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="row">
         <!-- <div class="col col-md-2 image-col">
           <img class="image" [src]="item.payload.doc.data().avatar">
@@ -19,7 +19,7 @@
                 </ol>
               </nav>
           <h5 class="mb-1"> Codigo de Turno</h5>
-          <small>{{item.cliente}}</small>
+          <small>{{item.payload.doc.data().especialidad.cliente}}</small>
           <h5 class="mb-1">Horario </h5>
 
           <small    >{{item.horaTurno}}</small>
@@ -41,7 +41,7 @@
        
         </div>
         <div class="col col-md-2 actions-col">
-          <button class="btn btn-outline-primary action"  style=" background-color: green; color: black " (click)="habilitarTurno(item.id)" type="button">
+          <button class="btn btn-outline-primary action"  style=" background-color: green; color: black " (click)="habilitarTurno(item)" type="button">
             <ion-icon class="icon"  name="checkmark-circle"></ion-icon>Habilitar
           </button>
           <button class="btn btn-outline-secondary action" style=" background-color: RED; color: black  "(click)="cancelarTurno(item.id)" type="button">
