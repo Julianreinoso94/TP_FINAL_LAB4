@@ -33,6 +33,15 @@ export class SalaDeesperaComponent implements OnInit {
 
   }
 
+  spinner()
+  {
+    this.spinnerService.show();
+
+    setTimeout(() => {
+      this.spinnerService.hide();
+    }, 2000);
+  }
+
   getData(){
     this.firebaseService.TraerTurnosDentista().subscribe(data => {
       

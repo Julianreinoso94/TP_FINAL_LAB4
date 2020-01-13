@@ -9,45 +9,7 @@ export class EncuestasService {
   constructor(public db: AngularFirestore) {}
 
 
-  getTurnos(userKey){
-    return this.db.collection('turnos').doc(userKey).snapshotChanges();
-  }
-
-  updateTurnos(userKey, value){
-    value.nameToSearch = value.name.toLowerCase();
-    return this.db.collection('users').doc(userKey).set(value);
-  }
-
-  deleteUser(userKey){
-    return this.db.collection('turnos').doc(userKey).delete();
-  }
-
-  getResultadoncuestaElegida(){
-    return this.db.collection('encuestas').snapshotChanges();
-  }
-  getespecialistas(){
-    return this.db.collection('turnos').snapshotChanges();
-  }
-
-  searchUsers(searchValue){
-    return this.db.collection('turnos',ref => ref.where('nameToSearch', '>=', searchValue)
-      .where('nameToSearch', '<=', searchValue + '\uf8ff'))
-      .snapshotChanges()
-  }
-
-  searchUsersByAge(value){
-    return this.db.collection('turnos',ref => ref.orderBy('edad').startAt(value)).snapshotChanges();
-  }
-
-
-  createEncuesta(value){
-    return this.db.collection('encuestas').add({
-      clinica: value.clinica,
-      especialista: value.especialista,
-      descripcion: value.descripcion
-    });
-  }
-
+  
 
   /////////////////////////////////////////////////////////////////////////////
   // Podrá ver, estadísticas:
@@ -77,15 +39,41 @@ export class EncuestasService {
     });
   }
 
-//D
-  DiasYhorariosIngresaronSistema (value)
-  {
-    return this.db.collection('fechaIngreso').add({
-      fecha: value,
-    });
+//D//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  getFechasIngresadas(){
+    return this.db.collection('fechaIngreso').snapshotChanges();
+  }
+  BuscarSiExistenTUrnosMismaFecha(searchValue){
+    return this.db.collection('turnos',ref => ref.where('nameToSearch', '>=', searchValue)
+      .where('nameToSearch', '<=', searchValue + '\uf8ff'))
+      .snapshotChanges()
   }
 
-  //F
+  // updateFecha(userKey, value){
+  //   value.nameToSearch = value.name.toLowerCase();
+  //   return this.db.collection('users').doc(userKey).set(value);
+  // }
+
+  createFechaInicio(DiaTurno:String){
+    return this.db.collection('fechaIngreso').add({
+      cantidad:0,
+      fecha:DiaTurno,
+
+    });
+  }
+  updateCantidadFecha(userKey, value,dia){
+    // return this.db.collection('fechaIngreso').doc(userKey).set(value);
+  
+
+  this.db.collection('fechaIngreso').doc(userKey).set({
+    fecha:dia,
+    cantidad: value,
+  
+  })
+
+  }
+  //F///////////////////////////////////////////////////////////////////////////////////////////////////////
 
   CanceladosPorEspecialidad (value)
   {

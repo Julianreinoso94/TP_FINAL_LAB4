@@ -7,6 +7,7 @@ import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { ReCaptchaV3Service } from 'ngx-captcha';
 import { Inject, Optional } from '@angular/core'; 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import{EncuestasService} from 'src/app/services/encuestas.service'
 
 import { BehaviorSubject } from 'rxjs';
 
@@ -24,9 +25,16 @@ export class LoginComponent implements OnInit {
   something;
   tipousuario;
   nuevouser:User;
+  fechaLista:any;
+ flag=true;
+
+
+  public fechaHoy =  new Date();
 
   public userProfile: any;
   public birthDate: Date;
+  fechasTraidas : any;
+
   @Output() usuarioSeleccionado: EventEmitter<any>= new EventEmitter<any>(); 
 recaptcha: any[];
 
@@ -39,7 +47,7 @@ validatingForm: FormGroup;
 fromPage:string;
 fromDialog:string;
 
-   constructor(private formBuilder: FormBuilder, 
+   constructor(private formBuilder: FormBuilder,     public encuesta: EncuestasService,
       private reCaptchaV3Service: ReCaptchaV3Service
 ,    private router: Router,private authService: AuthService,
 
@@ -56,6 +64,7 @@ resolved(captchaResponse: any[]){
 }
  
    ngOnInit() {
+     this.traerFechas();
     this.validatingForm = new FormGroup({
       loginFormModalEmail: new FormControl('', Validators.email),
       loginFormModalPassword: new FormControl('', Validators.required)
@@ -146,7 +155,7 @@ resolved(captchaResponse: any[]){
 
       this.authService.login(email, password).then(() => {
         this.authService.isAuthenticated();
-
+this.guardarFechaHoy();
 //alert("entro");
             // this.router.navigate(['/principal'] );
         },
@@ -156,6 +165,45 @@ resolved(captchaResponse: any[]){
       );
   }
 
+  
+  guardarFechaHoy(){
+
+
+   var fechaHoySplit= this.fechaHoy.toString().split(" ", 3);
+   var contador=0;
+   console.log(fechaHoySplit);
+
+
+    this.encuesta.getFechasIngresadas()
+  
+    this.fechasTraidas.forEach(element => {
+  
+      if( element.fecha != undefined)
+      {
+       this.fechaLista=element.fecha.toString(); 
+       var fechaLista = this.fechaLista.split(" ", 3)
+      console.log(fechaLista);
+      }
+      
+    if(JSON.stringify(fechaLista)==JSON.stringify(fechaHoySplit))
+      {
+          var contador=element.cantidad;
+          
+
+        
+           this.flag = false;
+//actualizar
+        this.encuesta.updateCantidadFecha(element.id,contador+1,this.fechaHoy.toString())
+
+      }
+    });
+  
+     if(this.flag)
+     {
+      this.encuesta.createFechaInicio(this.fechaHoy.toString());
+     }
+
+  }
 
    //////////////////////nuevo
    private loggedIn = new BehaviorSubject<boolean>(false);
@@ -174,6 +222,28 @@ resolved(captchaResponse: any[]){
      this.loggedIn.next(true);
      this.loggedOut.next(false);
    }
+
+
+   async traerFechas()
+   {
+     this.encuesta.getFechasIngresadas().subscribe(data => {
+   
+       this.fechasTraidas = data.map(e => {
+        console.log("A");
+         return {
+           id: e.payload.doc.id,
+           fecha: e.payload.doc.data()['fecha'],
+           cantidad: e.payload.doc.data()['cantidad'],
+        
+    
+
+         };
+       })
+   
+       
+    
+     });
+    }
 
  }
  

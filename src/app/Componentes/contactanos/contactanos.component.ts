@@ -81,7 +81,6 @@ export class ContactanosComponent implements OnInit {
 
   mostrarvariable(){
     console.log(this.fechaHoy);
-    this.encuesta.DiasYhorariosIngresaronSistema(this.fechaHoy);
 
   }
   VotarEspecialista(valor)

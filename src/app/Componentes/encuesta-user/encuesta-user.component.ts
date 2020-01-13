@@ -98,12 +98,12 @@ export class EncuestaUserComponent implements OnInit {
   }
 
   onSubmit(value){
-    this.firebaseService.createEncuesta(value)
-    .then(
-      res => {
-        this.resetFields();
-        this.router.navigate(['/home']);
-      }
-    )
+    // this.firebaseService.createEncuesta(value)
+    // .then(
+    //   res => {
+    //     this.resetFields();
+    //     this.router.navigate(['/home']);
+    //   }
+    // )
   }
 }
