@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MultiDataSet, Label } from 'ng2-charts';
 import { SingleDataSet, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 import { Color } from 'ng2-charts';
+import{TurnosService} from 'src/app/services/turnos.service'
 
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 @Component({
@@ -27,6 +28,7 @@ export class ContactanosComponent implements OnInit {
   public items:any;
 
   public userProfile: any;
+  turnos : any;
 
 
 
@@ -53,6 +55,7 @@ export class ContactanosComponent implements OnInit {
   
 
   constructor(
+    private  firebaseServiceturnos:TurnosService,
     // private storage: AngularFireStorage, 
     private fb: FormBuilder,
     public dialog: MatDialog,
@@ -68,6 +71,28 @@ export class ContactanosComponent implements OnInit {
    }
 
   ngOnInit() {
+
+      this.firebaseServiceturnos.getTurnos().subscribe(data => {
+   
+        this.turnos = data.map(e => {
+          return {
+            id: e.payload.doc.id,
+            DiaTurno: e.payload.doc.data()['DiaTurno'],
+            apellidoPaciente: e.payload.doc.data()['apellidoPaciente'],
+            horaTurno: e.payload.doc.data()['horaTurno'],
+            nombrePaciente: e.payload.doc.data()['nombrePaciente'],
+            profesional: e.payload.doc.data()['profesional'],
+            email: e.payload.doc.data()['email'],
+   
+   
+          };
+        })
+   
+        
+     
+      });
+      console.log(this)
+
   }
 
   RealizadosPorRecepcion()
