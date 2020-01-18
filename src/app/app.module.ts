@@ -76,6 +76,7 @@ import { EditPacienteComponent } from './edit-paciente/edit-paciente.component'
 
 // Import library module
 import { NgxSpinnerModule } from "ngx-spinner";
+import { MatSnackBarModule } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -133,7 +134,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     AngularFirestoreModule,    AngularFireAuthModule, AngularFirestoreModule,
     ExportAsModule,
     BrowserAnimationsModule,
-    MatButtonModule,
+    MatButtonModule, MatSnackBarModule,
     MatInputModule,MatFormFieldModule,NgxSpinnerModule
     ,
     MatSliderModule,    ChartsModule

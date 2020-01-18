@@ -10,6 +10,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import{EncuestasService} from 'src/app/services/encuestas.service'
 
 import { BehaviorSubject } from 'rxjs';
+// import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material';
 
 
 @Component({
@@ -48,7 +50,7 @@ fromPage:string;
 fromDialog:string;
 
    constructor(private formBuilder: FormBuilder,     public encuesta: EncuestasService,
-      private reCaptchaV3Service: ReCaptchaV3Service
+      private reCaptchaV3Service: ReCaptchaV3Service,private _snackBar: MatSnackBar
 ,    private router: Router,private authService: AuthService,
 
 @Optional() @Inject(MAT_DIALOG_DATA) public data: any
@@ -160,8 +162,14 @@ this.guardarFechaHoy();
             // this.router.navigate(['/principal'] );
         },
         error => {
-        alert("Error: los datos no son correctos");
-        }
+
+            this._snackBar.open("Error en el ingreso de datos, reintente de nuevo", "Cerrar", {
+              duration: 2000,
+            });
+          
+        
+      
+      }
       );
   }
 
