@@ -77,7 +77,6 @@ import { EditPacienteComponent } from './edit-paciente/edit-paciente.component'
 // Import library module
 import { NgxSpinnerModule } from "ngx-spinner";
 import { MatSnackBarModule } from "@angular/material";
-
 @NgModule({
   declarations: [
     AppComponent,

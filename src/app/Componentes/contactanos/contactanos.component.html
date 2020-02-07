@@ -1,25 +1,30 @@
 <button class="btn btn-outline-light my-2 my-sm-0"  (click)="openDialog()" type="submit"  *ngIf="userProfile?.perfil == undefined ">Iniciar Sesíon</button>
+<p>{{myVar | date: 'shortDate'}}
+</p>
 
 <div class="container-fluid">
 	<div class="row">
+        
 		<div class="col-md-3">
             
-			<div class="jumbotron">
-				<h2>
-                    Especialidades!
-				</h2>
-				<p>
-                    Para obtener mas información acerca de nuestros servicios, llamanos al siguiente numero 0800-222-DENTAL (72583).
-				</p>
-				<p>
-					<a class="btn btn-primary btn-large"  (click)="VotarEspecialista('Odontologo')" >Odontologo</a>
+			<div class="jumbotron"  >
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker1" [(ngModel)]="fechaComienzo" (dateChange)="addEvent('change', $event)"  placeholder="Fecha 1" [formControl]="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+                  
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" [(ngModel)]="fechaFinal" (dateChange)="addEvent('change', $event)"  placeholder="Fecha 2"
+                           [formControl]="serializedDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+                  
+                  <p>
+                    <a class="btn btn-primary btn-large"  (click)="TraerDIASEntreFechas()" >calcular dias</a>
                 </p>
-                <p>
-                        <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('Odontopediatría')" >Odontopediatría</a>
-                    </p>
-                    <p>
-                            <a class="btn btn-primary btn-large"  (click)="VotarEspecialista('Implantólogo')" >Implantólogo</a>
-                        </p>
+                  
 			</div>
 			<ul class="nav nav-pills">
 				<li class="nav-item">
@@ -28,8 +33,9 @@
 				<li class="nav-item">
 					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
 				</li>
-			</ul>
-        </div>
+            </ul>
+            </div>
+
         
         <div class="col-md-3">
             
@@ -89,10 +95,11 @@
                     </ul>
                 </div>
                 <div class="col-md-3">
-            
+                    <h2 value=cantidadTurnosOdontopediatria>     </h2>
                         <div class="jumbotron">
                                 <h2> especialidades mas elegidas
                                                         </h2>
+                                                 
                                 <div class="chart-wrapper">
                                         <canvas baseChart 
                                         [datasets]="barChartData"
@@ -108,6 +115,11 @@
     
 
     //segundo row
+    <h1  > {{cantidadTurnosOdontopediatria}}</h1>
+    <h1  > {{cantidadTurnosOdontologo}}</h1>
+    <h1  > {{cantidadTurnosImplantologo}}</h1>
+
+
     
 </div>
 
