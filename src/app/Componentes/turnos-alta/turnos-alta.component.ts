@@ -304,7 +304,7 @@ resetFields(){
     console.log(this.usuarioactual);
     console.log(this.nombreEspecialistaelegido);
 
-    this.firebaseService.createTurno(this.nombreEspecialistaelegido,this.uidUsuario,value,this.fechatotal,this.makeRandom(),this.email,this.uidProfesional)
+    this.firebaseService.createTurno(this.nombreEspecialistaelegido,this.uidUsuario,value,this.fechatotal,this.makeRandom(),this.email,this.uidProfesional,this.fechatotal)
     .then(
       res => {
         this.resetFields();

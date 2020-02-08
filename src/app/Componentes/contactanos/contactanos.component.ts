@@ -41,6 +41,7 @@ class Turnos {
 
   listaDeFechas =[];
 
+
   constructor(id:String,DiaTurno:String,cliente:String,consultorio:String,especialidad:String,estado:String,horaTurno:String,numTurno:String,profesional:String )
   {
     this.id=id;
@@ -79,7 +80,7 @@ export class ContactanosComponent implements OnInit {
   public pieChartPlugins = [];
   public items:any;
   public events: string[] = [];
-
+   unTurno:Turnos;
   public userProfile: any;
   turnos : any;
   cantidadTurnosOdontopediatria=0;
@@ -89,6 +90,8 @@ export class ContactanosComponent implements OnInit {
   fechatotal;
   exampleForm: FormGroup;
   public listaDeFechas:any;
+  listadoTurnos:Array<Turnos>=[];
+  count=0;
 
 
 //////////////////////////////7input fecha
@@ -177,7 +180,10 @@ serializedDate = new FormControl((new Date()).toISOString());
             horaTurno: e.payload.doc.data()['horaTurno'],
             nombrePaciente: e.payload.doc.data()['nombrePaciente'],
             profesional: e.payload.doc.data()['profesional'],
+            fechaej:e.payload.doc.data()['fechaej'],
             email: e.payload.doc.data()['email'],
+
+         //   this.unTurno = new
            
    
           };
@@ -282,6 +288,10 @@ TraerDIASEntreFechas()
 {
   // Returns an array of dates between the two dates
   this.listaDeFechas =[];
+  var dia:any;
+  this.count=0;
+
+ var  listado:any;
      //  var dates = [],
       var currentDate = this.fechaComienzo,
       addDays = function(days) {
@@ -294,19 +304,50 @@ TraerDIASEntreFechas()
     currentDate = addDays.call(currentDate, 1);
   }
 
+ var listadoFechaTurnos:any=[];
+  this.turnos.forEach(element => {
+    console.log(element.fechaej);
+    dia=element.fechaej;
+    listadoFechaTurnos.push(dia/1000)
 
-// Usage
-// var dates = getDates(new Date(2013,10,22), new Date(2013,11,25));                                                                                                           
-//this.listaDeFechas.forEach(function(date) {
-  this.listaDeFechas.forEach(function(item) {
-    console.log(item);
-    if(true)
-    {
-    console.log(item);
-    }
-  //});
-});
-//console.log( this.listaDeFechas);
+
+  });
+
+  
+  console.log(listadoFechaTurnos);
+
+  this.listaDeFechas.forEach(element => {
+
+   
+    console.log("timesp"+Math.floor(element/ 1000))
+    var elementconvert=Math.floor(element/ 1000)
+
+
+   console.log(dia.seconds); 
+    // if ((dia.seconds - elementconvert) == 0) {
+    //   console.log("equal");
+    //   console.log("existe turno en esta fecha"+element);
+
+    // }
+    // if(listadoFechaTurnos.includes(elementconvert))
+    // {
+    //   count++;
+    //   console.log("entro");
+    // }
+
+    listadoFechaTurnos.forEach(fecha => {
+      if(fecha == elementconvert)
+      {
+        this.count++;
+      }
+      
+    });
+    
+  });
+
+  
+
+
 
 
 }
