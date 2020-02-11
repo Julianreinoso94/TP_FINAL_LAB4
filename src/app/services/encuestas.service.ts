@@ -9,7 +9,39 @@ export class EncuestasService {
   constructor(public db: AngularFirestore) {}
 
 
-  
+  createEncuestaComentarios(value){
+    return this.db.collection('Comentarios').add({
+      likes:0,
+      dislikes:0,
+      descripcion:value.descripcion,
+      puntajeClinica:value.clinica,
+      puntajeEspecialista:value.especialista
+    });
+  }
+
+  updateComentariosLikes(userKey, value){
+    var count=0;
+    count= value+1
+
+    this.db.doc('Comentarios/' + userKey).update({likes: count})
+
+    // value.nameToSearch = value.name.toLowerCase();
+    // return this.db.collection('Comentarios').doc(userKey).set(value);
+  }
+  updateComentariosdisLikes(userKey, value){
+   var count=0;
+    count= value-1
+
+    this.db.doc('Comentarios/' + userKey).update({dislikes: count})
+
+    // value.nameToSearch = value.name.toLowerCase();
+    // return this.db.collection('Comentarios').doc(userKey).set(value);
+  }
+
+
+  getComentarios(){
+    return this.db.collection('Comentarios').snapshotChanges();
+  }
 
   /////////////////////////////////////////////////////////////////////////////
   // Podrá ver, estadísticas:

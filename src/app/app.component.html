@@ -255,6 +255,7 @@
 							<ul class="nav flex-column">
 							<li class="nav-item">
 							  <a class="nav-link " routerLink="/SalaDeEspera">Sala de Espera</a>
+							  routerLink="/ListadoComentarios"
 							</li>
 						
 						  </ul>
@@ -290,7 +291,8 @@
 		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
 		<button *ngIf="Logueado" class="btn btn-outline-light my-2 my-sm-0" href="#"  (click)="logout()" style="font-weight:bold;background-color: #ff0000;color:whitesmoke"  >  <ion-icon name="md-log-out"></ion-icon>
 		Salir	</button>
-	
+		<button class="btn btn-outline-light my-2 my-sm-0" href="#"   							  routerLink="/ListadoComentarios"		style="font-weight:bold;background-color: #26ff00;color:whitesmoke"  >  <ion-icon name="md-log-out"></ion-icon>
+			Comentarios	</button>
 		<!-- <button class="btn btn-outline-light my-2 my-sm-0"   (click)="Detectar()" style="background-color: #00ff2a;color:whitesmoke" >Detectar</button> -->
 		<!-- <button class="btn btn-outline-light my-2 my-sm-0"   (click)="Detectar()" style="font-weight:bold;background-color: #ff0000;color:whitesmoke" >  <ion-icon name="md-log-out"></ion-icon>
 			Detectar</button> -->

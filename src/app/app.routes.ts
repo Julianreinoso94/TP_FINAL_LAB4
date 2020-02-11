@@ -36,6 +36,7 @@ import { TurnosRecepcionComponent } from './Componentes/turnos-recepcion/turnos-
 import { MisTurnosComponent } from './Componentes/mis-turnos/mis-turnos.component'
 import { TurnosAltaEspecialistaComponent } from './Componentes/turnos-alta-especialista/turnos-alta-especialista.component'
 import { EditPacienteComponent } from './edit-paciente/edit-paciente.component'
+import { ListadocomentariosComponent } from './listadocomentarios/listadocomentarios.component';
 
 
 
@@ -76,7 +77,10 @@ export const rootRouterConfig: Routes = [
   { path: 'instalaciones', component: InstalacionComponent ,canActivate:[AuthGuard]},
   { path: 'TurnosRecepcion', component: TurnosRecepcionComponent ,canActivate:[AuthGuard]},
   { path: 'misTurnos', component: MisTurnosComponent ,canActivate:[AuthGuard]},
-  { path: 'TurnosEspecialista', component: TurnosAltaEspecialistaComponent ,canActivate:[AuthGuard]}
+  { path: 'TurnosEspecialista', component: TurnosAltaEspecialistaComponent ,canActivate:[AuthGuard]},
+  { path: 'ListadoComentarios', component: ListadocomentariosComponent }
+
+
 
 
 

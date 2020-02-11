@@ -1,0 +1,84 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <h1 class="breadcrumb-item active" aria-current="page">Comentarios De Nuestros Clientes</h1>
+
+    </ol>
+  </nav>
+
+
+<div class="row" *ngFor="let item of listadoComentarios" >
+  
+    <div class="col col-md-6 text-col" style="margin-left: 122px;" style="background-color:light blue; margin-right:12px;margin-top: 18px;">
+       
+      <h5 class="mb-1"> Comentario</h5>
+      <small>{{item.descripcion}}</small>
+
+      <div class="col col-md-1 image-col">
+      
+        <small>NO ME GUSTAN</small>
+        <small>{{item.likes}}</small> 
+
+
+      </div>
+      <div class="col col-md-2 image-col">
+    
+
+  </div>
+
+
+    </div>
+    <div class="col col-md-3 image-col">
+"        <button class="btn btn-outline-light my-2 my-sm-0" href="#"  (click)="dislike(item)" style="font-weight:bold;background-color: #ff0000;color:whitesmoke"  >  <ion-icon name="md-log-out"></ion-icon>
+"            -1	</button>
+            <button class="btn btn-outline-light my-2 my-sm-0" (click)="like(item)" 	style="font-weight:bold;background-color: #26ff00;color:whitesmoke"  >  <ion-icon name="md-log-out"></ion-icon>
+                +1	</button>
+      </div>
+  
+    <div class="col col-md-3 actions-col">
+        <h2>Likes</h2>
+        {{item.likes}}
+      <!-- <button class="btn btn-outline-primary action"  style="background-color: green;"   (click)="viewDetails(item)" type="button">
+        <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
+        Elegir
+      </button> -->
+    
+    
+    </div>
+  </div>
+
+  <div style="background-color: red;"class="row" *ngFor="let item of listadoComentarios" >
+  
+    <div class="col col-md-6 text-col" style="margin-left: 122px;" style="background-color:light blue; margin-right:12px;margin-top: 18px;">
+       
+      <h5 class="mb-1"> Peores Comentario</h5>
+      <small>{{item.descripcion}}</small>
+
+      <div class="col col-md-1 image-col">
+      
+        <small>NO ME GUSTAN</small>
+        <small>{{item.likes}}</small> 
+
+
+      </div>
+      <div class="col col-md-2 image-col">
+    
+
+  </div>
+
+
+    </div>
+    <div class="col col-md-3 image-col">
+"       
+      </div>
+  
+    <div class="col col-md-3 actions-col">
+        <h2>Likes</h2>
+        {{item.likes}}
+      <!-- <button class="btn btn-outline-primary action"  style="background-color: green;"   (click)="viewDetails(item)" type="button">
+        <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
+        Elegir
+      </button> -->
+    
+    
+    </div>
+  </div>
