@@ -95,7 +95,7 @@ export class HabilitarTurnosRecepcionComponent implements OnInit {
   cancelarTurno(codigo){
     console.log(codigo);
 
-    this.firebaseService.cambiarEstado(codigo,"Cancelado");
+    this.firebaseService.cambiarEstado(codigo.payload.doc.id,"Cancelado");
   }
 
 
