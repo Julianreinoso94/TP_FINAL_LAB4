@@ -23,6 +23,21 @@ import { Observable } from 'rxjs';
 import {ProfileService} from "src/app/services/profile.service"
 
 
+import {
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+
+import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
+
+export const MY_FORMATS = {
+  display: {
+    dateInput: 'DD-MM-YYYY'
+  },
+};
+
 class profesional {
   age: String;
   avatar: String;
@@ -58,7 +73,12 @@ class profesional {
 @Component({
   selector: 'app-turnos-alta',
   templateUrl: './turnos-alta.component.html',
-  styleUrls: ['./turnos-alta.component.css']
+  styleUrls: ['./turnos-alta.component.css'],
+  providers: [
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
 })
 
 
@@ -260,29 +280,6 @@ resetFields(){
 
 
 
-//   validation_messages = {
-//    'nombrePaciente': [
-//      { type: 'required', message: 'Name is required.' }
-//    ],
-//    'apellidoPaciente': [
-//      { type: 'required', message: 'Surname is required.' }
-//    ],
-//    'age': [
-//      { type: 'required', message: 'Age is required.' },
-//    ]
-//    ,
-   
-//    'especialidad': [
-//     { type: 'required', message: 'La Especialidad es requirida.' },
-//   ]
-//  };
-
- 
-
- 
-
-
-
   
 
   ////////////////////////imagen
@@ -324,31 +321,31 @@ resetFields(){
   }
 
 
-  
-
-  // getData(){
-  //   this.firebaseService.getespecialistas()
-  //   .subscribe(result => {
-  //     this.listadoespecialistas = result;
-  //     this.age_filtered_items = result;
-  //     this.name_filtered_items = result;
-  //   })
-  // }
-
- 
 
   
  eventoCalendario(type: string, event: MatDatepickerInputEvent<Date>) {
    
   //this.datosCliente();
   this.mostrarListado=true;
+  this.mostrarListadoFinal=false;
   this.events.push(`${event.value}`);
 
  var fecha= this.events.toString();
+ var fechavalidacion = parseInt(fecha);
+var fechaHoy = parseInt( Date.now().toString())
+
+//  alert(fechavalidacion);
+//  alert(fechaHoy);
+
+ if(fechavalidacion < fechaHoy)
+ {
+  alert("la fecha debe ser mayor");
+ }
+
  this.fechatotal=fecha;
  //console.log("esta es l fecha"+fecha);
- var valor=fecha.split(" ",1);
-
+ //var fechaAdate =Date.parse(this.event);
+ var valor=event.value.toString().split(" ",1);
  var color: string;
 
  
@@ -400,7 +397,8 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
 
         
        this.filtrarlistaporespecialidad.forEach(element => {
-       
+       console.log(element.diasDeTrabajo)
+       console.log(dia);
          if(element.diasDeTrabajo == dia)
          {
             this.profesional = new profesional(element.age,element.avatar,element.DiasDeTrabajo,element.especialidad,element.name,element.uid);
@@ -440,7 +438,7 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
 
             this.listadoespecialistasconTurnos=[];
 
-           // alert(this.especialidades);
+
 
 
             //////////////////////////primer foreach
@@ -460,18 +458,13 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
                
               }
            });
-          //  console.log("listadoespecialistas sin turnos");
-          //  console.log(  this.listadoespecialistasconTurnos);
-
 
               //ultimo foreach
 
               this.listadoespecialistasconTurnos.forEach(element => {///////////////////////////primer foreach
                
                 this.listadoespecialistaspordia.forEach(item => {
-        //   console.log(item.name);
-        //   console.log("==");
-        // console.log(element);
+
                 if(item.name ==  element)
                 {
                   this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.name,item.uid);
