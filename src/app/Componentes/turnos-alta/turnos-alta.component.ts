@@ -117,6 +117,7 @@ public fotoespecialistElegido:String;
   turnos : any;
   ageValue: number = 0;
   searchValue: string = "";
+  fechavalidacion:any;
   
   
   listadoespecialistas: Array<profesional>;
@@ -188,7 +189,7 @@ public email:String;
      this.turnos = data.map(e => {
        return {
          id: e.payload.doc.id,
-         DiaTurno: e.payload.doc.data()['DiaTurno'],
+         DiaTurno: e.payload.doc.data()['fechaej'],
          apellidoPaciente: e.payload.doc.data()['apellidoPaciente'],
          horaTurno: e.payload.doc.data()['horaTurno'],
          nombrePaciente: e.payload.doc.data()['nombrePaciente'],
@@ -331,13 +332,13 @@ resetFields(){
   this.events.push(`${event.value}`);
 
  var fecha= this.events.toString();
- var fechavalidacion = parseInt(fecha);
+this.fechavalidacion = parseInt(fecha);
 var fechaHoy = parseInt( Date.now().toString())
 
 //  alert(fechavalidacion);
 //  alert(fechaHoy);
 
- if(fechavalidacion < fechaHoy)
+ if(this.fechavalidacion < fechaHoy)
  {
   alert("la fecha debe ser mayor");
  }
@@ -427,60 +428,6 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
 
 
 
-
-
-          seleccionandoHoraDeturnoOLD()//AL CAMBIAR EL HORARIO INGRESA ACA SELECTHORARIO
-          {
-           // this.datosCliente();
-
-            this.mostrarbotonSeleccionar=true;
-            this.mostrarListadoFinal=true;
-
-            this.listadoespecialistasconTurnos=[];
-
-
-
-
-            //////////////////////////primer foreach
-
-        
-     this.turnos.forEach(element => {
-          
-
-              if(element.horaTurno == this.horaTurno && element.DiaTurno == this.DiaTurno.toString())
-              {
-             // console.log("ya existe un turno en esa fecha");
-              }
-              else
-              {
-                //ESPECIALISTA EN TURNO LIBRE
-                this.listadoespecialistasconTurnos.push( element.profesional);//
-               
-              }
-           });
-
-              //ultimo foreach
-
-              this.listadoespecialistasconTurnos.forEach(element => {///////////////////////////primer foreach
-               
-                this.listadoespecialistaspordia.forEach(item => {
-
-                if(item.name ==  element)
-                {
-                  this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.name,item.uid);
-             //     this.listadoespecialistaspordia.push(this.profesional);
-                  this.listadoFinal.push(this.profesional);
-                  console.log("agregoAllistadofinal");
-                }
-             
-
-              });
-             });
-
-
-          }
-
-
           seleccionandoHoraDeturno()//AL CAMBIAR EL HORARIO INGRESA ACA SELECTHORARIO
           {
             this.mostrarListado=false;
@@ -490,37 +437,28 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
             this.mostrarbotonSeleccionar=true;
             this.mostrarListadoFinal=true;
 
-      this.listadoespecialistasconTurnos=[];
-            //this.listadoespecialistasconTurnos;
-            // console.log("this.listadoespecialistasconTurnos");
-
-            // console.log(this.listadoespecialistasconTurnos);
+            this.listadoespecialistasconTurnos=[];
+        
             console.log(this.listadoespecialistasconTurnos);
 
             this.listadoespecialistaspordia.forEach(element => {
-              this.turnos.forEach(item => {///////////////////////////primer foreach
+              this.turnos.forEach(item => 
+             {///////////////////////////primer foreach
 
-            
-              
-   
-
-              if(item.horaTurno == this.horaTurno && item.DiaTurno == this.DiaTurno.toString() && element.name == item.profesional ) 
-              {
-                this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.profesiona,item.uid);
-                //     this.listadoespecialistaspordia.push(this.profesional);
-                  //   this.listadoFinal.push(this.profesional);
-
-                this.listadoespecialistasconTurnos.push(this.profesional);         
-                   }
-              else
-              {
-                //ESPECIALISTA EN TURNO LIBRE
-               
-              }
-           });
+                    if(item.horaTurno == this.horaTurno && item.DiaTurno == this.fechavalidacion && element.name == item.profesional ) 
+                    {
+                     // this.profesional = new profesional(item.age,item.avatar,item.DiasDeTrabajo,item.especialidad,item.profesiona,item.uid);
+                      this.profesional = new profesional(element.age,element.avatar,element.DiasDeTrabajo,element.especialidad,element.name,element.uid )
+                      this.listadoespecialistasconTurnos.push(this.profesional);         
+                    }
+                    else
+                    {
+                      //ESPECIALISTA EN TURNO LIBRE
+                    
+                    }
+             });
           });
 
-        //  console.log(this.listadoespecialistasconTurnos);
 
           //SEGUNDO FOR TOMA LOS ESPECIALISTAS POR DIA QUE NO ESTAN RESERVADOS
           console.log(this.listadoespecialistaspordia);
@@ -529,9 +467,6 @@ especialistaPorDia (dia: String)////////////////////////////////////////////////
           this.listadoespecialistaspordia.forEach(element => {
               this.listadoespecialistasconTurnos.forEach(item => {///////////////////////////primer foreach
 
-            
-              
-   
               console.log(item.name);
               console.log(element.name);
               if(element.name == item.name ) 
