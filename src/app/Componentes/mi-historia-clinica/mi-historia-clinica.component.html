@@ -1,0 +1,44 @@
+
+  <div class="list-group users-list">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">Mi Historia Clinica </li>
+        </ol>
+      </nav>
+      
+
+  <div *ngFor="let item of listadomisTurnos" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="row">
+
+      <div class="col col-md-12 text-col">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Datos Personales</li>
+              </ol>
+            </nav>
+        <h5 class="mb-1"> Dia Del turno</h5>
+        <h3>{{item.DiaTurno}}</h3>
+      
+    
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">  Tratamiento / Observaciones</li>
+          </ol>
+          <h3>{{item.descripcion}}</h3>
+        </nav>
+  
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Información del Profesional</li>
+          </ol>
+          <h5 class="mb-1">Profesional A cargo </h5>
+          <h3>{{item.profesional}}</h3>
+        </nav>
+       
+      </div>
+      <div class="col col-md-8 text-col">
+     
+      </div>
+    </div>
+  </div>
+</div>

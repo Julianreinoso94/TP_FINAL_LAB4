@@ -78,6 +78,7 @@ import { EditPacienteComponent } from './edit-paciente/edit-paciente.component'
 import { NgxSpinnerModule } from "ngx-spinner";
 import { MatSnackBarModule } from "@angular/material";
 import { ListadocomentariosComponent } from './listadocomentarios/listadocomentarios.component';
+import { MiHistoriaClinicaComponent } from './Componentes/mi-historia-clinica/mi-historia-clinica.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -121,7 +122,8 @@ import { ListadocomentariosComponent } from './listadocomentarios/listadocomenta
     MisTurnosComponent,
     TurnosAltaEspecialistaComponent,
     EditPacienteComponent,
-    ListadocomentariosComponent
+    ListadocomentariosComponent,
+    MiHistoriaClinicaComponent
   ],
   entryComponents: [AvatarDialogComponent],
   imports: [

@@ -37,6 +37,7 @@ export class EditEspecialistaComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(routeData => {
       let data = routeData['data'];
+      console.log(data);
       if (data) {
         this.item = data.payload.data();
         this.item.id = data.payload.id;
@@ -46,6 +47,7 @@ export class EditEspecialistaComponent implements OnInit {
   }
 
   createForm() {
+     console.log ("3nro");
     this.exampleForm = this.fb.group({
       name: [this.item.name, Validators.required],
       surname: [this.item.surname, Validators.required],

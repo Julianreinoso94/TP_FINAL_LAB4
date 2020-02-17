@@ -21,6 +21,8 @@ export class HistoriaClinicaService {
   getHistoriaClinica(){
     return this.db.collection('historiaClinica').snapshotChanges();
   }
+
+  
   getespecialistas(){
     return this.db.collection('turnos').snapshotChanges();
   }
