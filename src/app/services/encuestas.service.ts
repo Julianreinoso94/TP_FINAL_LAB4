@@ -20,22 +20,18 @@ export class EncuestasService {
   }
 
   updateComentariosLikes(userKey, value){
-    var count=0;
-    count= value+1
+ 
 
-    this.db.doc('Comentarios/' + userKey).update({likes: count})
+    this.db.doc('Comentarios/' + userKey).update({likes: value})
 
     // value.nameToSearch = value.name.toLowerCase();
     // return this.db.collection('Comentarios').doc(userKey).set(value);
   }
   updateComentariosdisLikes(userKey, value){
-   var count=0;
-    count= value-1
+ 
 
-    this.db.doc('Comentarios/' + userKey).update({dislikes: count})
+    this.db.doc('Comentarios/' + userKey).update({dislikes: value})
 
-    // value.nameToSearch = value.name.toLowerCase();
-    // return this.db.collection('Comentarios').doc(userKey).set(value);
   }
 
 

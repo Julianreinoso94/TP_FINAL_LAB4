@@ -39,13 +39,17 @@ export class ListadocomentariosComponent implements OnInit {
 
 dislike(item)
 {
-  alert("a");
- this.firebaseService.updateComentariosdisLikes(item.id,item.likes);
+  var count=0;
+  count= item.dislikes+1
+ this.firebaseService.updateComentariosdisLikes(item.id,count);
 }
 
 like(item)
 {
-  this.firebaseService.updateComentariosLikes(item.id,item.dislikes);
+  console.log(item);
+  var count=0;
+   count= item.likes+1
+  this.firebaseService.updateComentariosLikes(item.id,count);
 
 }
 

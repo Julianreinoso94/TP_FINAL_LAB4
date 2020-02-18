@@ -1,84 +1,54 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <h1 class="breadcrumb-item active" aria-current="page">Comentarios De Nuestros Clientes</h1>
+        <h1 class="breadcrumb-item active" style="margin-left:2px" aria-current="page">COMENTARIOS</h1>
 
     </ol>
   </nav>
 
 
-<div class="row" *ngFor="let item of listadoComentarios" >
-  
-    <div class="col col-md-6 text-col" style="margin-left: 122px;" style="background-color:light blue; margin-right:12px;margin-top: 18px;">
-       
-      <h5 class="mb-1"> Comentario</h5>
-      <small>{{item.descripcion}}</small>
+  <div class="list-group users-list">
 
-      <div class="col col-md-1 image-col">
       
-        <small>NO ME GUSTAN</small>
-        <small>{{item.likes}}</small> 
 
+  <div *ngFor="let item of listadoComentarios" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="row">
 
-      </div>
-      <div class="col col-md-2 image-col">
-    
-
-  </div>
-
-
-    </div>
-    <div class="col col-md-3 image-col">
-"        <button class="btn btn-outline-light my-2 my-sm-0" href="#"  (click)="dislike(item)" style="font-weight:bold;background-color: #ff0000;color:whitesmoke"  >  <ion-icon name="md-log-out"></ion-icon>
-"            -1	</button>
-            <button class="btn btn-outline-light my-2 my-sm-0" (click)="like(item)" 	style="font-weight:bold;background-color: #26ff00;color:whitesmoke"  >  <ion-icon name="md-log-out"></ion-icon>
-                +1	</button>
-      </div>
-  
-    <div class="col col-md-3 actions-col">
-        <h2>Likes</h2>
-        {{item.likes}}
-      <!-- <button class="btn btn-outline-primary action"  style="background-color: green;"   (click)="viewDetails(item)" type="button">
-        <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
-        Elegir
-      </button> -->
-    
-    
-    </div>
-  </div>
-
-  <div style="background-color: red;"class="row" *ngFor="let item of listadoComentarios" >
-  
-    <div class="col col-md-6 text-col" style="margin-left: 122px;" style="background-color:light blue; margin-right:12px;margin-top: 18px;">
-       
-      <h5 class="mb-1"> Peores Comentario</h5>
-      <small>{{item.descripcion}}</small>
-
-      <div class="col col-md-1 image-col">
+      <div class="col col-md-12 text-col">
+        <div class="row" style="background-color: #e9ecef;">    
+          <div class="col col-md-10 text-col">
+             <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Comentario</li>
+              </ol>
+            </nav>
+            </div>
+            <div class="col col-md-1 text-col">
+              <h3 style="color: green;font-weight: bold; ">+{{item.likes}}</h3>
+             
+            </div>
+            <div class="col col-md-1 text-col">
+              <h3 style="color: red;font-weight: bold; ">-{{item.dislikes}}</h3>
+            </div>
+        </div>
+ 
+        <h3>{{item.descripcion}}</h3>
       
-        <small>NO ME GUSTAN</small>
-        <small>{{item.likes}}</small> 
-
-
-      </div>
-      <div class="col col-md-2 image-col">
     
-
-  </div>
-
-
-    </div>
-    <div class="col col-md-3 image-col">
-"       
-      </div>
   
-    <div class="col col-md-3 actions-col">
-        <h2>Likes</h2>
-        {{item.likes}}
-      <!-- <button class="btn btn-outline-primary action"  style="background-color: green;"   (click)="viewDetails(item)" type="button">
-        <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
-        Elegir
-      </button> -->
-    
-    
+        <nav aria-label="breadcrumb">
+          
+			<button (click)="like(item)"    style="  color: white;font-weight: bold;font-size: 33px;   border-radius: 8px !important;padding: .84rem 2.14rem; width: 100%;background: linear-gradient(40deg,#21cf29,#1acf38)!important;" mdbBtn gradient="blue" block="true" rounded="true" class="z-depth-1a waves-light"
+        mdbWavesEffect><ion-icon class="icon" name="md-checkmark-circle" ></ion-icon>+1
+      </button>
+      <button (click)="dislike(item)"  style="  color: white;font-weight: bold;font-size: 33px;   border-radius: 8px !important;padding: .84rem 2.14rem; width: 100%;background: linear-gradient(40deg,#e75b24,#ff0000)!important;" mdbBtn gradient="blue" block="true" rounded="true" class="z-depth-1a waves-light"
+      mdbWavesEffect><ion-icon class="icon" name="md-checkmark-circle" ></ion-icon> -1
+    </button>
+        </nav>
+       
+      </div>
+      <div class="col col-md-8 text-col">
+     
+      </div>
     </div>
   </div>
+</div>
