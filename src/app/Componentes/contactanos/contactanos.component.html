@@ -1,3 +1,9 @@
+
+refacorizando encuestas
+
+
+
+
 <button class="btn btn-outline-light my-2 my-sm-0"  (click)="openDialog()" type="submit"  *ngIf="userProfile?.perfil == undefined ">Iniciar Sesíon</button>
 <!-- <p>{{myVar | date: 'shortDate'}} -->
 
@@ -163,14 +169,14 @@
                                         <mat-card>  
                                           <table *ngFor="let item of items"  id="contentToConvert">  
                                               <tr>  
-                                                <th>Legajo</th>  
-                                                <th>Nombre</th>  
-                                                <th>Especialidad</th>  
+                                                <!-- <th>Legajo</th>   -->
+                                                <th>Ingresos</th>  
+                                                <!-- <th>Especialidad</th>   -->
                                               </tr>  
                                               <tr>  
                                                 <td>{{item.fecha}}</td>  
                                                 <td>{{item.payload.doc.data().fecha}}</td>  
-                                                <td>coco 1</td>  
+                                                <!-- <td>coco 1</td>   -->
                                               </tr>  
                                              
                                             </table>  

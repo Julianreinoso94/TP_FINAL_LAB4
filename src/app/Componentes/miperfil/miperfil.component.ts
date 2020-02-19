@@ -23,26 +23,44 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
+
+class profile {
+
+  email:any;
+  name:any;
+  uid:string;
+
+
+constructor(email:any,name:string)
+  {
+    this.email=email;
+    this.name=name;
+
+
+
+  }
+}
 class HistoriaClinica {
 
-  diaTurno: String;
-  profesional:String;
-  uidPaciente:String;
-  descripcion:String;
-  especialidad:String;
+  age:any;
+  avatar:string;
+  name:string;
+  surname:string;
+  object:any;
 
   // ingresarperfil=false;
 
 
-  constructor(diaTurno:String,uidPaciente:String,descripcion:String,especialidad:String,profesional:String )
+constructor(age:any,avatar:string,name:string,surname:string)
   {
-    this.diaTurno=diaTurno;
-    this.descripcion=descripcion;
-    this.profesional=profesional;
-    this.uidPaciente=uidPaciente;
+    this.age=age;
+    this.avatar=avatar;
+    this.name= name;
+    this.surname=surname;
 
 
   }
+  
 }
 
 
@@ -58,7 +76,7 @@ export class MiperfilComponent implements OnInit {
   public perfil:string;
   public currentUser: firebase.User;
   public  usuarioSeleccionado:User;
-  public historial:any;
+  public miprofileData:any;
   public listadoHistorial:any;
 
 
@@ -74,7 +92,10 @@ export class MiperfilComponent implements OnInit {
   usrName = '';
   Logueado= false;
   historias : any;
-
+  miPerfilObjet:any
+  items:any;
+  
+  name_filtered_items: Array<any>;
 
   constructor( private spinnerService: NgxSpinnerService,
     private AFauth : AngularFireAuth, public historiaservice:HistoriaClinicaService,public auth:AuthService, private router : Router, private db : AngularFirestore, private profileService: ProfileService,    public dialog: MatDialog
@@ -134,22 +155,56 @@ getData(){
 
   this.listadoHistorial= [];
 
+  console.log("adad"+this.uidUsuario)
+
+
+
   this.historiaservice.getHistoriaClinica().subscribe(data => {
-    
+   
+    this.profileService.getMiPerfil(this.uidUsuario)
+    .subscribe(
+      valor => {
+        this.miprofileData = new profile(valor.payload.data()['email'],valor.payload.data()['name'])
+//  this.miprofileData = new profile(valor.payload.data()['age'],valor.payload.data()['avatar'],valor.payload.data()['name'],valor.payload.data()['surname']);
+        //this.miPerfilObjet=data;
+      }
+    );
+    this.miprofileData.forEach(element => {
+      this.email=element.email;
+      
+    });
+    //segundo metodo
+    console.log(this.miprofileData);
+
+    this.profileService.getPerfilCompleto(this.email)
+    .subscribe(result => {
+     this.name_filtered_items = result;
+
+    })
+
+
    data.forEach(e => {
+    console.log("adad"+this.uidUsuario)
 
     if( this.uidUsuario == e.payload.doc.data()['uidPaciente'] )
     {
-    this.historial = new HistoriaClinica( e.payload.doc.data()['DiaTurno'],e.payload.doc.data()['uidPaciente'],e.payload.doc.data()['descripcion'],e.payload.doc.data()['especialidad'],e.payload.doc.data()['profesional']);
+  //  this.historial = new HistoriaClinica( e.payload.doc.data()['DiaTurno'],e.payload.doc.data()['uidPaciente'],e.payload.doc.data()['descripcion'],e.payload.doc.data()['especialidad'],e.payload.doc.data()['profesional']);
   
-        this.listadoHistorial.push(this.historial);      
+       // this.listadoHistorial.push(this.historial);      
     }   
 
     })
-    console.log(this.listadoHistorial);
+    //console.log(this.listadoHistorial);
   });
+
+ // console.log(this.miprofileData);
 }
 
+mostrar()
+{
+  console.log(this.miprofileData);
+  console.log( this.name_filtered_items)
+}
 setUsrName(){
   // let usr = this.auth.getCurrentUser();
     //this.usrName = usr.email;

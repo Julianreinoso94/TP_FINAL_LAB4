@@ -139,7 +139,7 @@ export class AuthService {
  
   
           this.db.collection('userProfile').doc(uid).set({
-            //name : name,
+            name : value.name,
             uid : uid,
             //nombre: nombre,
             perfil: "paciente",
