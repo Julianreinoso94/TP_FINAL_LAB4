@@ -1,7 +1,6 @@
 # TP BUENA SONRISA
 
 
-**Please support this project by simply putting a Github star ⭐. 🙏 Thanks**
 
 ## REQUERIMIENTOS
 
