@@ -10,9 +10,14 @@ import html2canvas from 'html2canvas';
 
 import { NgxSpinnerService } from "ngx-spinner";
 
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material';
+import { Resolve, ActivatedRouteSnapshot } from "@angular/router";
+
 
 class profesional {
-  age: String;
+  age: any;
   avatar: String;
   DiasDeTrabajo: String;
   especialidad: String;
@@ -54,14 +59,23 @@ export class ListadoEspecialistasComponent  implements OnInit {
   age_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
   profesional:profesional;
-  profesionales : any;
+   profesionales: any;
+  detalles=false;
+  profesional1:any;
+  exampleForm: FormGroup;
+  item: any;
+  age:number;
+  name:any;
+  surname:any;
+  avatar:any;
 
   exportAsConfig: ExportAsConfig = {
     type: 'pdf', // the type you want to download
     elementId: 'myTableElementId', // the id of html/table element
   }
 
-  constructor(private spinnerService: NgxSpinnerService,
+  constructor(private spinnerService: NgxSpinnerService,    private fb: FormBuilder,
+
     public firebaseService: FirebaseService,private exportAsService: ExportAsService,
     private router: Router,private servicioProfesionales: abmProfesionales
   ) {
@@ -84,7 +98,17 @@ export class ListadoEspecialistasComponent  implements OnInit {
 
 
    }
-
+   validation_messages = {
+    'name': [
+      { type: 'required', message: 'Name is required.' }
+    ],
+    'surname': [
+      { type: 'required', message: 'Surname is required.' }
+    ],
+    'age': [
+      { type: 'required', message: 'Age is required.' },
+    ]
+  };
    
   ngOnInit() {
     this.spinner();
@@ -112,10 +136,7 @@ export class ListadoEspecialistasComponent  implements OnInit {
     })
   }
 
-  viewDetails(item){
-    console.log( item.payload.doc.id);
-    this.router.navigate(['/detailsEspecialista/'+ item.payload.doc.id]);
-  }
+
 
   capitalizeFirstLetter(value){
     return value.charAt(0).toUpperCase() + value.slice(1);
@@ -168,6 +189,7 @@ export class ListadoEspecialistasComponent  implements OnInit {
         return {
           id: e.payload.doc.id,
           name: e.payload.doc.data()['name'],
+          age: e.payload.doc.data()['age'],
           avatar: e.payload.doc.data()['avatar'],
           especialidad: e.payload.doc.data()['especialidad'],
           horario: e.payload.doc.data()['horario'],
@@ -194,6 +216,14 @@ export class ListadoEspecialistasComponent  implements OnInit {
     this.data.push( this.profesional);
     
   });
+  }
+
+  createForm() {
+    this.exampleForm = this.fb.group({
+      name: ["this.item.name", Validators.required],
+      surname: ["this.item.surname", Validators.required],
+      age: ["this.item.age", Validators.required]
+    });
   }
 
 
@@ -225,6 +255,53 @@ export class ListadoEspecialistasComponent  implements OnInit {
 
 
 
+  onSubmit(value){
+    value.avatar = this.item.avatar;
+    value.age = Number(value.age);
+    this.firebaseService.updateUser(this.item.id, value)
+    .then(
+      res => {
+        this.router.navigate(['/home']);
+      }
+    )
+  }
+
+  delete(){
+    this.firebaseService.deleteUser(this.item.id)
+    .then(
+      res => {
+        this.router.navigate(['/home']);
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  cancel(){
+    this.router.navigate(['/home']);
+  }
    
+  viewDetails(id){
+    console.log(id)
+
+    this.profesionales.forEach(element => {
+      if( element.id == id) 
+      {
+        this.name=element.name;
+        this.age=element.age;
+        this.avatar=element.avatar;
+        this.surname=element.surname;
+           console.log(element);
+      }
+    });
+
+
+    this.createForm();
+    this.detalles=true;
+
+  }
+
+
 
 }

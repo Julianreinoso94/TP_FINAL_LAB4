@@ -4,6 +4,7 @@ import {LoginComponent} from 'src/app/Componentes/login/login.component'
 import { NewUserComponent } from './new-user/new-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditUserResolver } from './edit-user/edit-user.resolver';
+
 import { AltasComponent } from './Componentes/altas/altas.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ListadoEspecialistasComponent } from './Componentes/listado-especialistas/listado-especialistas.component';
@@ -51,7 +52,7 @@ export const rootRouterConfig: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'new-user', component: NewUserComponent  ,canActivate:[AuthGuard]},
   { path: 'details/:id', component: EditEspecialistaComponent, resolve:{data : EditUserResolver}  ,canActivate:[AuthGuard]},
-  { path: 'detailsEspecialista/:id', component: EditEspecialistaComponent, resolve:{data : EditUserResolver}  ,canActivate:[AuthGuard]},
+  { path: 'detailsEspecialista/:id', component: EditPacienteComponent, resolve:{data : EditUserResolver}  ,canActivate:[AuthGuard]},
   { path: 'listadoespecialistas', component: ListadoEspecialistasComponent  ,canActivate:[AuthGuard]},
   { path: 'ModificarProfesional', component: ModificarProfesionalComponent  ,canActivate:[AuthGuard]},
   { path: 'TurnosAlta', component: TurnosAltaComponent  ,canActivate:[AuthGuard]},

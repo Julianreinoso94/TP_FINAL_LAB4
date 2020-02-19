@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { AvatarDialogComponent } from "../avatar-dialog/avatar-dialog.component";
+import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot } from "@angular/router";
 
 @Component({
   selector: 'app-edit-paciente',
@@ -32,43 +34,65 @@ export class EditPacienteComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     public dialog: MatDialog
-  ) {
-
-    this.exampleForm = this.fb.group({
-      name: ["this.item.name", Validators.required],
-      surname: ["this.item.surname", Validators.required],
-      age: ["this.item.age", Validators.required]
-    });
-   }
+  ) { }
 
   ngOnInit() {
+    let userId = this.route.snapshot.paramMap.get('id');
 
-    this.route.data.subscribe(routeData => {
-
-      let data = routeData['data'];
-      console.log(data);
-      this.createForm();
-
-      if (data) {
+    this.firebaseService.getProfesionales(userId)
+    .subscribe(
+      data => {
         this.item = data.payload.data();
         this.item.id = data.payload.id;
-        this.createForm();
+
+        //resolve(data);
       }
-    })
+    );
+    console.log(this.item);
   }
+
+  //   this.route.data.subscribe(routeData => {
+  //     let data = routeData['data'];
+  //     if (data) {
+  //       this.item = data.payload.data();
+  //       this.item.id = data.payload.id;
+  //       this.createForm();
+  //     }
+  //   })
+  // }
+  
+  
+  // resolve( ) {
+  //   return new Promise((resolve, reject) => {
+
+  
+  // }
 
   createForm() {
     this.exampleForm = this.fb.group({
-      name: ["this.item.name", Validators.required],
-      surname: ["this.item.surname", Validators.required],
-      age: ["this.item.age", Validators.required]
+      name: [this.item.name, Validators.required],
+      surname: [this.item.surname, Validators.required],
+      age: [this.item.age, Validators.required]
     });
-    }
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(AvatarDialogComponent, {
+      height: '400px',
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.item.avatar = result.link;
+      }
+    });
+  }
 
   onSubmit(value){
     value.avatar = this.item.avatar;
     value.age = Number(value.age);
-    this.firebaseService.updateProfesional(this.item.id, value)
+    this.firebaseService.updateUser(this.item.id, value)
     .then(
       res => {
         this.router.navigate(['/home']);
@@ -77,7 +101,7 @@ export class EditPacienteComponent implements OnInit {
   }
 
   delete(){
-    this.firebaseService.deleteProfesional(this.item.id)
+    this.firebaseService.deleteUser(this.item.id)
     .then(
       res => {
         this.router.navigate(['/home']);
@@ -91,4 +115,5 @@ export class EditPacienteComponent implements OnInit {
   cancel(){
     this.router.navigate(['/home']);
   }
+
 }

@@ -16,6 +16,10 @@ export class FirebaseService {
     return this.db.collection('users').doc(userKey).snapshotChanges();
   }
 
+  getProfesionales(userKey){
+    return this.db.collection('profesionales').doc(userKey).snapshotChanges();
+  }
+
   updateProfesional(userKey, value){
     value.nameToSearch = value.name.toLowerCase();
     return this.db.collection('profesionales').doc(userKey).set(value);

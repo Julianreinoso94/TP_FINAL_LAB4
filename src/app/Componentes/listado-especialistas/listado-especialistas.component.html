@@ -14,7 +14,7 @@ type="ball-scale-multiple"
 
 
 
-<div class="row" style="margin-left: 50%;">
+<div class="row" style="margin-left: 50%;"  *ngIf="!detalles">
     <button class="btn btn-outline-primary action" (click)="imprimir()" type="button">
         Excel
         </button>
@@ -24,7 +24,7 @@ type="ball-scale-multiple"
 </div>
 
    <!-- listado pdf   -------------------------------------------------------------------------------- -->
-  <div style="padding-left: 22px !important;">  
+  <div style="padding-left: 22px !important;"  *ngIf="false">  
       <mat-card style="width: 550px;">  
         <table  class="table table-striped" id="contentToConvert">  
           <thead class="thead-dark"> 
@@ -45,7 +45,7 @@ type="ball-scale-multiple"
             
       </mat-card>  
     </div>  
-  <div class="list-group users-list">
+  <div class="list-group users-list"  *ngIf="!detalles">
     <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="row">
         <div class="col col-md-2 image-col">
@@ -81,7 +81,7 @@ type="ball-scale-multiple"
        
         </div>
         <div class="col col-md-2 actions-col">
-          <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
+          <button class="btn btn-outline-primary action" (click)="viewDetails(item.payload.doc.id)" type="button">
             <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
           </button>
           <!-- <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
@@ -95,4 +95,61 @@ type="ball-scale-multiple"
   </div>
 
 
+  <!--  editar espe-->
+
+  <!-- <div class="edit-page">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Edit User</li>
+      </ol>
+    </nav> -->
+
+      <div class="row" *ngIf="detalles" >
+        <div class="col col-md-4">
+          <img class="img-avatar"  [src]="avatar">
+          <!-- <button mat-stroked-button class="change-img-button" color="primary" (click)="openDialog()">Change Avatar</button> -->
+        </div>
+        <div class="col col-md-8">
+  
+          <form class="edit-form" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
+  
+            <div class="form-group">
+              <mat-form-field class="input-style">
+                <input matInput [(ngModel)]="name" placeholder="Name" class="form-control" formControlName="name">
+              </mat-form-field>
+              <ng-container *ngFor="let validation of validation_messages.name">
+                <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+              </ng-container>
+            </div>
+  
+            <div class="form-group">
+              <mat-form-field class="input-style">
+                <input matInput [(ngModel)]="surname" placeholder="Surname" class="form-control" formControlName="surname">
+              </mat-form-field>
+              <ng-container *ngFor="let validation of validation_messages.surname">
+                <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
+              </ng-container>
+            </div>
+  
+            <div class="form-group">
+              <mat-form-field class="input-style">
+                <input matInput [(ngModel)]="age" type="number" min="0" max="100" placeholder="Age" class="form-control" formControlName="age">
+              </mat-form-field>
+              <ng-container *ngFor="let validation of validation_messages.age">
+                <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
+              </ng-container>
+            </div>
+  
+            <div class="row submit-button-container">
+              <div class="col-md-4">
+                <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="!exampleForm.valid">Save</button>
+              </div>
+              <div class="col-md-4">
+                <button mat-raised-button class="delete-button" color="warn" type="button" (click)="delete()">Delete</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  <!-- </div> -->
   
