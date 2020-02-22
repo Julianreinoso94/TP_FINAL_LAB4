@@ -17,7 +17,7 @@ import 'firebase/firestore';
 
 
 class Turnos {
-
+  id:String;
   diaTurno: String;
   cliente: String;
   consultorio: String;
@@ -33,8 +33,9 @@ class Turnos {
   // ingresarperfil=false;
 
 
-  constructor(diaTurno:String,cliente:String,consultorio:String,especialidad:String,estado:String,horaTurno:String,numTurno:String,profesional:string,uidProfesional:String,emailPaciente:String )
+  constructor(id:String,diaTurno:String,cliente:String,consultorio:String,especialidad:String,estado:String,horaTurno:String,numTurno:String,profesional:string,uidProfesional:String,emailPaciente:String )
   {
+    this.id=id;
     this.diaTurno=diaTurno;
     this.cliente=cliente;
     this.consultorio=consultorio;
@@ -110,14 +111,14 @@ this.getData();
       if( this.uidUsuario == e.payload.doc.data()['uidProfesional'] )// SI INGRESO COMO MEDICO
     {
       console.log(this.uidUsuario);
-      this.turno= new Turnos (e.payload.doc.data()['DiaTurno'],e.payload.doc.data()['cliente'], e.payload.doc.data()['consultorio'], e.payload.doc.data()['especialidad'],e.payload.doc.data()['estado'],e.payload.doc.data()['horaTurno'],e.payload.doc.data()['numTurno'],e.payload.doc.data()['profesional'],e.payload.doc.data()['uid'],e.payload.doc.data()['email']);
+      this.turno= new Turnos (e.payload.doc.id,e.payload.doc.data()['DiaTurno'],e.payload.doc.data()['cliente'], e.payload.doc.data()['consultorio'], e.payload.doc.data()['especialidad'],e.payload.doc.data()['estado'],e.payload.doc.data()['horaTurno'],e.payload.doc.data()['numTurno'],e.payload.doc.data()['profesional'],e.payload.doc.data()['uid'],e.payload.doc.data()['email']);
          
           this.listadomisTurnos.push(this.turno);      
 
         
      }
       })
-      console.log(this.turnos);
+      console.log(this.turno);
     });
 
 
