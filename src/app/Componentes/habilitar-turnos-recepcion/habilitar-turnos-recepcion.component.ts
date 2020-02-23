@@ -17,9 +17,10 @@ class Turnos {
   listadoespecialistaspordia: any;
   turno;
   id;
+  email;
 
 
-  constructor(id:String,DiaTurno:String,cliente:String,consultorio:String,especialidad:String,estado:String,horaTurno:String,numTurno:String,profesional:String )
+  constructor(id:String,DiaTurno:String,cliente:String,consultorio:String,especialidad:String,estado:String,horaTurno:String,numTurno:String,profesional:String,email:String )
   {
     this.id=id;
     this.DiaTurno=DiaTurno;
@@ -30,6 +31,7 @@ class Turnos {
     this.horaTurno=horaTurno;
     this.numTurno=numTurno;
     this.profesional=profesional;
+    this.email=email;
 
   }
 }
@@ -123,7 +125,7 @@ console.log(this.turnos);
        
      // if(element.diasDeTrabajo == dia)
       //{
-         this.turno = new Turnos(element.id,element.DiaTurno,element.cliente,element.consultorio,element.especialidad,element.estado,element.horaTurno,element.numTurno,element.profesional);
+         this.turno = new Turnos(element.id,element.DiaTurno,element.cliente,element.consultorio,element.especialidad,element.estado,element.horaTurno,element.numTurno,element.profesional,element.email);
         this.listadoTurnosHabilitar.push(this.turno);
       //}
    });

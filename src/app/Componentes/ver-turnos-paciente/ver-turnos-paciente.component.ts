@@ -131,6 +131,8 @@ this.getData();
 
     this.firebaseService.cambiarEstado(codigo,"Presente");
     this.getData();
+    this.router.navigate(['/home']);
+
 
   }
 
@@ -139,6 +141,8 @@ this.getData();
     console.log(codigo);
 
     this.firebaseService.cambiarEstado(codigo,"Ausente");
+    this.router.navigate(['/home']);
+
   }
 
  

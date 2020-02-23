@@ -16,7 +16,7 @@ type="ball-scale-multiple"
         </nav>
         
 
-    <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start" style=" background: rgba(76, 175, 80, 0.3)">
       <div class="row">
         <!-- <div class="col col-md-2 image-col">
           <img class="image" [src]="item.payload.doc.data().avatar">
@@ -24,29 +24,32 @@ type="ball-scale-multiple"
         <div class="col col-md-12 text-col" style=" background: rgba(76, 175, 80, 0.3)">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">Datos Personales</li>
+                  <li class="breadcrumb-item active" aria-current="page">Datos Del Turno</li>
                 </ol>
               </nav>
           <h5 class="mb-1"> Codigo de Turno</h5>
-          <small>{{item.payload.doc.data().especialidad.cliente}}</small>
-          <h5 class="mb-1">Horario </h5>
+          <small>{{item.payload.doc.data().numTurno}}</small>
+          <h5 class="mb-1">Información del Profesional </h5>
 
-          <small    >{{item.horaTurno}}</small>
           <small>Especialidad: {{item.payload.doc.data().especialidad}}</small>
+          <h5 class="mb-1">profesional</h5>
+
+          <small>{{item.payload.doc.data().profesional}} </small>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">Datos Laborales</li>
+              <li class="breadcrumb-item active" aria-current="page">Detalles</li>
             </ol>
           </nav>
           <h5 class="mb-1"> Dias Turno</h5>
           <small>{{item.payload.doc.data().DiaTurno}}</small>
-          <h5 class="mb-1">Horarios</h5>
 
           <small>{{item.payload.doc.data().horario}}</small>
     
         </div>
         <div class="col col-md-8 text-col">
-          <h5 class="mb-1">{{item.payload.doc.data().name}} {{item.payload.doc.data().surname}}</h5>
+          <h5 class="mb-1">Email del Paciente</h5>
+
+          <small>{{item.payload.doc.data().email}} </small>
        
         </div>
         <div class="col col-md-2 actions-col">
